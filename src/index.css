@@ -5,10 +5,11 @@
   --fira: "Fira Sans", sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme{
+  --color-light-gray: #A2A2A2;
+  --color-yellow: #FEC80B;
+  --color-yellow-hov: #FFD43A;
+  --color-yellow-shadow: #fec80b66;
 }
 
 .container {

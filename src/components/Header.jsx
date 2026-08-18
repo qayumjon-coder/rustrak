@@ -1,15 +1,37 @@
-import { ChevronDown, Heart, Menu, Search, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ChevronDown, Heart, Menu, Search, ShoppingCart, X } from "lucide-react";
+import NavbarLink from "./NavbarLink.jsx";
+import { links, links2, links3 } from "../object.js";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY > 20){
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const toggleNavList = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
-    <header>
-      <div className="flex justufy-between flex-col border-b-2 border-yellow/30">
+    <header className="fixed w-full top-0 left-0 z-100">
+      <div className={isHidden ? `hidden justufy-between flex-col border-b-2 border-yellow/30` : `flex justufy-between flex-col border-b-2 border-yellow/30`}>
         <div className="container">
           <div className="flex justify-between pt-3.5 pb-1">
             <div className="flex items-center leading-3.5 text-sm">
@@ -71,22 +93,26 @@ const Header = () => {
         <div className="container">
           <div className="flex py-3 items-center justify-between">
             <div className="flex items-center">
-              <button className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm">
-                <Menu />
-                Каталог
+              <button onClick={toggleNavList} className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm">
+                {!isNavOpen ? <Menu /> : <X/>}
+                <p className={isHidden ? "hidden" : "block"}>
+                  Каталог
+                </p>
               </button>
 
-              <nav className="ml-10">
+              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex ml-4" : "hidden mb-4" }/>
+
+              <nav className="ml-5">
                 <ul className="flex items-center">
                   <li>
-                    <a className="flex items-center" href="#">
-                      О нас <ChevronDown className="text-yellow"/>
-                    </a>
+                    <button onClick={toggleNavList} className="flex items-center cursor-pointer">
+                      О нас <ChevronDown className="text-yellow" />
+                    </button>
                   </li>
                   <li className="ml-8">
-                    <a className="flex items-center" href="#">
-                      Медиа <ChevronDown className="text-yellow"/>
-                    </a>
+                    <button onClick={toggleNavList} className="flex items-center cursor-pointer">
+                      Медиа <ChevronDown className="text-yellow" />
+                    </button>
                   </li>
                   <li className="ml-8">
                     <a href="#">Сервис</a>
@@ -115,89 +141,96 @@ const Header = () => {
               </form>
 
               <div className="flex items-center">
-                <a href="#"><ShoppingCart size={30} strokeWidth={1.2} className="ml-5" /></a>
-                <a href="#"><Heart size={30} strokeWidth={1.2} className="ml-5" /></a>
+                <a href="#">
+                  <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
+                </a>
+                <a href="#">
+                  <Heart size={30} strokeWidth={1.2} className="ml-5" />
+                </a>
               </div>
+              <i className={isHidden ? "fa-solid fa-phone flex! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow" : "fa-solid fa-phone hidden! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"}></i>
             </div>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className={!isNavOpen ? "hidden bg-light-gray/10 absolute w-full" : "bg-light-gray absolute w-full z-100"}>
         <div className="container">
-          <div>
+          <div className="grid grid-cols-3 py-4">
             <div>
-              <h2>Title</h2>
+              <h2 className="text-2xl font-bold mb-4">Категории</h2>
 
               <ul>
-                <li><a href="#">Шторные автомобили</a></li>
-                <li><a href="#">Краны-манипуляторы</a></li>
-                <li><a href="#">Автотопливозаправщики</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                {links.map((link) => (
+                  <NavbarLink
+                    liSelector={"mb-4"}
+                    key={link.id}
+                    link={link.linkVal}
+                    text={link.content}
+                  />
+                ))}
               </ul>
             </div>
 
-
-{/* 
-Шторные автомобили
-Краны-манипуляторы
-Автотопливозаправщики
-Автогидроподъёмники
-Автоцистерны
-Автоэвакуаторы
-Бортовые автомобили
-Изотермические фургоны
-Контейнеровозы
-Крюковые погрузчики
-Самосвалы
-Автомобили ДОПОГ категория EXII */}
-
-            
             <div>
-              <h2>Title</h2>
+              <h2 className="text-2xl font-bold mb-4">О нас</h2>
 
               <ul>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                {links2.map((link) => (
+                  <NavbarLink
+                    liSelector={"mb-4"}
+                    key={link.id}
+                    link={link.linkVal}
+                    text={link.content}
+                  />
+                ))}
               </ul>
             </div>
-            <div>
-              <h2>Title</h2>
 
-              <ul>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-              </ul>
+            <div className="flex justify-between">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Медиа</h2>
+
+                <ul>
+                  {links3.map((link) => (
+                    <NavbarLink
+                      liSelector={"mb-4"}
+                      key={link.id}
+                      link={link.linkVal}
+                      text={link.content}
+                    />
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <NavbarLink
+                    liSelector={"mb-7"}
+                    selector={`text-2xl font-bold mb-[34px]`}
+                    link="#"
+                    text="Сервис"
+                  />
+                  <NavbarLink
+                    liSelector={"mb-7"}
+                    selector={`text-2xl font-bold mb-[34px]`}
+                    link="#"
+                    text="Ремонт"
+                  />
+                  <NavbarLink
+                    liSelector={"mb-7"}
+                    selector={`text-2xl font-bold mb-[34px]`}
+                    link="#"
+                    text="Новости"
+                  />
+                  <NavbarLink
+                    liSelector={"mb-7"}
+                    selector={`text-2xl font-bold mb-[34px]`}
+                    link="#"
+                    text="Контакты"
+                  />
+                </ul>
+              </div>
             </div>
-            <div></div>
           </div>
         </div>
       </div>

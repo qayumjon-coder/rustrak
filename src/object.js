@@ -1,3 +1,5 @@
+import "/images/trucks/truck1.png";
+
 export const links = [
     {
         id: 1,
@@ -129,5 +131,74 @@ export const links3 = [
         id: 4,
         linkVal: "#",
         content: "Информационные материалы"
+    }
+];
+
+export const swiperCardTrck = [
+    {
+        id: 1,
+        title: "Автотопливозаправщики",
+        quantity: 26,
+        img: "/images/trucks/truck1.png",
+    },
+    {
+        id: 2,
+        title: "Автогидроподъёмники",
+        quantity: 4,
+        img: "/images/trucks/truck2.png",
+    },
+    {
+        id: 3,
+        title: "Автоцистерны",
+        quantity:  10,
+        img: "/images/trucks/truck3.png",
+    },
+    {
+        id: 4,
+        title: "Автоэвакуаторы",
+        quantity: "2",
+        img: "/images/trucks/truck4.png",
+    },
+    {
+        id: 5,
+        title: "Изотермические фургоны",
+        quantity:  16,
+        img: "/images/trucks/truck5.png",
+    },
+    {
+        id: 6,
+        title: "Контейнеровозы",
+        quantitye: 2,
+        img: "/images/trucks/truck6.png",
+    },
+    {
+        id: 7,
+        title: "Крюковые погрузчики",
+        quantitye: 3,
+        img: "/images/trucks/truck7.png",
+    },
+    {
+        id: 8,
+        title: "Самосвалы",
+        quantity:  12,
+        img: "/images/trucks/truck8.png",
+    },
+    {
+        id: 9,
+        title: "Автомобили ДОПОГ категория EXII",
+        quantitye: 4,
+        img: "/images/trucks/truck9.png",
+    },
+    {
+        id: 10,
+        title: "Шторные автомобили",
+        quantity:  30,
+        img: "/images/trucks/truck10.png",
+    },
+    {
+        id: 11,
+        title: "Краны-манипуляторы",
+        quantity:  79,
+        img: "/images/trucks/truck11.png",
     }
 ]

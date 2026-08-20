@@ -15,10 +15,24 @@
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 1.6rem;
+  padding: 0 16px;
   max-width: 1352px;
 }
 
 body{
   font-family: var(--fira);
+}
+
+.swiper-pagination-bullet {
+  background-color: transparent !important; 
+  border: 2px solid #fff7;               
+  opacity: 1 !important;                   
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Style for the active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #ffffff !important;   
+  border-color: #fff;                  
 }

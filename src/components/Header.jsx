@@ -3,14 +3,14 @@ import { ChevronDown, Heart, Menu, Search, ShoppingCart, X } from "lucide-react"
 import NavbarLink from "./NavbarLink.jsx";
 import { links, links2, links3 } from "../object.js";
 
-const Header = () => {
+const Header = ({ t, language, setLanguage, languages }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 20){
+      if (window.scrollY > 20) {
         setIsHidden(true);
       } else {
         setIsHidden(false);
@@ -30,14 +30,14 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full top-0 left-0 z-100">
-      <div className={isHidden ? `hidden justufy-between flex-col border-b-2 border-yellow/30` : `flex justufy-between flex-col border-b-2 border-yellow/30`}>
+    <header className="fixed w-full top-0 left-0 z-100 bg-white">
+      <div className={isHidden ? "absolute -top-full w-full justufy-between flex-col border-b-2 border-yellow/30 transition-all ease duration-200" : "top-0 justufy-between flex-col border-b-2 border-yellow/30"}>
         <div className="container">
           <div className="flex justify-between pt-3.5 pb-1">
             <div className="flex items-center leading-3.5 text-sm">
               <img src="/logo/logo.svg" alt="rustrack brand logo" />
               <p className="border-l-2! pl-5! ml-5! border-yellow">
-                производство и продажа <br /> автоспецтехники
+                {t.company}
               </p>
             </div>
 
@@ -48,7 +48,7 @@ const Header = () => {
                     onClick={toggleMenu}
                     className="flex flex-end text-[16px] items-center cursor-pointer"
                   >
-                    Время работы{" "}
+                    {t.workingHours}{" "}
                     <ChevronDown
                       className={
                         isOpen
@@ -57,17 +57,11 @@ const Header = () => {
                       }
                     />
                   </button>
-                  <p className="text-light-gray">
-                    г. Нижний Новгород ул. Торфяная, 35
-                  </p>
+                  <p className="text-light-gray">{t.address}</p>
                 </div>
 
                 {isOpen && (
-                  <div
-                    className={
-                      "absolute top-5 right-10 bg-white p-3.5! shadow-lg rounded-md shadow-black/10 text-sm"
-                    }
-                  >
+                  <div className="absolute top-5 right-10 bg-white p-3.5! shadow-lg rounded-md shadow-black/10 text-sm">
                     <p className="mb-3!">Пн-пт: с 8:00 до 18:00</p>
                     <p>Сб-вс: Выходной</p>
                   </div>
@@ -77,10 +71,10 @@ const Header = () => {
               <div className="flex items-center">
                 <div className="text-dark-200 flex flex-col items-end text-light-gray mr-5! leading-[110%]">
                   <p>
-                    Для регионов: <a href="#">8 (800)-511-05-25</a>
+                    {t.forRegions} <a href="#">8 (800)-511-05-25</a>
                   </p>
                   <p>
-                    Нижний Новгород: <a href="#">8 (831) 225-00-55</a>
+                    {t.city} <a href="#">8 (831) 225-00-55</a>
                   </p>
                 </div>
                 <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
@@ -94,46 +88,47 @@ const Header = () => {
           <div className="flex py-3 items-center justify-between">
             <div className="flex items-center">
               <button onClick={toggleNavList} className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm">
-                {!isNavOpen ? <Menu /> : <X/>}
-                <p className={isHidden ? "hidden" : "block"}>
-                  Каталог
-                </p>
+                {isNavOpen ? <X /> : <Menu />}
+                <p className={isHidden ? "hidden" : "block"}>{t.catalog}</p>
               </button>
 
-              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex ml-4" : "hidden mb-4" }/>
+              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex ml-4" : "hidden mb-4"} />
 
               <nav className="ml-5">
                 <ul className="flex items-center">
-                  <li>
+                  <div className={isHidden ? "hidden" : "flex"}>
+                    <li>
                     <button onClick={toggleNavList} className="flex items-center cursor-pointer">
-                      О нас <ChevronDown className="text-yellow" />
+                      {t.about} <ChevronDown className={ isNavOpen ? "rotate-180 text-yellow" : "text-yellow"} />
                     </button>
                   </li>
                   <li className="ml-8">
                     <button onClick={toggleNavList} className="flex items-center cursor-pointer">
-                      Медиа <ChevronDown className="text-yellow" />
+                      {t.media} <ChevronDown className="text-yellow" />
                     </button>
                   </li>
+                  </div>
                   <li className="ml-8">
-                    <a href="#">Сервис</a>
+                    <a href="#">{t.service}</a>
                   </li>
                   <li className="ml-8">
-                    <a href="#">Ремонт</a>
+                    <a href="#">{t.repair}</a>
                   </li>
                   <li className="ml-8">
-                    <a href="#">Новости</a>
+                    <a href="#">{t.news}</a>
                   </li>
                   <li className="ml-8">
-                    <a href="#">Контакты</a>
+                    <a href="#">{t.contacts}</a>
                   </li>
                 </ul>
               </nav>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <form className="flex items-center">
                 <input
                   type="text"
-                  className="py-1.5 w-78 pl-4 pr-10 border border-yellow rounded-full outline-0 focus:shadow-[0_0_10px_#fec80b66]"
+                  placeholder={t.search}
+                  className="py-1.5 w-full pl-4 pr-10 border border-yellow rounded-full outline-0 focus:shadow-[0_0_10px_#fec80b66]"
                 />
                 <button type="submit" className="cursor-pointer">
                   <Search size={20} strokeWidth={1.5} className="-ml-8" />
@@ -148,6 +143,21 @@ const Header = () => {
                   <Heart size={30} strokeWidth={1.2} className="ml-5" />
                 </a>
               </div>
+
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <select
+                  value={language}
+                  onChange={(event) => setLanguage(event.target.value)}
+                  className="rounded-md border border-yellow bg-white px-2 py-1 outline-none"
+                >
+                  {languages.map((item) => (
+                    <option key={item.code} value={item.code}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
               <i className={isHidden ? "fa-solid fa-phone flex! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow" : "fa-solid fa-phone hidden! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"}></i>
             </div>
           </div>
@@ -158,7 +168,7 @@ const Header = () => {
         <div className="container">
           <div className="grid grid-cols-3 py-4">
             <div>
-              <h2 className="text-2xl font-bold mb-4">Категории</h2>
+              <h2 className="text-2xl font-bold mb-4">{t.categories}</h2>
 
               <ul>
                 {links.map((link) => (
@@ -173,7 +183,7 @@ const Header = () => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold mb-4">О нас</h2>
+              <h2 className="text-2xl font-bold mb-4">{t.about}</h2>
 
               <ul>
                 {links2.map((link) => (
@@ -189,7 +199,7 @@ const Header = () => {
 
             <div className="flex justify-between">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Медиа</h2>
+                <h2 className="text-2xl font-bold mb-4">{t.media}</h2>
 
                 <ul>
                   {links3.map((link) => (
@@ -208,25 +218,25 @@ const Header = () => {
                     liSelector={"mb-7"}
                     selector={`text-2xl font-bold mb-[34px]`}
                     link="#"
-                    text="Сервис"
+                    text={t.service}
                   />
                   <NavbarLink
                     liSelector={"mb-7"}
                     selector={`text-2xl font-bold mb-[34px]`}
                     link="#"
-                    text="Ремонт"
+                    text={t.repair}
                   />
                   <NavbarLink
                     liSelector={"mb-7"}
                     selector={`text-2xl font-bold mb-[34px]`}
                     link="#"
-                    text="Новости"
+                    text={t.news}
                   />
                   <NavbarLink
                     liSelector={"mb-7"}
                     selector={`text-2xl font-bold mb-[34px]`}
                     link="#"
-                    text="Контакты"
+                    text={t.contacts}
                   />
                 </ul>
               </div>

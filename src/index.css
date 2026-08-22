@@ -3,6 +3,7 @@
 
 :root {
   --fira: "Fira Sans", sans-serif;
+  --yellow-shadow: #fec90b4d;
 }
 
 @theme{
@@ -24,7 +25,7 @@ body{
 }
 
 .swiper-pagination-bullet {
-  background-color: transparent !important; 
+  background-color: transparent !important;
   border: 2px solid #fff7;               
   opacity: 1 !important;                   
   width: 16px !important;
@@ -35,4 +36,8 @@ body{
 .swiper-pagination-bullet-active {
   background-color: #ffffff !important;   
   border-color: #fff;                  
+}
+
+.shadow-smooth-yellow:hover{
+  box-shadow: 0 0 30px var(--yellow-shadow);
 }

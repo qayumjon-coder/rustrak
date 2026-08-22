@@ -168,13 +168,13 @@ export const swiperCardTrck = [
     {
         id: 6,
         title: "Контейнеровозы",
-        quantitye: 2,
+        quantity: 2,
         img: "/images/trucks/truck6.png",
     },
     {
         id: 7,
         title: "Крюковые погрузчики",
-        quantitye: 3,
+        quantity: 3,
         img: "/images/trucks/truck7.png",
     },
     {
@@ -186,7 +186,7 @@ export const swiperCardTrck = [
     {
         id: 9,
         title: "Автомобили ДОПОГ категория EXII",
-        quantitye: 4,
+        quantity: 4,
         img: "/images/trucks/truck9.png",
     },
     {

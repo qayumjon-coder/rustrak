@@ -21,6 +21,19 @@ const Header = ({ t, language, setLanguage, languages }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if(isNavOpen){
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+
+  }, [isNavOpen]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -164,7 +177,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
         </div>
       </div>
 
-      <div className={!isNavOpen ? "hidden bg-light-gray/10 absolute w-full" : "bg-light-gray absolute w-full z-100"}>
+      <div className={!isNavOpen ? "hidden bg-light-gray/10 absolute w-full" : "open-nav bg-gray-50 absolute w-full z-100 h-screen"}>
         <div className="container">
           <div className="grid grid-cols-3 py-4">
             <div>

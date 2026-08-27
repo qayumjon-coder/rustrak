@@ -1,24 +1,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { recommended_trucks } from "../object";
-import { ArrowDownToLine, Heart } from "lucide-react"
+import { news } from "../object";
+import { MoveRight } from "lucide-react"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const RecommendedTrucks = () => {
+const News = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[40px] font-semibold">Рекомендуемая продукция</h2>
+        <h2 className="text-[40px] font-semibold">Новости</h2>
 
         <div className="flex items-center gap-3">
-          <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
+          <button className="rt-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
             <span>
               <i className="fa-solid fa-chevron-left"></i>
             </span>
           </button>
-          <button className="swiper-next-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
+          <button className="rt-next-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
             <span>
               <i className="fa-solid fa-chevron-right"></i>
             </span>
@@ -31,9 +31,10 @@ const RecommendedTrucks = () => {
         spaceBetween={20}
         slidesPerView={4}
         navigation={{
-          prevEl: ".swiper-prev-el",
-          nextEl: ".swiper-next-el",
+          prevEl: ".rt-prev-el",
+          nextEl: ".rt-next-el",
         }}
+        loop={true}
         className="h-full!"
         style={{
           "--swiper-navigation-color": "#f0f0f0",
@@ -41,36 +42,33 @@ const RecommendedTrucks = () => {
           "--swiper-navigation-top-offset": "50%",
         }}
       >
-        {recommended_trucks.map((item) => (
+        {news.map((newsItem) => (
           <SwiperSlide
-            key={item.id}
+            key={newsItem.id}
             className="flex! h-110 flex-col w-78  bg-white"
           >
             <div className="flex h-65 relative">
               <a href="#">
               <img
-                src={item.img}
-                alt={"Truck Image " + item.id}
+                src={newsItem.img}
+                alt={"Truck Image " + newsItem.id}
                 className="object-cover h-full rounded-t-md"
               />
               </a>
-              <button className="absolute right-2 top-2 cursor-pointer group">
-              <Heart className="group-hover:fill-yellow" size={30} strokeWidth={1}/>
-              </button>
             </div>
 
             <div className="p-2.5">
+                <p className="font-semibold">{newsItem.date}</p>
               <a href="#" >
                 <div className="pb-2">
-                  <h3 className="text-lg line-clamp-1">{item.title}</h3>
+                  <h3 className="text-lg font-semibold">{newsItem.title}</h3>
                 </div>
               </a>
 
-              <p className="text-xl font-semibold mb-5">{item.price}</p>
+              <p className="text-xl font-semibold mb-5">{newsItem.price}</p>
 
               <div className="flex justify-between items-center">
-                <a href="#" className="py-3 px-7.5 bg-yellow rounded-sm">Подробнее</a>
-                <a href="#" className="flex gap-2.5 text-light-gray">Получить КП <ArrowDownToLine /></a>
+                <a href="#" className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg">Подробнее <MoveRight /></a>
               </div>
             </div>
           </SwiperSlide>
@@ -80,4 +78,4 @@ const RecommendedTrucks = () => {
   );
 };
 
-export default RecommendedTrucks;
+export default News;

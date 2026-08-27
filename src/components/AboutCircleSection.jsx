@@ -99,7 +99,7 @@ export default function ArcNavigation() {
       <div className="hidden md:flex md:items-start md:justify-between md:gap-10 relative">
         
         {/* CHAP TARAFI: Ekran skroll bo'lganda joyida qotib turadi (sticky) */}
-        <div className="sticky top-20 aspect-square w-7/12 flex items-center justify-center min-h-[500px]">
+        <div className="sticky top-20 aspect-square w-7/12 flex items-center justify-center min-h-125">
           
           {/* Orqa fondagi sariq aylana */}
           <div className="absolute inset-[5%] border border-[#ffd000] rounded-full z-10 pointer-events-none" />

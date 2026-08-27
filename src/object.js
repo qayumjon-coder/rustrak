@@ -209,90 +209,154 @@ export const recommended_trucks = [
         img: "/images/recommended/000.webp",
         title: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N (модель 438918)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 2,
         img: "/images/recommended/001.webp",
         title: "Кран-манипулятор КАМАЗ 43118 c КМУ ИНМАН ИМ150N (модель 4388С2-10)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 3,
         img: "/images/recommended/002.webp",
         title: "Кран-манипулятор JAC N200L c КМУ ИНМАН ИМ150N, ДОПОГ категория EX II (модель 4389К8-10)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 4,
         img: "/images/recommended/003.webp",
         title: "Шторный грузовик КАМАЗ 4308 ДОПОГ ЕХII (модель 4388Н2-10)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 5,
         img: "/images/recommended/004.webp",
         title: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N (модель 438918)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 6,
         img: "/images/recommended/005.webp",
         title: "Автотопливозаправщик JAC N200 АТЗ-10 м. куб",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 7,
         img: "/images/recommended/006.webp",
         title: "Топливозаправщик Садко 9 (С41А13) с АТЗ 4,5 м3 двухсекционная",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "от 8 800 000"
     },
     {
         id: 8,
         img: "/images/recommended/007.webp",
         title: "Топливозаправщик Валдай 12 АТЗ 8",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "от 7 850 000"
     },
     {
         id: 9,
         img: "/images/recommended/008.webp",
         title: "Шторный грузовик ВАЛДАЙ 12",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 10,
         img: "/images/recommended/009.webp",
         title: "Шторный грузовик КАМАЗ 65657",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 11,
         img: "/images/recommended/010.webp",
         title: "Шторный грузовик DONG FENG C120L (модель 5389H2-03)",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 12,
         img: "/images/recommended/011.webp",
         title: "Самосвал на шасси КОМПАС 9",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     },
     {
         id: 13,
         img: "/images/recommended/012.webp",
         title: "Автогидроподъемник PALFINGER P 180Т на шасси ГАЗ C41R33",
         link: "#",
-        isLiked: false
+        isLiked: false,
+        price: "Цена по запросу"
     }
 ];
+
+export const news = [
+    {
+        id: 1,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 2,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 3,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 4,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 5,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 6,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 7,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    },
+    {
+        id: 8,
+        img: "/images/recommended/000.webp",
+        date: "01.01.2026",
+        title: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»"
+    }
+]

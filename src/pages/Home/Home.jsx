@@ -3,6 +3,9 @@ import SwiperBanner from "../../components/SwiperBanner";
 import SwiperCards from "../../components/SwiperCards";
 import ArcNavigation from "../../components/AboutCircleSection";
 import RecommendedTrucks from "../../components/RecommendedTrucks";
+import News from "../../components/News";
+import ContactSec from "../../components/Contact";
+import Footer from "../../components/Footer";
 
 const Home = ({ t }) => {
   t;
@@ -127,13 +130,36 @@ const Home = ({ t }) => {
         <ArcNavigation />
       </section>
 
-      <section>
+      <section className="bg-light-gray/10 py-20">
         <div className="container">
           <div>
-            <RecommendedTrucks/>
+            <RecommendedTrucks />
           </div>
         </div>
       </section>
+
+      <section className="py-30">
+        <div className="container">
+          <News />
+        </div>
+      </section>
+
+      <section className="h-85.25 flex relative overflow-hidden! bg-light-gray/20">
+        <div className="container">
+          <ContactSec />
+        </div>
+        <img
+          className="absolute -right-110 -top-15"
+          src="/images/trucks/Contact/feedback-truck_result.webp"
+          alt=""
+        />
+      </section>
+
+      <footer className="bg-black pt-15.5 pb-10">
+        <div className="container">
+          <Footer />
+        </div>
+      </footer>
     </>
   );
 };

@@ -1,6 +1,8 @@
 import "../../index.css";
 import SwiperBanner from "../../components/SwiperBanner";
 import SwiperCards from "../../components/SwiperCards";
+import ArcNavigation from "../../components/AboutCircleSection";
+import RecommendedTrucks from "../../components/RecommendedTrucks";
 
 const Home = ({ t }) => {
   t;
@@ -36,23 +38,6 @@ const Home = ({ t }) => {
       <section className="pt-19.75 mb-20">
         <div className="container">
           <div>
-            <div className="flex items-center justify-between mb-5">
-              <h2 className="text-[40px] font-semibold">Категории</h2>
-
-              <div className="flex items-center gap-3">
-                <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
-                  <span>
-                    <i className="fa-solid fa-chevron-left"></i>
-                  </span>
-                </button>
-                <button className="swiper-next-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
-                  <span>
-                    <i className="fa-solid fa-chevron-right"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-
             <SwiperCards />
           </div>
         </div>
@@ -138,10 +123,14 @@ const Home = ({ t }) => {
         </div>
       </section>
 
-      <section className="h-[500dvh]">
-        <div className="bg-amber-100 h-screen sticky top-0">
-          <div className="container">
-              
+      <section className="h-[200vh]">
+        <ArcNavigation />
+      </section>
+
+      <section>
+        <div className="container">
+          <div>
+            <RecommendedTrucks/>
           </div>
         </div>
       </section>

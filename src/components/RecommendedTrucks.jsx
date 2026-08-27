@@ -3,12 +3,13 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { swiperCardTrck } from "../object";
+import { recommended_trucks } from "../object";
 
-const SwiperCards = () => {
+const RecommendedTrucks = () => {
   return (
+
     <div>
-      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-5">
               <h2 className="text-[40px] font-semibold">Категории</h2>
 
               <div className="flex items-center gap-3">
@@ -41,20 +42,18 @@ const SwiperCards = () => {
           "--swiper-navigation-top-offset": "50%",
         }}
       >
-        {swiperCardTrck.map((item) => (
-          <SwiperSlide key={item.id}>
-            <a href="#" className="flex! justify-between! w-full flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200">
-              <div className="pt-5 pl-4.5">
-                <h3 className="text-xl">{item.title}</h3>
-                <p className="text-light-gray">{item.quantity} моделей</p>
-              </div>
-
-              <div className="flex self-end">
+        {recommended_trucks.map((item) => (
+          <SwiperSlide key={item.id} className="flex! justify-between! w-full flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200">
+              <div className="flex">
                 <img
                   src={item.img}
                   alt={"Truck Image " + item.id}
                   className="self-end"
                 />
+              </div>
+            <a href="#" className="">
+              <div className="pt-5 pl-4.5">
+                <h3 className="text-xl">{item.title}</h3>
               </div>
             </a>
           </SwiperSlide>
@@ -62,6 +61,6 @@ const SwiperCards = () => {
       </Swiper>
     </div>
   );
-};
+}
 
-export default SwiperCards;
+export default RecommendedTrucks

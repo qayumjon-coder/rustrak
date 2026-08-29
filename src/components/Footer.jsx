@@ -14,7 +14,7 @@ const Footer = () => {
 
           <address className="mb-4">г. Нижний Новгород ул. Торфяная, 35</address>
 
-          <button className="py-3.25 px-7.5 bg-yellow text-black">Заказать звонок</button>
+          <button className="py-3.25 px-7.5 bg-yellow text-black rounded-sm cursor-pointer hover:bg-yellow-hov transition ease duration-200">Заказать звонок</button>
           <img className="mt-6.25" width={200} src="/images/qr-code.svg" alt="QR Code image" />
         </div>
         <div className="flex mb-10 gap-20 text-sm text-light-gray font-semibold">

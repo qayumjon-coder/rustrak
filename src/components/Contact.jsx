@@ -1,4 +1,10 @@
+import { useState } from "react"
+
 const ContactSec = () => {
+    const [isHovered, setIsHovered] = useState(false);
+    
+
+
   return (
     <div className="pt-10">
         <div className="mb-9.5">
@@ -13,7 +19,7 @@ const ContactSec = () => {
                 </div>
                 <div className="flex flex-col w-full">
                     <label htmlFor="abc" className="text-sm">Телефон *</label>
-                    <input className="py-2.75 px-3 rounded-sm border outline-0" type="tel" placeholder="+7 (___) ___-__-__"/>
+                    <input className="py-2.75 px-3 rounded-sm border outline-0" type="tel" onMouseLeave={() => setIsHovered(false)} onMouseEnter={() => setIsHovered(true)} placeholder={ isHovered ? "+7 (___) ___-__-__" : "+7"}/>
                 </div>
 
                 <button className="py-3.25 px-7.5 bg-yellow rounded-sm" type="submit">Отправить</button>

@@ -66,7 +66,7 @@ export const links = [
 export const links2 = [
     {
         id: 1,
-        linkVal: "#",
+        linkVal: "/about",
         content: "О компании ООО «Рустрак»",
     },
     {

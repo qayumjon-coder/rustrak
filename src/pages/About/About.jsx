@@ -1,8 +1,14 @@
 const About = () => {
   return (
-    <div>
-        
-    </div>
+    <>
+      <section>
+        <div className="container">
+          <div>
+            
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 

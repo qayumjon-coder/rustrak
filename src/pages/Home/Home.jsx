@@ -3,7 +3,7 @@ import SwiperBanner from "../../components/SwiperBanner";
 import SwiperCards from "../../components/SwiperCards";
 import ArcNavigation from "../../components/AboutCircleSection";
 import RecommendedTrucks from "../../components/RecommendedTrucks";
-import News from "../../components/News";
+import News from "../../components/NewsSwiper";
 import ContactSec from "../../components/Contact";
 import Footer from "../../components/Footer";
 

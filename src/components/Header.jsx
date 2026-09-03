@@ -186,7 +186,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
               <ul>
                 {links.map((link) => (
                   <NavbarLink
-                    liSelector={"mb-4"}
+                    liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
                     key={link.id}
                     link={link.linkVal}
                     text={link.content}
@@ -201,7 +201,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
               <ul>
                 {links2.map((link) => (
                   <NavbarLink
-                    liSelector={"mb-4"}
+                    liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
                     key={link.id}
                     link={link.linkVal}
                     text={link.content}
@@ -217,7 +217,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                 <ul>
                   {links3.map((link) => (
                     <NavbarLink
-                      liSelector={"mb-4"}
+                      liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
                       key={link.id}
                       link={link.linkVal}
                       text={link.content}

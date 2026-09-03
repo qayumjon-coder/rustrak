@@ -1,7 +1,22 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Heart, Menu, Search, ShoppingCart, X } from "lucide-react";
+import {
+  ChevronDown,
+  Heart,
+  Menu,
+  Search,
+  ShoppingCart,
+  X,
+} from "lucide-react";
 import NavbarLink from "./NavbarLink.jsx";
 import { links, links2, links3 } from "../object.js";
+import { motion } from "motion/react";
+import {
+  fadeUp,
+  slideLeft,
+  slideRight,
+  slideTop,
+  shortFadeUp,
+} from "../utils/animation.js";
 
 const Header = ({ t, language, setLanguage, languages }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +37,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
   }, []);
 
   useEffect(() => {
-    if(isNavOpen){
+    if (isNavOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -31,7 +46,6 @@ const Header = ({ t, language, setLanguage, languages }) => {
     return () => {
       document.body.style.overflow = "unset";
     };
-
   }, [isNavOpen]);
 
   const toggleMenu = () => {
@@ -44,24 +58,43 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
   return (
     <header className="fixed w-full top-0 left-0 z-100 bg-white">
-      <div className={isHidden ? "absolute -top-full w-full justufy-between flex-col border-b-2 border-yellow/30 transition-all ease duration-200" : "top-0 justufy-between flex-col border-b-2 border-yellow/30"}>
+      <div
+        className={
+          isHidden
+            ? "absolute -top-full w-full justufy-between flex-col border-b-2 border-yellow/30 transition-all ease duration-200"
+            : "top-0 justufy-between flex-col border-b-2 border-yellow/30"
+        }
+      >
         <div className="container">
           <div className="flex justify-between pt-3.5 pb-1">
             <div className="flex items-center leading-3.5 text-sm">
-              <img src="/logo/logo.svg" alt="rustrack brand logo" />
-              <p className="border-l-2! pl-5! ml-5! border-yellow">
+              <motion.img
+                variants={slideLeft}
+                initial={slideLeft.hidden}
+                whileInView={slideLeft.visible}
+                transition={{ delay: 0.2 }}
+                src="/logo/logo.svg"
+                alt="rustrack brand logo"
+              />
+              <motion.p
+                variants={slideRight}
+                initial={slideRight.hidden}
+                whileInView={slideRight.visible}
+                transition={{ delay: 0.2 }}
+                className="border-l-2! pl-5! ml-5! border-yellow"
+              >
                 {t.company}
-              </p>
+              </motion.p>
             </div>
 
             <div className="flex text-[15px] items-center">
               <div className="relative">
                 <div className="flex text-left flex-col items-end mr-15! leading-[110%] justify-center">
-                  <button
+                  <motion.button initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}
                     onClick={toggleMenu}
                     className="flex flex-end text-[16px] items-center cursor-pointer"
                   >
-                    {t.workingHours}{" "}
+                    {t.workingHours}
                     <ChevronDown
                       className={
                         isOpen
@@ -69,9 +102,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
                           : "text-amber-400 h-5 transition-all duration-200 ease"
                       }
                     />
-                  </button>
-                  <p className="text-light-gray">{t.address}</p>
-                </div>
+                  </motion.button>
+                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} className="text-light-gray" transition={{ease: "easeIn", duration: .3, delay: .1}}>{t.address}</motion.p>
+                </div> 
 
                 {isOpen && (
                   <div className="absolute top-5 right-10 bg-white p-3.5! shadow-lg rounded-md shadow-black/10 text-sm">
@@ -83,14 +116,22 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
               <div className="flex items-center">
                 <div className="text-dark-200 flex flex-col items-end text-light-gray mr-5! leading-[110%]">
-                  <p>
+                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}>
                     {t.forRegions} <a href="#">8 (800)-511-05-25</a>
-                  </p>
-                  <p>
+                  </motion.p>
+                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .1}}>
                     {t.city} <a href="#">8 (831) 225-00-55</a>
-                  </p>
+                  </motion.p>
                 </div>
-                <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
+                <motion.a
+                  variants={slideTop}
+                  initial={slideTop.hidden}
+                  whileInView={slideTop.visible}
+                  transition={{ delay: 0.2 }}
+                  href="#"
+                >
+                  <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
+                </motion.a>
               </div>
             </div>
           </div>
@@ -100,39 +141,66 @@ const Header = ({ t, language, setLanguage, languages }) => {
         <div className="container">
           <div className="flex py-3 items-center justify-between">
             <div className="flex items-center">
-              <button onClick={toggleNavList} className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm">
+              <motion.button initial={fadeUp.hidden} whileInView={fadeUp.visible}
+                onClick={toggleNavList}
+                className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm"
+              >
                 {isNavOpen ? <X /> : <Menu />}
                 <p className={isHidden ? "hidden" : "block"}>{t.catalog}</p>
-              </button>
+              </motion.button>
 
-              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex w-40 ml-4 transition-all ease duration-300 opacity-100" : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"} />
+              <img
+                src="/logo/logo.svg"
+                alt="rustrack brand logo"
+                className={
+                  isHidden
+                    ? "flex w-40 ml-4 transition-all ease duration-300 opacity-100"
+                    : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"
+                }
+              />
 
               <nav className="ml-5">
-                <ul className="flex items-center">
-                  <div className={isHidden ? "hidden" : "flex"}>
-                    <li>
-                    <button onClick={toggleNavList} className="flex items-center cursor-pointer">
-                      {t.about} <ChevronDown className={ isNavOpen ? "rotate-180 text-yellow" : "text-yellow"} />
-                    </button>
-                  </li>
-                  <li className="ml-8">
-                    <button onClick={toggleNavList} className="flex items-center cursor-pointer">
-                      {t.media} <ChevronDown className="text-yellow" />
-                    </button>
-                  </li>
+                <ul className="flex items-center ">
+                  <div className="hidden xl:flex">
+                    <div className={isHidden ? "hidden" : "flex"}>
+                      <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .1}}>
+                        <button
+                          onClick={toggleNavList}
+                          className="flex items-center cursor-pointer"
+                        >
+                          {t.about}{" "}
+                          <ChevronDown
+                            className={
+                              isNavOpen
+                                ? "rotate-180 text-yellow"
+                                : "text-yellow"
+                            }
+                          />
+                        </button>
+                      </motion.li>
+                      <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .2}} className="ml-8">
+                        <button
+                          onClick={toggleNavList}
+                          className="flex items-center cursor-pointer"
+                        >
+                          {t.media} <ChevronDown className="text-yellow" />
+                        </button>
+                      </motion.li>
+                    </div>
                   </div>
-                  <li className="ml-8">
+
+                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .3}} className="ml-8">
                     <a href="#">{t.service}</a>
-                  </li>
-                  <li className="ml-8">
+                  </motion.li>
+                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .4}} className="ml-8">
                     <a href="#">{t.repair}</a>
-                  </li>
-                  <li className="ml-8">
+                  </motion.li>
+                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .5}} className="ml-8">
                     <a href="#">{t.news}</a>
-                  </li>
-                  <li className="ml-8">
+                  </motion.li>
+                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .6}} className="ml-8">
                     <a href="#">{t.contacts}</a>
-                  </li>
+                  </motion.li>
                 </ul>
               </nav>
             </div>
@@ -149,15 +217,31 @@ const Header = ({ t, language, setLanguage, languages }) => {
               </form>
 
               <div className="flex items-center">
-                <a href="#">
+                <motion.a
+                  variants={shortFadeUp}
+                  initial={shortFadeUp.hidden}
+                  whileInView={shortFadeUp.visible}
+                  href="#"
+                >
                   <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
-                </a>
-                <a href="#">
+                </motion.a>
+                <motion.a
+                  variants={shortFadeUp}
+                  initial={shortFadeUp.hidden}
+                  whileInView={shortFadeUp.visible}
+                  href="#"
+                >
                   <Heart size={30} strokeWidth={1.2} className="ml-5" />
-                </a>
+                </motion.a>
               </div>
 
-              <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+              <motion.label
+                variants={shortFadeUp}
+                initial={shortFadeUp.hidden}
+                whileInView={shortFadeUp.visible}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-2 text-sm font-medium text-gray-700"
+              >
                 <select
                   value={language}
                   onChange={(event) => setLanguage(event.target.value)}
@@ -169,15 +253,35 @@ const Header = ({ t, language, setLanguage, languages }) => {
                     </option>
                   ))}
                 </select>
-              </label>
+              </motion.label>
 
-              <i className={isHidden ? "fa-solid fa-phone flex! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow" : "fa-solid fa-phone hidden! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"}></i>
+              <motion.a
+                variants={slideTop}
+                initial={slideTop.hidden}
+                whileInView={slideTop.visible}
+                transition={{ delay: 0.2 }}
+                href="#"
+              >
+                <i
+                  className={
+                    isHidden
+                      ? "fa-solid fa-phone flex! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"
+                      : "fa-solid fa-phone hidden! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"
+                  }
+                ></i>
+              </motion.a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className={!isNavOpen ? "hidden bg-light-gray/10 absolute w-full" : "open-nav bg-gray-50 absolute w-full z-100 h-screen"}>
+      <div
+        className={
+          !isNavOpen
+            ? "hidden bg-light-gray/10 absolute w-full"
+            : "open-nav bg-gray-50 absolute w-full z-100 h-screen"
+        }
+      >
         <div className="container">
           <div className="grid grid-cols-3 py-4">
             <div>
@@ -186,7 +290,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
               <ul>
                 {links.map((link) => (
                   <NavbarLink
-                    liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
+                    liSelector={
+                      "mb-4 hover:text-yellow transition ease duration-200"
+                    }
                     key={link.id}
                     link={link.linkVal}
                     text={link.content}
@@ -201,7 +307,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
               <ul>
                 {links2.map((link) => (
                   <NavbarLink
-                    liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
+                    liSelector={
+                      "mb-4 hover:text-yellow transition ease duration-200"
+                    }
                     key={link.id}
                     link={link.linkVal}
                     text={link.content}
@@ -217,7 +325,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
                 <ul>
                   {links3.map((link) => (
                     <NavbarLink
-                      liSelector={"mb-4 hover:text-yellow transition ease duration-200"}
+                      liSelector={
+                        "mb-4 hover:text-yellow transition ease duration-200"
+                      }
                       key={link.id}
                       link={link.linkVal}
                       text={link.content}

@@ -1,12 +1,19 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const SwiperBanner = () => {
   return (
-    <div>
+    <motion.div
+      initial={fadeUp.hidden}
+      whileInView={fadeUp.visible}
+      transition={{ ease: "easeInOut", delay: 0.1, duration: 0.3 }}
+      viewport={{ once: true }}
+    >
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
@@ -210,7 +217,7 @@ const SwiperBanner = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

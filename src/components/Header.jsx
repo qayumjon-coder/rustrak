@@ -105,7 +105,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                 <p className={isHidden ? "hidden" : "block"}>{t.catalog}</p>
               </button>
 
-              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex ml-4" : "hidden mb-4"} />
+              <img src="/logo/logo.svg" alt="rustrack brand logo" className={isHidden ? "flex w-40 ml-4 transition-all ease duration-300 opacity-100" : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"} />
 
               <nav className="ml-5">
                 <ul className="flex items-center">

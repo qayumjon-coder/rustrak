@@ -1,7 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { news } from "../object";
-import { MoveRight } from "lucide-react"
+import { motion } from "motion/react";
+import { container, fadeUp } from "../utils/animation";
+import { MoveRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -26,54 +28,70 @@ const News = () => {
         </div>
       </div>
 
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={20}
-        slidesPerView={4}
-        navigation={{
-          prevEl: ".rt-prev-el",
-          nextEl: ".rt-next-el",
-        }}
-        loop={true}
-        className="h-full!"
-        style={{
-          "--swiper-navigation-color": "#f0f0f0",
-          "--swiper-navigation-size": "20px",
-          "--swiper-navigation-top-offset": "50%",
-        }}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
-        {news.map((newsItem) => (
-          <SwiperSlide
-            key={newsItem.id}
-            className="flex! h-110 flex-col w-78  bg-white"
-          >
-            <div className="flex h-65 relative">
-              <a href="#">
-              <img
-                src={newsItem.img}
-                alt={"Truck Image " + newsItem.id}
-                className="object-cover h-full rounded-t-md"
-              />
-              </a>
-            </div>
-
-            <div className="p-2.5">
-                <p className="font-semibold">{newsItem.date}</p>
-              <a href="#" >
-                <div className="pb-2">
-                  <h3 className="text-lg font-semibold">{newsItem.title}</h3>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={4}
+          navigation={{
+            prevEl: ".rt-prev-el",
+            nextEl: ".rt-next-el",
+          }}
+          loop={true}
+          className="h-full!"
+          style={{
+            "--swiper-navigation-color": "#f0f0f0",
+            "--swiper-navigation-size": "20px",
+            "--swiper-navigation-top-offset": "50%",
+          }}
+        >
+          {news.map((newsItem) => (
+            <SwiperSlide
+              key={newsItem.id}
+              className="flex! h-110 flex-col w-78  bg-white"
+            >
+              <motion.div variants={fadeUp}>
+                <div className="flex h-65 relative">
+                  <a href="#">
+                    <img
+                      src={newsItem.img}
+                      alt={"Truck Image " + newsItem.id}
+                      className="object-cover h-full rounded-t-md"
+                    />
+                  </a>
                 </div>
-              </a>
 
-              <p className="text-xl font-semibold mb-5">{newsItem.price}</p>
+                <div className="p-2.5">
+                  <p className="font-semibold">{newsItem.date}</p>
+                  <a href="#">
+                    <div className="pb-2">
+                      <h3 className="text-lg font-semibold">
+                        {newsItem.title}
+                      </h3>
+                    </div>
+                  </a>
 
-              <div className="flex justify-between items-center">
-                <a href="#" className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg">Подробнее <MoveRight /></a>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+                  <p className="text-xl font-semibold mb-5">{newsItem.price}</p>
+
+                  <div className="flex justify-between items-center">
+                    <a
+                      href="#"
+                      className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg"
+                    >
+                      Подробнее <MoveRight />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </motion.div>
     </div>
   );
 };

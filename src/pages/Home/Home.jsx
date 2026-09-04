@@ -6,9 +6,8 @@ import RecommendedTrucks from "../../components/RecommendedTrucks";
 import News from "../../components/NewsSwiper";
 import ContactSec from "../../components/Contact";
 import Footer from "../../components/Footer";
-import { motion } from "motion/react"
-import { fadeUp, container } from "../../utils/animation";
-
+import { motion } from "motion/react";
+import { fadeUp, container, slideRight } from "../../utils/animation";
 
 const Home = ({ t }) => {
   t;
@@ -53,10 +52,23 @@ const Home = ({ t }) => {
         <div className="container">
           <div className="flex">
             <div className="w-2/5 flex flex-col items-start">
-              <motion.h2 variants={fadeUp} initial={fadeUp.hidden} whileInView={fadeUp.visible} viewport={{once: true, amount: 0.5, margin: '-50px'}} transition={{ease: "easeIn", duration: .4}} className="text-[40px] font-semibold mb-5.5">
+              <motion.h2
+                variants={fadeUp}
+                initial={fadeUp.hidden}
+                whileInView={fadeUp.visible}
+                viewport={{ once: true, amount: 0.5, margin: "-50px" }}
+                transition={{ ease: "easeIn", duration: 0.4 }}
+                className="text-[40px] font-semibold mb-5.5"
+              >
                 О компании <b className="font-semibold text-yellow">Рустрак</b>
               </motion.h2>
-              <motion.p initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} viewport={{once: true, amount: 0.5, margin: '-50px'}} transition={{ease: "easeIn", duration: .4}} className="mb-16 text-lg">
+              <motion.p
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5, margin: "-50px" }}
+                transition={{ ease: "easeIn", duration: 0.4 }}
+                className="mb-16 text-lg"
+              >
                 Наша компания занимает лидирующие позиции на рынке спецтехники:
                 каждый день мы вносим свой вклад в развитие отечественного
                 автопрома и укрепление российской экономики.
@@ -70,7 +82,13 @@ const Home = ({ t }) => {
                 других.
               </motion.p>
 
-              <motion.a initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} viewport={{once: true, amount: 0.5, margin: '-50px'}} transition={{ease: "easeIn", duration: .4}} whileHover={{scale: 1.05}} whileTap={{scale: 1}}
+              <motion.a
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5, margin: "-50px" }}
+                transition={{ ease: "easeIn", duration: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 1 }}
                 href="#"
                 className="p-2.5 bg-yellow hover:bg-yellow-hov w-40 flex items-center justify-center rounded-sm transition ease duration-200"
               >
@@ -78,8 +96,14 @@ const Home = ({ t }) => {
               </motion.a>
             </div>
 
-            <motion.div initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} viewport={{once: true, amount: 0.5, margin: '-50px'}} transition={{ease: "easeIn", duration: .4}} className="w-3/5">
-              <img 
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5, margin: "-50px" }}
+              transition={{ ease: "easeIn", duration: 0.4 }}
+              className="w-3/5"
+            >
+              <img
                 className="w-full"
                 src="/images/about-truck32.png"
                 alt="about company"
@@ -91,8 +115,13 @@ const Home = ({ t }) => {
 
       <section className="pt-10 pb-20 mb-40 bg-yellow">
         <div className="container">
-          <motion.div variants={container} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-12 gap-3.5">
-
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-12 gap-3.5"
+          >
             <motion.div variants={fadeUp} className="stat col-span-3">
               <div className="mb-6">
                 <h2 className="text-[100px] leading-30 font-semibold">17</h2>
@@ -105,7 +134,10 @@ const Home = ({ t }) => {
               </p>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="stat col-span-3 col-start-5">
+            <motion.div
+              variants={fadeUp}
+              className="stat col-span-3 col-start-5"
+            >
               <div className="mb-6">
                 <h2 className="text-[100px] leading-30 font-semibold">85</h2>
                 <p className="text-[32px]">субъектов</p>
@@ -117,7 +149,10 @@ const Home = ({ t }) => {
               </p>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="stat col-span-3 col-start-9">
+            <motion.div
+              variants={fadeUp}
+              className="stat col-span-3 col-start-9"
+            >
               <div className="mb-6">
                 <h2 className="text-[100px] leading-30 font-semibold">11</h2>
                 <p className="text-[32px]">концернов</p>
@@ -128,7 +163,6 @@ const Home = ({ t }) => {
                 полномочиями от 11 автопроизводителей
               </p>
             </motion.div>
-
           </motion.div>
         </div>
       </section>
@@ -155,7 +189,10 @@ const Home = ({ t }) => {
         <div className="container">
           <ContactSec />
         </div>
-        <img
+        <motion.img
+          initial={slideRight.hidden}
+          whileInView={slideRight.visible}
+          viewport={{ once: true }}
           className="absolute -right-110 -top-15"
           src="/images/trucks/Contact/feedback-truck_result.webp"
           alt=""

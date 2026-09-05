@@ -192,10 +192,12 @@ const Home = ({ t }) => {
         <motion.img
           initial={slideRight.hidden}
           whileInView={slideRight.visible}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-150px" }}
+          transition={{delay: .4}}
+
           className="absolute -right-110 -top-15"
           src="/images/trucks/Contact/feedback-truck_result.webp"
-          alt=""
+          alt="Truck image"
         />
       </section>
 

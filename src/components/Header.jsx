@@ -38,8 +38,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
   useEffect(() => {
     if (isNavOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+      document.body.style.overflow = "clip";
+
+    } else{
       document.body.style.overflow = "unset";
     }
 
@@ -61,27 +62,26 @@ const Header = ({ t, language, setLanguage, languages }) => {
       <div
         className={
           isHidden
-            ? "absolute -top-full w-full justufy-between flex-col border-b-2 border-yellow/30 transition-all ease duration-200"
-            : "top-0 justufy-between flex-col border-b-2 border-yellow/30"
+            ? "absolute -top-30 w-full justify-between flex flex-col border-b-2 border-yellow/30 transition-all ease duration-200"
+            : "top-0 justify-between flex flex-col border-b-2 border-yellow/30"
         }
       >
         <div className="container">
           <div className="flex justify-between pt-3.5 pb-1">
             <div className="flex items-center leading-3.5 text-sm">
-              <motion.img
-                variants={slideLeft}
+              <motion.a href="/" variants={slideLeft}
                 initial={slideLeft.hidden}
                 whileInView={slideLeft.visible}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2 }}><img
                 src="/logo/logo.svg"
                 alt="rustrack brand logo"
-              />
+              /></motion.a>
               <motion.p
                 variants={slideRight}
                 initial={slideRight.hidden}
                 whileInView={slideRight.visible}
                 transition={{ delay: 0.2 }}
-                className="border-l-2! pl-5! ml-5! border-yellow"
+                className="border-l-2! pl-5! ml-5! border-yellow hidden lg:block"
               >
                 {t.company}
               </motion.p>
@@ -89,7 +89,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
             <div className="flex text-[15px] items-center">
               <div className="relative">
-                <div className="flex text-left flex-col items-end mr-15! leading-[110%] justify-center">
+                <div className="text-left flex-col items-end mr-15! leading-[110%] justify-center hidden md:flex">
                   <motion.button initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}
                     onClick={toggleMenu}
                     className="flex flex-end text-[16px] items-center cursor-pointer"
@@ -115,7 +115,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
               </div>
 
               <div className="flex items-center">
-                <div className="text-dark-200 flex flex-col items-end text-light-gray mr-5! leading-[110%]">
+                <div className="text-dark-200 hidden md:flex flex-col items-end text-light-gray mr-5! leading-[110%]">
                   <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}>
                     {t.forRegions} <a href="#">8 (800)-511-05-25</a>
                   </motion.p>
@@ -137,6 +137,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-between">
         <div className="container">
           <div className="flex py-3 items-center justify-between">
@@ -159,16 +160,16 @@ const Header = ({ t, language, setLanguage, languages }) => {
                 }
               />
 
-              <nav className="ml-5">
+              <nav className="ml-5 hidden lg:block">
                 <ul className="flex items-center ">
-                  <div className="hidden xl:flex">
-                    <div className={isHidden ? "hidden" : "flex"}>
+                  <li className="hidden xl:flex">
+                    <li className={isHidden ? "hidden" : "flex"}>
                       <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .1}}>
                         <button
                           onClick={toggleNavList}
                           className="flex items-center cursor-pointer"
                         >
-                          {t.about}{" "}
+                          {t.about}
                           <ChevronDown
                             className={
                               isNavOpen
@@ -186,8 +187,8 @@ const Header = ({ t, language, setLanguage, languages }) => {
                           {t.media} <ChevronDown className="text-yellow" />
                         </button>
                       </motion.li>
-                    </div>
-                  </div>
+                    </li>
+                  </li>
 
                   <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .3}} className="ml-8">
                     <a href="#">{t.service}</a>
@@ -205,7 +206,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
               </nav>
             </div>
             <div className="flex items-center gap-4">
-              <form className="flex items-center">
+              <form className="items-center hidden lg:flex">
                 <input
                   type="text"
                   placeholder={t.search}
@@ -283,7 +284,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
         }
       >
         <div className="container">
-          <div className="grid grid-cols-3 py-4">
+          <div className="grid auto-rows-auto grid-cols-1 md:grid-cols-3 py-4">
             <div>
               <h2 className="text-2xl font-bold mb-4">{t.categories}</h2>
 

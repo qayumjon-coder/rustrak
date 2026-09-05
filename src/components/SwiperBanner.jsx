@@ -16,13 +16,19 @@ const SwiperBanner = () => {
     >
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={20}
+        spaceBetween={0}
         slidesPerView={1}
-        navigation
+        navigation={false}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
         loop={true}
-        className="h-129.5! rounded-2xl"
+        breakpoints={{
+          768: {
+            spaceBetween: 20,
+            navigation: true
+          }
+        }}
+        className="h-129.5! md:rounded-2xl"
         style={{
           "--swiper-navigation-color": "#f0f0f0",
           "--swiper-navigation-size": "20px",
@@ -34,11 +40,16 @@ const SwiperBanner = () => {
             <img
               src="/images/banner1.jpg"
               alt="Banner 1"
-              className="w-full h-129.5 object-cover"
+              className="w-full h-129.5 object-cover hidden md:block"
+            />
+            <img
+              src="/images/banner1-mobile.jpg"
+              alt="Banner 1"
+              className="w-full h-129.5 object-cover md:hidden"
             />
           </div>
 
-          <div className="absolute z-100 top-0 pt-31 pl-8 w-2/5 text-white">
+          <div className="absolute z-100 top-0 pt-10 pl-8 md:w-2/5 text-white">
             <h1 className="text-3xl mb-4 font-bold ">
               АТЗ Рустрак включены в реестр российской промышленной продукции
             </h1>
@@ -60,8 +71,8 @@ const SwiperBanner = () => {
               className="w-full h-129.5 object-cover"
             />
           </div>
-          <div className="w-4/5 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
-            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-31 pl-10 w-1/2 text-white">
+          <div className="w-full md:w-4/5 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
+            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-10 pl-10 md:w-1/2 text-white">
               <h1 className="text-3xl mb-4 font-bold ">
                 В наличии шторные фургоны КАМАЗ 4308
               </h1>
@@ -86,8 +97,8 @@ const SwiperBanner = () => {
               className="w-full h-129.5 object-cover"
             />
           </div>
-          <div className="w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
-            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-31 pl-10 w-1/2 text-white">
+          <div className="w-full md:w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
+            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-10 pl-10 md:w-1/2 text-white">
               <h1 className="text-[28px] mb-4 font-bold leading-[1.1]">
                 Бортовые платформы со шторным механизмом
               </h1>
@@ -113,8 +124,8 @@ const SwiperBanner = () => {
             />
           </div>
 
-          <div className="w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
-            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-34 pl-10 w-1/2 text-white">
+          <div className="w-full md:w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
+            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-10 pl-10 md:w-1/2 text-white">
               <h1 className="text-[28px] mb-4 font-bold leading-[1.1]">
                 ООО «РусТрак»
               </h1>
@@ -149,8 +160,8 @@ const SwiperBanner = () => {
             />
           </div>
 
-          <div className="w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
-            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-34 pl-10 w-1/2 text-white">
+          <div className="w-full md:w-6/8 h-full bg-linear-to-r from-black/80 to-black/0 absolute top-0 left-0 z-10">
+            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-10 pl-10 md:w-1/2 text-white">
               <h1 className="text-[28px] mb-4 font-bold leading-[1.1]">
                 Краны манипуляторы на базе MCV/HCV грузовиков
               </h1>
@@ -188,8 +199,8 @@ const SwiperBanner = () => {
             />
           </div>
 
-          <div className="w-6/8 h-full bg-linear-to-r from-black to-black/1 absolute top-0 left-0 z-10">
-            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-34 pl-10 w-1/2 text-white">
+          <div className="w-full md:w-6/8 h-full bg-linear-to-r from-black to-black/1 absolute top-0 left-0 z-10">
+            <div className="absolute flex flex-col justify-center items-start z-100 top-0 pt-10 pl-10 md:w-1/2 text-white">
               <h1 className="text-[28px] mb-4 font-bold leading-[1.1]">
                 Автотопливозаправщики на базе MCV/HCV грузовиков
               </h1>

@@ -15,7 +15,7 @@ const Home = ({ t }) => {
   return (
     <>
       <section className="swiperSection pt-38">
-        <div className="container">
+        <div className="container p-0! md:px-5!">
           <div className="">
             {/* <div className="mb-8 rounded-2xl bg-linear-to-r from-yellow to-amber-300 p-8 shadow-lg">
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-black/70">
@@ -50,8 +50,8 @@ const Home = ({ t }) => {
 
       <section className="pt-19.75 mb-40">
         <div className="container">
-          <div className="flex">
-            <div className="w-2/5 flex flex-col items-start">
+          <div className="flex flex-col items-center w-full lg:flex-row">
+            <div className="w-full lg:w-2/5 flex flex-col items-start">
               <motion.h2
                 variants={fadeUp}
                 initial={fadeUp.hidden}
@@ -90,7 +90,7 @@ const Home = ({ t }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1 }}
                 href="#"
-                className="p-2.5 bg-yellow hover:bg-yellow-hov w-40 flex items-center justify-center rounded-sm transition ease duration-200"
+                className="p-2.5 bg-yellow hover:bg-yellow-hov w-40 hidden lg:flex items-center justify-center rounded-sm transition ease duration-200 flex-wrap"
               >
                 Подробнее <i className="fa-solid fa-arrow-right-long ml-2"></i>
               </motion.a>
@@ -101,7 +101,7 @@ const Home = ({ t }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5, margin: "-50px" }}
               transition={{ ease: "easeIn", duration: 0.4 }}
-              className="w-3/5"
+              className="w-full lg:w-3/5"
             >
               <img
                 className="w-full"
@@ -120,15 +120,15 @@ const Home = ({ t }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-12 gap-3.5"
+            className="grid grid-rows-3 grid-cols-1 md:grid-rows-1 md:grid-cols-12 gap-3.5"
           >
-            <motion.div variants={fadeUp} className="stat col-span-3">
+            <motion.div variants={fadeUp} className="stat md:col-span-3">
               <div className="mb-6">
-                <h2 className="text-[100px] leading-30 font-semibold">17</h2>
+                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">17</h2>
                 <p className="text-[32px]">субъектов</p>
               </div>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 За 17 лет деятельности ООО «РусТрак» превратилось в крупное
                 предприятие по производству и продаже специальной техники
               </p>
@@ -136,14 +136,14 @@ const Home = ({ t }) => {
 
             <motion.div
               variants={fadeUp}
-              className="stat col-span-3 col-start-5"
+              className="stat md:col-span-3 md:col-start-5"
             >
               <div className="mb-6">
-                <h2 className="text-[100px] leading-30 font-semibold">85</h2>
+                <h2 className="text-[80px] xl md:text-[100px] leading-30 font-semibold">85</h2>
                 <p className="text-[32px]">субъектов</p>
               </div>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 Мы обеспечили 85 субъектов РФ надёжной техникой коммерческого и
                 специализированного предназначения
               </p>
@@ -151,14 +151,14 @@ const Home = ({ t }) => {
 
             <motion.div
               variants={fadeUp}
-              className="stat col-span-3 col-start-9"
+              className="stat md:col-span-3 md:col-start-9"
             >
               <div className="mb-6">
-                <h2 className="text-[100px] leading-30 font-semibold">11</h2>
+                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">11</h2>
                 <p className="text-[32px]">концернов</p>
               </div>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 ООО «РусТрак» дорожит доверием автопрома, которое подтверждено
                 полномочиями от 11 автопроизводителей
               </p>

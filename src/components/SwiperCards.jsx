@@ -13,7 +13,7 @@ const SwiperCards = () => {
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-[40px] font-semibold">Категории</h2>
 
-        <div className="flex items-center gap-3">
+        <div className="items-center gap-3  hidden md:flex">
           <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
             <span>
               <i className="fa-solid fa-chevron-left"></i>
@@ -35,13 +35,30 @@ const SwiperCards = () => {
       >
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={40}
-          slidesPerView={4}
+          spaceBetween={20}
+          slidesPerView={1}
           navigation={{
             prevEl: ".swiper-prev-el",
             nextEl: ".swiper-next-el",
           }}
           loop={true}
+          breakpoints={{
+            540: {
+              slidesPerView: 2,
+              spaceBetween: 20
+
+            },
+
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
+
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 40
+            }
+          }}
           className="p-5!"
           style={{
             "--swiper-navigation-color": "#f0f0f0",
@@ -54,10 +71,10 @@ const SwiperCards = () => {
               <motion.a
                 variants={fadeUp}
                 href="#"
-                className="flex! justify-between! w-full flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
+                className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
               >
-                <div className="pt-5 pl-4.5">
-                  <h3 className="text-xl">{item.title}</h3>
+                <div className="py-5 px-4.5">
+                  <h3 title={item.title} className="text-xl w-auto truncate">{item.title}</h3>
                   <p className="text-light-gray">{item.quantity} моделей</p>
                 </div>
 

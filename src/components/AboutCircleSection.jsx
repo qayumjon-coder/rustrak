@@ -1,193 +1,257 @@
-import { useState, useEffect, useRef } from 'react';  
+import { useState, useEffect, useRef } from "react";
+import { UserCog, FileCog, Clock, ShieldCheck, Wrench } from "lucide-react";
+import { motion } from "motion/react";
+import { fadeUp, container, slideRight, shortFadeUp } from "../utils/animation";
 
 const MENU_DATA = [
   {
-    id: 'kb',
-    title: 'Конструкторское бюро',
-    text: 'Собственное конструкторское бюро позволяет реализовать индивидуальные проекты клиента.',
-    icon: '⚙️',
-    coords: { top: '10%', left: '75%' }
+    id: "kb",
+    title: "Конструкторское бюро",
+    text: "Собственное конструкторское бюро позволяет реализовать индивидуальные проекты клиента.",
+    icon: <UserCog size={56} strokeWidth={1.2} />,
+    coords: { top: "7.7%", left: "70.6%" },
   },
   {
-    id: 'dev',
-    title: 'Разработка',
-    text: 'Описание этапа разработки индивидуальных технических решений.',
-    icon: '💻',
-    coords: { top: '30%', left: '88%' }
+    id: "dev",
+    title: "Разработка",
+    text: "Все проекты разработаны согласно мануал кузовостроителей.",
+    icon: <FileCog size={56} strokeWidth={1.2} />,
+    coords: { top: "28%", left: "89.6%" },
   },
   {
-    id: 'prod',
-    title: 'Производственная база',
-    text: 'Современные производственные мощности обеспечивают высокое качество сборки.',
-    icon: '🏭',
-    coords: { top: '50%', left: '95%' }
+    id: "prod",
+    title: "Производственная база",
+    text: "Собственная производственная база позволяет максимально снизить себестоимость продукции, повышая её конкурентоспособность.",
+    icon: <Clock size={56} strokeWidth={1.2} />,
+    coords: { top: "50%", left: "95%" },
   },
   {
-    id: 'warranty',
-    title: 'Гарантия',
-    text: 'Предоставляем официальную гарантию на всю производимую технику.',
-    icon: '🛡️',
-    coords: { top: '70%', left: '88%' }
+    id: "warranty",
+    title: "Гарантия",
+    text: "Предоставляем официальную гарантию на всю производимую технику.",
+    icon: <ShieldCheck size={56} strokeWidth={1.2} />,
+    coords: { top: "73%", left: "89.2%" },
   },
   {
-    id: 'service',
-    title: 'Сервис',
-    text: 'Круглосуточная сервисная поддержка и оперативная поставка запчастей.',
-    icon: '🛠️',
-    coords: { top: '90%', left: '75%' }
-  }
+    id: "service",
+    title: "Сервис",
+    text: "Круглосуточная сервисная поддержка и оперативная поставка запчастей.",
+    icon: <Wrench size={56} strokeWidth={1.2} />,
+    coords: { top: "92.5%", left: "70.6%" },
+  },
 ];
 
 export default function ArcNavigation() {
-  const [activeId, setActiveId] = useState('kb');
-  const isClickScrolling = useRef(false); // Tugma bosilgandagi skrollni farqlash uchun
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0); // Desktop pinned scroll uchun
+  const [scrollProgress, setScrollProgress] = useState(0); // Progress bar o'sishi uchun
+  const [activeMobileId, setActiveMobileId] = useState("kb"); // Mobile intersection observer uchun
 
-  // Tugma bosilganda kerakli matnga silliq skroll qilish funksiyasi
-  const scrollToSection = (id) => {
-    isClickScrolling.current = true;
-    setActiveId(id);
-    
-    const element = document.getElementById(`content-${id}`);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center' // Ekran markaziga olib keladi
-      });
-    }
-
-    // Skroll tugagach, observer qayta ishlashi uchun vaqt beramiz
-    setTimeout(() => {
-      isClickScrolling.current = false;
-    }, 800);
-  };
-
-  // Skrollni kuzatish (Intersection Observer)
+  // Desktop Scroll Pinning Logic
   useEffect(() => {
+    const handleScroll = () => {
+      // Faqat desktop uchun ishlaydi
+      if (window.innerWidth < 768 || !containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const { top, height } = rect;
+      const windowHeight = window.innerHeight;
+
+      const maxScroll = height - windowHeight;
+      if (maxScroll <= 0) return;
+
+      const scrollDistance = -top;
+      let progress = scrollDistance / maxScroll;
+
+      // Progress 0 dan 1 gacha chegaralanadi
+      progress = Math.max(0, Math.min(1, progress));
+      setScrollProgress(progress);
+
+      const numItems = MENU_DATA.length;
+      let newIndex = Math.floor(progress * numItems);
+      if (newIndex >= numItems) newIndex = numItems - 1;
+
+      setActiveIndex(newIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  // Mobile Intersection Observer Logic
+  useEffect(() => {
+    if (window.innerWidth >= 768) return;
+
     const observerOptions = {
-      root: null, // Brauzer oynasiga nisbatan
-      rootMargin: '-20% 0px -40% 0px', // Ekranning o'rta qismini aniqlash uchun zona
-      threshold: 0.1 // Elementning 10% qismi ko'rinsa ham ishlaydi
+      root: null,
+      rootMargin: "-40% 0px -40% 0px",
+      threshold: 0,
     };
 
     const observerCallback = (entries) => {
-      // Agar foydalanuvchi menyuni o'zi bosib skroll qilayotgan bo'lsa, observerni vaqtincha to'xtatamiz
-      if (isClickScrolling.current) return;
-
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.id.replace('content-', '');
-          setActiveId(id);
+          const id = entry.target.id.replace("mobile-content-", "");
+          setActiveMobileId(id);
         }
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
 
-    // Har bir matnli blokni kuzatishga olamiz
     MENU_DATA.forEach((item) => {
-      const el = document.getElementById(`content-${item.id}`);
+      const el = document.getElementById(`mobile-content-${item.id}`);
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect(); // Komponent o'chganda kuzatishni to'xtatish
+    return () => observer.disconnect();
   }, []);
 
-  return (
-    <div className="mx-auto my-20 max-w-6xl px-4 font-sans">
-      
-      {/* Katta ekranlar uchun Desktop variant (Skroll bo'lganda ishlaydi) */}
-      <div className="hidden md:flex md:items-start md:justify-between md:gap-10 relative">
-        
-        {/* CHAP TARAFI: Ekran skroll bo'lganda joyida qotib turadi (sticky) */}
-        <div className="sticky top-20 aspect-square w-7/12 flex items-center justify-center min-h-125">
-          
-          {/* Orqa fondagi sariq aylana */}
-          <div className="absolute inset-[5%] border border-[#ffd000] rounded-full z-10 pointer-events-none" />
-          
-          {/* Yuk mashinasi rasmi */}
-          <img 
-            src="your-truck-image.png" 
-            alt="Truck Illustration" 
-            className="w-8/12 z-20 object-contain" 
-          />
-          
-          {/* Aylanma menyu punktlari */}
-          <nav className="absolute inset-0 z-30">
-            {MENU_DATA.map((item) => {
-              const isActive = activeId === item.id;
-              return (
-                <button
-                  key={item.id}
-                  className={`absolute flex items-center -translate-y-1/2 bg-none border-none p-0 cursor-pointer whitespace-nowrap group text-left transition-all duration-300 ${
-                    isActive ? 'text-neutral-900 font-semibold scale-105' : 'text-neutral-400 font-normal hover:text-neutral-800'
-                  }`}
-                  style={{ top: item.coords.top, left: item.coords.left }}
-                  onClick={() => scrollToSection(item.id)}
-                >
-                  {/* Nuqta (Bullet) */}
-                  <span className={`w-2.5 h-2.5 border-2 border-[#ffd000] rounded-full mr-3 shrink-0 transition-colors duration-300 ${
-                    isActive ? 'bg-[#ffd000]' : 'bg-white group-hover:bg-neutral-100'
-                  }`} />
-                  
-                  <span className="text-[15px]">{item.title}</span>
-                </button>
-              );
-            })}
-          </nav>
-        </div>
+  /* const handleDotClick = (index) => {
+    if (!containerRef.current || window.innerWidth < 768) return;
+    const { top } = containerRef.current.getBoundingClientRect();
+    const absoluteTop = window.scrollY + top;
+    const maxScroll = containerRef.current.offsetHeight - window.innerHeight;
+    
+    // bosilgan segmentning o'rtasiga o'tish
+    const targetScroll = absoluteTop + ((index + 0.5) / MENU_DATA.length) * maxScroll;
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  }; */
 
-        {/* O'NG TARAFI: Skroll bo'ladigan matnlar bloki */}
-        <div className="w-5/12 border-l-2 border-[#ffd000] pl-8 flex flex-col gap-32 py-[20vh]">
-          {MENU_DATA.map((item) => {
-            const isActive = activeId === item.id;
-            return (
-              <div 
-                key={item.id} 
-                id={`content-${item.id}`}
-                className={`transition-all duration-500 scroll-mt-24 ${
-                  isActive ? 'opacity-100 translate-x-0' : 'opacity-25 -translate-x-2 blur-[1px]'
-                }`}
+  return (
+    <>
+      <div
+        ref={containerRef}
+        className="relative hidden md:block font-sans"
+        style={{ height: `${MENU_DATA.length * 100 + 20}vh` }}
+      >
+        <div className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center overflow-hidden w-full">
+          <div className="mx-auto max-w-6xl w-full px-4 flex items-center justify-between gap-70">
+            <div className="relative aspect-square w-7/12 flex items-center justify-center min-h-125">
+              <div className="absolute inset-[5%] z-10 pointer-events-none rounded-full" />
+
+              <motion.img
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-200px" }}
+                src="/logo/benefits.png"
+                alt="Truck Illustration"
+                className="z-20 object-fit w-130"
+              />
+
+              <motion.nav
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-200px" }}
+                className="absolute inset-0 z-30"
               >
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">{item.title}</h3>
-                <p className="text-base leading-relaxed text-neutral-700">{item.text}</p>
+                {MENU_DATA.map((item, index) => {
+                  const isActive = activeIndex === index;
+                  return (
+                    <motion.button
+                      variants={slideRight}
+                      key={item.id}
+                      className={`absolute flex items-center -translate-y-1/4 translate-x-3.5 bg-none border-none p-0 whitespace-nowrap group text-left transition-all duration-300 ${
+                        isActive
+                          ? "text-neutral-900 font-semibold"
+                          : "text-neutral-400 font-normal"
+                      }`}
+                      style={{ top: item.coords.top, left: item.coords.left }}
+                      onClick={() => handleDotClick(index)}
+                    >
+                      <span
+                        className={`w-5 h-5 border-2 border-[#ffd000] rounded-full mr-3 shrink-0 transition-colors duration-300 ${
+                          isActive ? "bg-[#ffd000]" : "bg-white"
+                        }`}
+                      />
+                      <span className="text-[15px]">{item.title}</span>
+                    </motion.button>
+                  );
+                })}
+              </motion.nav>
+            </div>
+
+            <div className="relative w-5/12 h-120 flex items-center pl-10">
+              <div
+                className="absolute left-0 top-0 w-0.75 bg-[#ffd000]"
+                style={{
+                  height: `${Math.max(15, scrollProgress * 100)}%`,
+                }}
+              />
+
+              <div className="relative w-full h-full ">
+                {MENU_DATA.map((item, index) => {
+                  const isActive = activeIndex === index;
+                  return (
+                    <div
+                      key={item.id}
+                      className={`absolute left-0 top-1/2 -translate-y-1/2 w-full transition-all duration-500 ${
+                        isActive
+                          ? "opacity-100 translate-y-0 pointer-events-auto"
+                          : "opacity-0 translate-y-4 pointer-events-none"
+                      }`}
+                    >
+                      <div className="mb-8 text-neutral-900">{item.icon}</div>
+                      <p className="text-[17px] leading-relaxed text-neutral-900 font-medium max-w-100">
+                        {item.text}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          </div>
         </div>
-        
       </div>
 
-      {/* MOBIL VARIANT: Oddiy va qulay ro'yxat, bu ham skrollga qarab aktivlashadi */}
-      <div className="flex flex-col gap-6 md:hidden">
-        <div className="sticky top-0 bg-white/90 backdrop-blur-sm z-40 py-4 border-b border-neutral-100 flex justify-center">
-          <img src="your-truck-image.png" alt="Truck" className="w-1/2 max-w-[180px] h-auto object-contain" />
+      {/*  Mobil versiyasi */}
+      <div className="flex flex-col gap-6 md:hidden my-10 font-sans">
+        <div className="top-0 bg-white/90 backdrop-blur-sm z-40 py-4 border-b border-neutral-100 flex justify-center">
+          <img
+            src="/logo/benefits.png"
+            alt="Truck"
+            className="w-full max-w-60 h-auto object-contain"
+          />
         </div>
 
-        <div className="flex flex-col gap-10 py-10">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-200px" }}
+          className="flex flex-col gap-10 py-10 px-4"
+        >
           {MENU_DATA.map((item) => {
-            const isActive = activeId === item.id;
+            const isActive = activeMobileId === item.id;
             return (
-              <div 
+              <motion.div
+                variants={fadeUp}
                 key={item.id}
-                id={`content-mob-${item.id}`} // Mobil uchun ham ID (agar alohida kuzatmoqchi bo'lsangiz)
-                className={`p-6 border-l-4 transition-all duration-300 rounded-r-xl ${
-                  isActive ? 'border-[#ffd000] bg-yellow-50/30' : 'border-neutral-200 bg-neutral-50/50'
-                }`}
+                id={`mobile-content-${item.id}`}
+                className={`p-6 border-l-4 transition-all duration-300 rounded-r-xl scroll-mt-24 border-neutral-200 bg-neutral-50/50`}
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">{item.icon}</span>
+                  <span className="text-neutral-800">{item.icon}</span>
                   <h4 className="font-bold text-neutral-800">{item.title}</h4>
                 </div>
                 <p className="text-sm text-neutral-600 leading-relaxed">
                   {item.text}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-
-    </div>
+    </>
   );
 }

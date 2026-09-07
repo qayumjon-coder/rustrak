@@ -22,6 +22,8 @@ const Header = ({ t, language, setLanguage, languages }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isListOpen, setIsListOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +40,15 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
   useEffect(() => {
     if (isNavOpen) {
-      document.body.style.overflow = "clip";
-
-    } else{
-      document.body.style.overflow = "unset";
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
 
     return () => {
@@ -57,6 +64,14 @@ const Header = ({ t, language, setLanguage, languages }) => {
     setIsNavOpen(!isNavOpen);
   };
 
+  const handleCloseList = () => {
+    setIsListOpen(!isListOpen);
+  };
+
+  const handleOpenAbout = () => {
+    setIsAboutOpen(!isAboutOpen);
+  };
+
   return (
     <header className="fixed w-full top-0 left-0 z-100 bg-white">
       <div
@@ -69,13 +84,15 @@ const Header = ({ t, language, setLanguage, languages }) => {
         <div className="container">
           <div className="flex justify-between pt-3.5 pb-1">
             <div className="flex items-center leading-3.5 text-sm">
-              <motion.a href="/" variants={slideLeft}
+              <motion.a
+                href="/"
+                variants={slideLeft}
                 initial={slideLeft.hidden}
                 whileInView={slideLeft.visible}
-                transition={{ delay: 0.2 }}><img
-                src="/logo/logo.svg"
-                alt="rustrack brand logo"
-              /></motion.a>
+                transition={{ delay: 0.2 }}
+              >
+                <img src="/logo/logo.svg" alt="rustrack brand logo" />
+              </motion.a>
               <motion.p
                 variants={slideRight}
                 initial={slideRight.hidden}
@@ -90,7 +107,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
             <div className="flex text-[15px] items-center">
               <div className="relative">
                 <div className="text-left flex-col items-end mr-15! leading-[110%] justify-center hidden md:flex">
-                  <motion.button initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}
+                  <motion.button
+                    initial={shortFadeUp.hidden}
+                    whileInView={shortFadeUp.visible}
                     onClick={toggleMenu}
                     className="flex flex-end text-[16px] items-center cursor-pointer"
                   >
@@ -103,8 +122,15 @@ const Header = ({ t, language, setLanguage, languages }) => {
                       }
                     />
                   </motion.button>
-                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} className="text-light-gray" transition={{ease: "easeIn", duration: .3, delay: .1}}>{t.address}</motion.p>
-                </div> 
+                  <motion.p
+                    initial={shortFadeUp.hidden}
+                    whileInView={shortFadeUp.visible}
+                    className="text-light-gray"
+                    transition={{ ease: "easeIn", duration: 0.3, delay: 0.1 }}
+                  >
+                    {t.address}
+                  </motion.p>
+                </div>
 
                 {isOpen && (
                   <div className="absolute top-5 right-10 bg-white p-3.5! shadow-lg rounded-md shadow-black/10 text-sm">
@@ -116,10 +142,17 @@ const Header = ({ t, language, setLanguage, languages }) => {
 
               <div className="flex items-center">
                 <div className="text-dark-200 hidden md:flex flex-col items-end text-light-gray mr-5! leading-[110%]">
-                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible}>
+                  <motion.p
+                    initial={shortFadeUp.hidden}
+                    whileInView={shortFadeUp.visible}
+                  >
                     {t.forRegions} <a href="#">8 (800)-511-05-25</a>
                   </motion.p>
-                  <motion.p initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .1}}>
+                  <motion.p
+                    initial={shortFadeUp.hidden}
+                    whileInView={shortFadeUp.visible}
+                    transition={{ ease: "easeIn", duration: 0.3, delay: 0.1 }}
+                  >
                     {t.city} <a href="#">8 (831) 225-00-55</a>
                   </motion.p>
                 </div>
@@ -142,7 +175,9 @@ const Header = ({ t, language, setLanguage, languages }) => {
         <div className="container">
           <div className="flex py-3 items-center justify-between">
             <div className="flex items-center">
-              <motion.button initial={fadeUp.hidden} whileInView={fadeUp.visible}
+              <motion.button
+                initial={fadeUp.hidden}
+                whileInView={fadeUp.visible}
                 onClick={toggleNavList}
                 className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm"
               >
@@ -161,10 +196,18 @@ const Header = ({ t, language, setLanguage, languages }) => {
               />
 
               <nav className="ml-5 hidden lg:block">
-                <ul className="flex items-center ">
-                  <li className="hidden xl:flex">
-                    <li className={isHidden ? "hidden" : "flex"}>
-                      <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .1}}>
+                <div className="flex items-center ">
+                  <div className="hidden xl:flex">
+                    <ul className={isHidden ? "hidden" : "flex"}>
+                      <motion.li
+                        initial={shortFadeUp.hidden}
+                        whileInView={shortFadeUp.visible}
+                        transition={{
+                          ease: "easeIn",
+                          duration: 0.3,
+                          delay: 0.1,
+                        }}
+                      >
                         <button
                           onClick={toggleNavList}
                           className="flex items-center cursor-pointer"
@@ -179,7 +222,16 @@ const Header = ({ t, language, setLanguage, languages }) => {
                           />
                         </button>
                       </motion.li>
-                      <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .2}} className="ml-8">
+                      <motion.li
+                        initial={shortFadeUp.hidden}
+                        whileInView={shortFadeUp.visible}
+                        transition={{
+                          ease: "easeIn",
+                          duration: 0.3,
+                          delay: 0.2,
+                        }}
+                        className="ml-8"
+                      >
                         <button
                           onClick={toggleNavList}
                           className="flex items-center cursor-pointer"
@@ -187,22 +239,43 @@ const Header = ({ t, language, setLanguage, languages }) => {
                           {t.media} <ChevronDown className="text-yellow" />
                         </button>
                       </motion.li>
-                    </li>
-                  </li>
-
-                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .3}} className="ml-8">
-                    <a href="#">{t.service}</a>
-                  </motion.li>
-                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .4}} className="ml-8">
-                    <a href="#">{t.repair}</a>
-                  </motion.li>
-                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .5}} className="ml-8">
-                    <a href="#">{t.news}</a>
-                  </motion.li>
-                  <motion.li initial={shortFadeUp.hidden} whileInView={shortFadeUp.visible} transition={{ease: "easeIn", duration: .3, delay: .6}} className="ml-8">
-                    <a href="#">{t.contacts}</a>
-                  </motion.li>
-                </ul>
+                    </ul>
+                  </div>
+                  <ul className="flex">
+                    <motion.li
+                      initial={shortFadeUp.hidden}
+                      whileInView={shortFadeUp.visible}
+                      transition={{ ease: "easeIn", duration: 0.3, delay: 0.3 }}
+                      className="ml-8"
+                    >
+                      <a href="#">{t.service}</a>
+                    </motion.li>
+                    <motion.li
+                      initial={shortFadeUp.hidden}
+                      whileInView={shortFadeUp.visible}
+                      transition={{ ease: "easeIn", duration: 0.3, delay: 0.4 }}
+                      className="ml-8"
+                    >
+                      <a href="#">{t.repair}</a>
+                    </motion.li>
+                    <motion.li
+                      initial={shortFadeUp.hidden}
+                      whileInView={shortFadeUp.visible}
+                      transition={{ ease: "easeIn", duration: 0.3, delay: 0.5 }}
+                      className="ml-8"
+                    >
+                      <a href="#">{t.news}</a>
+                    </motion.li>
+                    <motion.li
+                      initial={shortFadeUp.hidden}
+                      whileInView={shortFadeUp.visible}
+                      transition={{ ease: "easeIn", duration: 0.3, delay: 0.6 }}
+                      className="ml-8"
+                    >
+                      <a href="#">{t.contacts}</a>
+                    </motion.li>
+                  </ul>
+                </div>
               </nav>
             </div>
             <div className="flex items-center gap-4">
@@ -280,15 +353,25 @@ const Header = ({ t, language, setLanguage, languages }) => {
         className={
           !isNavOpen
             ? "hidden bg-light-gray/10 absolute w-full"
-            : "open-nav bg-gray-50 absolute w-full z-100 h-screen"
+            : "open-nav bg-gray-50 absolute w-full z-100 h-screen overflow-y-auto"
         }
       >
         <div className="container">
           <div className="grid auto-rows-auto grid-cols-1 md:grid-cols-3 py-4">
             <div>
-              <h2 className="text-2xl font-bold mb-4">{t.categories}</h2>
+              <h2 className="hidden md:block text-2xl font-bold mb-4">
+                {t.categories}
+              </h2>
+              <button
+                onClick={handleCloseList}
+                className="flex items-center gap-2 md:hidden cursor-pointer text-2xl font-bold mb-4"
+              >
+                {t.categories} <ChevronDown className="text-yellow" />
+              </button>
 
-              <ul>
+              <ul
+                className={`overflow-hidden transition-all ease-in duration-300 md:h-auto ${!isListOpen ? "h-130" : "h-0"}`}
+              >
                 {links.map((link) => (
                   <NavbarLink
                     liSelector={
@@ -303,9 +386,19 @@ const Header = ({ t, language, setLanguage, languages }) => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold mb-4">{t.about}</h2>
+              <h2 className="hidden md:block text-2xl font-bold mb-4">
+                {t.about}
+              </h2>
+              <button
+                onClick={handleOpenAbout}
+                className="flex items-center gap-2 cursor-pointer text-2xl md:hidden font-bold mb-4"
+              >
+                {t.about} <ChevronDown className="text-yellow" />
+              </button>
 
-              <ul>
+              <ul
+                className={`overflow-hidden transition-all ease-in duration-300 md:h-auto ${!isAboutOpen ? "h-95" : "h-0"}`}
+              >
                 {links2.map((link) => (
                   <NavbarLink
                     liSelector={
@@ -319,8 +412,8 @@ const Header = ({ t, language, setLanguage, languages }) => {
               </ul>
             </div>
 
-            <div className="flex justify-between">
-              <div>
+            <div className="flex justify-between flex-wrap">
+              <div className="mb-4">
                 <h2 className="text-2xl font-bold mb-4">{t.media}</h2>
 
                 <ul>
@@ -336,33 +429,38 @@ const Header = ({ t, language, setLanguage, languages }) => {
                   ))}
                 </ul>
               </div>
-              <div>
-                <ul>
-                  <NavbarLink
-                    liSelector={"mb-7"}
-                    selector={`text-2xl font-bold mb-[34px]`}
-                    link="#"
-                    text={t.service}
-                  />
-                  <NavbarLink
-                    liSelector={"mb-7"}
-                    selector={`text-2xl font-bold mb-[34px]`}
-                    link="#"
-                    text={t.repair}
-                  />
-                  <NavbarLink
-                    liSelector={"mb-7"}
-                    selector={`text-2xl font-bold mb-[34px]`}
-                    link="#"
-                    text={t.news}
-                  />
-                  <NavbarLink
-                    liSelector={"mb-7"}
-                    selector={`text-2xl font-bold mb-[34px]`}
-                    link="#"
-                    text={t.contacts}
-                  />
-                </ul>
+              <div className="pb-30">
+                <div className="flex gap-5 sm:block">
+                  <ul>
+                    <NavbarLink
+                      liSelector={"mb-7"}
+                      selector={`text-2xl font-bold mb-[34px]`}
+                      link="#"
+                      text={t.service}
+                    />
+                    <NavbarLink
+                      liSelector={"mb-7"}
+                      selector={`text-2xl font-bold mb-[34px]`}
+                      link="#"
+                      text={t.repair}
+                    />
+                  </ul>
+
+                  <ul>
+                    <NavbarLink
+                      liSelector={"mb-7"}
+                      selector={`text-2xl font-bold mb-[34px]`}
+                      link="#"
+                      text={t.news}
+                    />
+                    <NavbarLink
+                      liSelector={"mb-7"}
+                      selector={`text-2xl font-bold mb-[34px]`}
+                      link="#"
+                      text={t.contacts}
+                    />
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

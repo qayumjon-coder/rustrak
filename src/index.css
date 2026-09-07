@@ -6,10 +6,10 @@
   --yellow-shadow: #fec90b4d;
 }
 
-@theme{
-  --color-light-gray: #A2A2A2;
-  --color-yellow: #FEC80B;
-  --color-yellow-hov: #FFD43A;
+@theme {
+  --color-light-gray: #a2a2a2;
+  --color-yellow: #fec80b;
+  --color-yellow-hov: #ffd43a;
   --color-yellow-shadow: #fec80b66;
 }
 
@@ -20,24 +20,35 @@
   max-width: 1352px;
 }
 
-body{
+body {
   font-family: var(--fira);
 }
 
 .swiper-pagination-bullet {
   background-color: transparent !important;
-  border: 2px solid #fff7;               
-  opacity: 1 !important;                   
+  border: 2px solid #fff7;
+  opacity: 1 !important;
   width: 16px !important;
   height: 16px !important;
 }
 
 /* Style for the active bullet */
 .swiper-pagination-bullet-active {
-  background-color: #ffffff !important;   
-  border-color: #fff;                  
+  background-color: #ffffff !important;
+  border-color: #fff;
 }
 
-.shadow-smooth-yellow:hover{
+.shadow-smooth-yellow:hover {
   box-shadow: 0 0 30px var(--yellow-shadow);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+@media (min-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: flex !important;
+  }
 }

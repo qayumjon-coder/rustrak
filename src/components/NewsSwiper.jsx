@@ -14,7 +14,7 @@ const News = () => {
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-[40px] font-semibold">Новости</h2>
 
-        <div className="flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex ">
           <button className="rt-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
             <span>
               <i className="fa-solid fa-chevron-left"></i>
@@ -37,10 +37,24 @@ const News = () => {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={20}
-          slidesPerView={4}
+          slidesPerView={1}
           navigation={{
             prevEl: ".rt-prev-el",
             nextEl: ".rt-next-el",
+          }}
+          breakpoints={{
+            576: {
+              spaceBetween: 20,
+              slidesPerView: 2,
+            },
+            768: {
+              spaceBetween: 20,
+              slidesPerView: 3,
+            },
+            1280: {
+              spaceBetween: 20,
+              slidesPerView: 4,
+            },
           }}
           loop={true}
           className="h-full!"

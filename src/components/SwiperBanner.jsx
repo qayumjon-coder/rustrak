@@ -18,15 +18,14 @@ const SwiperBanner = () => {
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
-        navigation={false}
+        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
         loop={true}
         breakpoints={{
           768: {
             spaceBetween: 20,
-            navigation: true
-          }
+          },
         }}
         className="h-129.5! md:rounded-2xl"
         style={{

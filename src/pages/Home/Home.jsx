@@ -124,7 +124,9 @@ const Home = ({ t }) => {
           >
             <motion.div variants={fadeUp} className="stat md:col-span-3">
               <div className="mb-6">
-                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">17</h2>
+                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">
+                  17
+                </h2>
                 <p className="text-[32px]">субъектов</p>
               </div>
 
@@ -139,7 +141,9 @@ const Home = ({ t }) => {
               className="stat md:col-span-3 md:col-start-5"
             >
               <div className="mb-6">
-                <h2 className="text-[80px] xl md:text-[100px] leading-30 font-semibold">85</h2>
+                <h2 className="text-[80px] xl md:text-[100px] leading-30 font-semibold">
+                  85
+                </h2>
                 <p className="text-[32px]">субъектов</p>
               </div>
 
@@ -154,7 +158,9 @@ const Home = ({ t }) => {
               className="stat md:col-span-3 md:col-start-9"
             >
               <div className="mb-6">
-                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">11</h2>
+                <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">
+                  11
+                </h2>
                 <p className="text-[32px]">концернов</p>
               </div>
 
@@ -167,7 +173,7 @@ const Home = ({ t }) => {
         </div>
       </section>
 
-      <section className="h-[200vh]">
+      <section>
         <ArcNavigation />
       </section>
 
@@ -185,7 +191,7 @@ const Home = ({ t }) => {
         </div>
       </section>
 
-      <section className="h-85.25 flex relative overflow-hidden! bg-light-gray/20">
+      <section className="lg:h-85.25 pb-7 lg:py-0 flex relative lg:overflow-hidden! bg-light-gray/20">
         <div className="container">
           <ContactSec />
         </div>
@@ -193,9 +199,8 @@ const Home = ({ t }) => {
           initial={slideRight.hidden}
           whileInView={slideRight.visible}
           viewport={{ once: true, margin: "-150px" }}
-          transition={{delay: .4}}
-
-          className="absolute -right-110 -top-15"
+          transition={{ delay: 0.4 }}
+          className="absolute hidden lg:block lg:-right-200 lg:-top-10 xl:-right-150 xl:-top-10 2xl:-right-110 2xl:-top-15 z-0"
           src="/images/trucks/Contact/feedback-truck_result.webp"
           alt="Truck image"
         />

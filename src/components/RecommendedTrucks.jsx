@@ -14,7 +14,7 @@ const RecommendedTrucks = () => {
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-[40px] font-semibold">Рекомендуемая продукция</h2>
 
-        <div className="flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
             <span>
               <i className="fa-solid fa-chevron-left"></i>
@@ -28,7 +28,7 @@ const RecommendedTrucks = () => {
         </div>
       </div>
 
-      <motion.dev
+      <motion.div
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -37,10 +37,24 @@ const RecommendedTrucks = () => {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={20}
-          slidesPerView={4}
+          slidesPerView={1}
           navigation={{
             prevEl: ".swiper-prev-el",
             nextEl: ".swiper-next-el",
+          }}
+          breakpoints={{
+            576: {
+              spaceBetween: 20,
+              slidesPerView: 2,
+            },
+            768: {
+              spaceBetween: 20,
+              slidesPerView: 3,
+            },
+            1280: {
+              spaceBetween: 20,
+              slidesPerView: 4,
+            },
           }}
           className="h-full!"
           style={{
@@ -50,17 +64,18 @@ const RecommendedTrucks = () => {
           }}
         >
           {recommended_trucks.map((item) => (
-            <SwiperSlide
-              key={item.id}
-              className="flex! h-110 flex-col w-78"
-            >
-              <motion.div variants={fadeUp} transition={{ease: "easeIn", }} className="bg-white">
+            <SwiperSlide key={item.id} className="flex! h-110 flex-col w-78">
+              <motion.div
+                variants={fadeUp}
+                transition={{ ease: "easeIn" }}
+                className="bg-white"
+              >
                 <div className="flex h-65 relative">
                   <a href="#">
                     <img
                       src={item.img}
                       alt={"Truck Image " + item.id}
-                      className="object-cover h-full rounded-t-md"
+                      className="object-cover w-full h-full rounded-t-md"
                     />
                   </a>
                   <button className="absolute right-2 top-2 cursor-pointer group">
@@ -94,7 +109,7 @@ const RecommendedTrucks = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </motion.dev>
+      </motion.div>
     </div>
   );
 };

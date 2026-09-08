@@ -1,31 +1,98 @@
 import { motion } from "motion/react";
-import { container, containerSec, fadeUp, shortFadeUp } from "../utils/animation";
+import {
+  container,
+  containerSec,
+  fadeUp,
+  shortFadeUp,
+} from "../utils/animation";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const Footer = () => {
+
+  const [isOnasOpen, setIsOnasOpen] = useState(false);
+  const [isMediaOpen, setIsMediaOpen] = useState(false);
+
+  const handleOnasOpen = () => {
+    setIsOnasOpen(!isOnasOpen);
+  };
+
+  const handleFooterMedia = () => {
+    setIsMediaOpen(!isMediaOpen)
+  }
+
   return (
     <div className="text-white">
-      <div className="flex justify-between">
-        <motion.div variants={container} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="mb-7.5">
+      <div className="flex flex-col md:flex-row md:justify-between">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-150px" }}
+          className="mb-7.5"
+        >
           <motion.span variants={fadeUp} className="inline-block mb-2">
             Тел/факс:
-            <a className="ml-1" href="tel:8312250055">8 (831) 225-00-55</a>
-          </motion.span><br />
+            <a className="ml-1" href="tel:8312250055">
+              8 (831) 225-00-55
+            </a>
+          </motion.span>
+          <br />
           <motion.span variants={fadeUp} className="inline-block mb-2">
             Email:
-            <a className="ml-1" href="mailto:info@rtrf.ru">info@rtrf.ru</a>
+            <a className="ml-1" href="mailto:info@rtrf.ru">
+              info@rtrf.ru
+            </a>
           </motion.span>
 
-          <motion.address variants={fadeUp} className="mb-4">г. Нижний Новгород ул. Торфяная, 35</motion.address>
+          <motion.address variants={fadeUp} className="mb-4">
+            г. Нижний Новгород ул. Торфяная, 35
+          </motion.address>
 
-          <motion.button variants={fadeUp} className="py-3.25 px-7.5 bg-yellow text-black rounded-sm cursor-pointer hover:bg-yellow-hov transition ease duration-200">Заказать звонок</motion.button>
-          <motion.img variants={fadeUp} className="mt-6.25" width={200} src="/images/qr-code.svg" alt="QR Code image" />
+          <motion.button
+            variants={fadeUp}
+            className="py-3.25 px-7.5 bg-yellow text-black rounded-sm cursor-pointer hover:bg-yellow-hov transition ease duration-200"
+          >
+            Заказать звонок
+          </motion.button>
+          <motion.img
+            variants={fadeUp}
+            className="mt-6.25"
+            width={200}
+            src="/images/qr-code.svg"
+            alt="QR Code image"
+          />
         </motion.div>
-        <div className="flex mb-10 gap-20 text-sm text-light-gray font-semibold">
+        <div className="flex mb-10 gap-5 sm:gap-20 text-sm text-light-gray font-semibold flex-col md:flex-row">
           <div>
-            <motion.h2 variants={fadeUp} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="text-base mb-8 text-white">О нас</motion.h2>
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-150px" }}
+              className="text-base hidden md:block mb-8 text-white"
+            >
+              О нас
+            </motion.h2>
+            <motion.button
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              onClick={handleOnasOpen}
+              viewport={{ once: true, margin: "-50px" }}
+              className="flex gap-1 md:hidden cursor-pointer text-base mb-3 md:mb-8 text-white"
+            >
+              О нас <ChevronDown/>
+            </motion.button>
 
-            <ul className="flex gap-20">
-              <motion.div variants={containerSec} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="flex flex-col gap-3 mr-20 text-light-gray">
+            <div className={`flex flex-col gap-3 lg:flex-row lg:gap-20 md:h-auto md:overflow-visible transition ease-in duration-300 ${!isOnasOpen ? "h-0 overflow-hidden " : "h-110 overflow-visible"}`}>
+              <motion.ul
+                variants={containerSec}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-150px" }}
+                className="flex flex-col gap-3 mr-20 text-light-gray"
+              >
                 <motion.li variants={shortFadeUp}>
                   <a href="#">О компании ООО «Рустрак»</a>
                 </motion.li>
@@ -47,9 +114,15 @@ const Footer = () => {
                 <motion.li variants={shortFadeUp}>
                   <a href="#">Сертификаты</a>
                 </motion.li>
-              </motion.div>
+              </motion.ul>
 
-              <motion.div variants={containerSec} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="flex flex-col gap-3 mr-20 ">
+              <motion.ul
+                variants={containerSec}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-150px" }}
+                className="flex flex-col gap-3 mr-20 "
+              >
                 <motion.li variants={shortFadeUp}>
                   <a href="#">Вакансии</a>
                 </motion.li>
@@ -68,13 +141,37 @@ const Footer = () => {
                 <motion.li variants={shortFadeUp}>
                   <a href="#">Полезные статьи</a>
                 </motion.li>
-              </motion.div>
-            </ul>
+              </motion.ul>
+            </div>
           </div>
-          <div >
-            <motion.h2 variants={fadeUp} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="text-base mb-8 text-white">Медиа</motion.h2>
+          <div>
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-150px" }}
+              className="text-base md:mb-8 text-white hidden md:block"
+            >
+              Медиа
+            </motion.h2>
+            <motion.button
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              onClick={handleFooterMedia}
+              className="text-base flex gap-1 cursor-pointer mb-3 md:mb-8 text-white md:hidden"
+            >
+              Медиа <ChevronDown />
+            </motion.button>
 
-            <motion.ul variants={containerSec} initial='hidden' whileInView='visible' viewport={{ once: true, margin: "-150px" }} className="flex flex-col gap-3">
+            <motion.ul
+              variants={containerSec}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-150px" }}
+              className={`flex flex-col gap-3 transition ease-in duration-300 ${!isMediaOpen ? "h-0 overflow-hidden md:h-auto md:overflow-visible" : "h-20 overflow-visible"}`}
+            >
               <motion.li variants={shortFadeUp}>
                 <a href="#">Фотогалерея</a>
               </motion.li>
@@ -88,20 +185,68 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex">
-        <motion.p variants={fadeUp} initial='hidden' whileInView='visible' viewport={{ once: true}} className="text-sm mr-60 text-light-gray opacity-40 font-medium">
-          2009 - 2026 © Rus - Trucks Информация на сайте не является <br /> публичной
-          офертой, определяемой согласно статье 435 Гражданского <br /> кодекса РФ и
-          носит исключительно информационный характер.
+      <div className="flex flex-col gap-5 md:flex-row justify-between lg:justify-start">
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-sm md:oreder-1 order-2 lg:mr-60 text-light-gray opacity-40 font-medium"
+        >
+          2009 - 2026 © Rus - Trucks Информация на сайте не является <br />{" "}
+          публичной офертой, определяемой согласно статье 435 Гражданского{" "}
+          <br /> кодекса РФ и носит исключительно информационный характер.
         </motion.p>
 
-        <motion.div variants={container} initial='hidden' whileInView='visible' viewport={{ once: true}}  className="flex gap-5">
-          <motion.a variants={shortFadeUp} href="#"><img width={30} src="images/social/max-messenger-sign-logo.svg" alt="Max messenger" /></motion.a>
-          <motion.a variants={shortFadeUp} href="#"><img width={30} src="images/social/telegram.svg" alt="Telegram logo" /></motion.a>
-          <motion.a variants={shortFadeUp} href="#"><img width={30} src="images/social/VK_com-logo.svg" alt="Vkontakte logo" /></motion.a>
-          <motion.a variants={shortFadeUp} href="#"><img width={30} src="images/social/Rutube_icon.png" alt="Rutube logo" /></motion.a>
-          <motion.a variants={shortFadeUp} href="#"><img className="w-10" src="images/social/YouTube_full-color_icon.png" alt="Youtube Logo" /></motion.a>
-          <motion.a variants={shortFadeUp} href="#"><img width={30} src="images/social/Yandex_Zen_logo_icon.png" alt="Yandex Zen Logo" /></motion.a>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex gap-5 md:order-2"
+        >
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              width={30}
+              src="images/social/max-messenger-sign-logo.svg"
+              alt="Max messenger"
+            />
+          </motion.a>
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              width={30}
+              src="images/social/telegram.svg"
+              alt="Telegram logo"
+            />
+          </motion.a>
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              width={30}
+              src="images/social/VK_com-logo.svg"
+              alt="Vkontakte logo"
+            />
+          </motion.a>
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              width={30}
+              src="images/social/Rutube_icon.png"
+              alt="Rutube logo"
+            />
+          </motion.a>
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              className="w-10"
+              src="images/social/YouTube_full-color_icon.png"
+              alt="Youtube Logo"
+            />
+          </motion.a>
+          <motion.a variants={shortFadeUp} href="#">
+            <img
+              width={30}
+              src="images/social/Yandex_Zen_logo_icon.png"
+              alt="Yandex Zen Logo"
+            />
+          </motion.a>
         </motion.div>
       </div>
     </div>

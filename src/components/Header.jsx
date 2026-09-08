@@ -188,10 +188,10 @@ const Header = ({ t, language, setLanguage, languages }) => {
               <img
                 src="/logo/logo.svg"
                 alt="rustrack brand logo"
-                className={
-                  isHidden
+                className={`hidden sm:flex
+                  ${isHidden
                     ? "flex w-40 ml-4 transition-all ease duration-300 opacity-100"
-                    : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"
+                    : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"}`
                 }
               />
 
@@ -295,6 +295,14 @@ const Header = ({ t, language, setLanguage, languages }) => {
                   variants={shortFadeUp}
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
+                  className="lg:hidden"
+                >
+                  <Search size={30} strokeWidth={1.2} className="ml-5" />
+                </motion.a>
+                <motion.a
+                  variants={shortFadeUp}
+                  initial={shortFadeUp.hidden}
+                  whileInView={shortFadeUp.visible}
                   href="#"
                 >
                   <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
@@ -334,6 +342,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                 initial={slideTop.hidden}
                 whileInView={slideTop.visible}
                 transition={{ delay: 0.2 }}
+                className="hidden sm:flex"
                 href="#"
               >
                 <i

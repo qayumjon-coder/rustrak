@@ -80,7 +80,7 @@ const SwiperAbout = () => {
                   />
                 </div>
                 <div className="py-5">
-                  <h3 title={item.title} className="text-xl w-auto text-[24px] text-semibold mb-3.25">
+                  <h3 title={item.title} className="text-xl w-auto text-[24px] font-medium mb-3.25">
                     {item.title}
                   </h3>
                   <p className="">{item.text}</p>

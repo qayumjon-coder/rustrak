@@ -248,7 +248,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                       transition={{ ease: "easeIn", duration: 0.3, delay: 0.3 }}
                       className="ml-8"
                     >
-                      <a href="#">{t.service}</a>
+                      <a href="/service">{t.service}</a>
                     </motion.li>
                     <motion.li
                       initial={shortFadeUp.hidden}
@@ -303,7 +303,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                   variants={shortFadeUp}
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
-                  href="#"
+                  href="/cart"
                 >
                   <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
                 </motion.a>
@@ -311,7 +311,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                   variants={shortFadeUp}
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
-                  href="#"
+                  href="/favo"
                 >
                   <Heart size={30} strokeWidth={1.2} className="ml-5" />
                 </motion.a>

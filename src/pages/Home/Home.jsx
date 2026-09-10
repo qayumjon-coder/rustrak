@@ -4,10 +4,8 @@ import SwiperCards from "../../components/SwiperCards";
 import ArcNavigation from "../../components/AboutCircleSection";
 import RecommendedTrucks from "../../components/RecommendedTrucks";
 import News from "../../components/NewsSwiper";
-import ContactSec from "../../components/Contact";
-import Footer from "../../components/Footer";
 import { motion } from "motion/react";
-import { fadeUp, container, slideRight } from "../../utils/animation";
+import { fadeUp, container } from "../../utils/animation";
 
 const Home = ({ t }) => {
   t;
@@ -190,27 +188,6 @@ const Home = ({ t }) => {
           <News />
         </div>
       </section>
-
-      <section className="lg:h-85.25 pb-7 lg:py-0 flex relative lg:overflow-hidden! bg-light-gray/20">
-        <div className="container">
-          <ContactSec />
-        </div>
-        <motion.img
-          initial={slideRight.hidden}
-          whileInView={slideRight.visible}
-          viewport={{ once: true, margin: "-150px" }}
-          transition={{ delay: 0.4 }}
-          className="absolute hidden lg:block lg:-right-200 lg:-top-10 xl:-right-150 xl:-top-10 2xl:-right-110 2xl:-top-15 z-0"
-          src="/images/trucks/Contact/feedback-truck_result.webp"
-          alt="Truck image"
-        />
-      </section>
-
-      <footer className="bg-black pt-15.5 pb-10">
-        <div className="container">
-          <Footer />
-        </div>
-      </footer>
     </>
   );
 };

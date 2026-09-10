@@ -10,6 +10,7 @@ const routeNames = {
   "repair": "Ремонт",
   "news": "Новости",
   "contacts": "Контакты",
+  "cart": "Корзина"
 };
 
 export default function Breadcrumb() {

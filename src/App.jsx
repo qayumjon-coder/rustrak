@@ -9,6 +9,7 @@ import ContactSec from "./components/ContactSec";
 import Footer from "./components/Footer";
 import Cart from "./pages/MiniPages/Cart";
 import Favorites from "./pages/MiniPages/Favorites";
+import Contact from "./pages/Contact";
 
 function App() {
   const [language, setLanguage] = useState("ru");
@@ -28,6 +29,7 @@ function App() {
         <Route path="/service" element={<ServicePage t={t} />} />
         <Route path="/cart" element={<Cart t={t} />} />
         <Route path="/favorites" element={<Favorites t={t} />} />
+        <Route path="/contacts" element={<Contact t={t} />} />
         
       </Routes>
 

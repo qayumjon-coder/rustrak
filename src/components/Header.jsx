@@ -264,7 +264,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                       transition={{ ease: "easeIn", duration: 0.3, delay: 0.5 }}
                       className="ml-8"
                     >
-                      <a href="#">{t.news}</a>
+                      <a href="/news">{t.news}</a>
                     </motion.li>
                     <motion.li
                       initial={shortFadeUp.hidden}
@@ -272,7 +272,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                       transition={{ ease: "easeIn", duration: 0.3, delay: 0.6 }}
                       className="ml-8"
                     >
-                      <a href="#">{t.contacts}</a>
+                      <a href="/contacts">{t.contacts}</a>
                     </motion.li>
                   </ul>
                 </div>
@@ -459,7 +459,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                     <NavbarLink
                       liSelector={"mb-7"}
                       selector={`text-2xl font-bold mb-[34px]`}
-                      link="#"
+                      link="/news"
                       text={t.news}
                     />
                     <NavbarLink

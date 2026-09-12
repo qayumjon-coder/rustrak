@@ -11,4 +11,4 @@
 4. ~~Cart~~ ✅
 5. ~~Favorites~~ ✅
 6. News
-7. Contacts
+7. ~~Contacts~~ ✅

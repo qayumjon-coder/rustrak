@@ -9,5 +9,6 @@
 2. ~~Service~~ ✅
 3. Repair
 4. ~~Cart~~ ✅
-5. Favorites
+5. ~~Favorites~~ ✅
 6. News
+7. Contacts

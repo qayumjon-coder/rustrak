@@ -311,7 +311,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                   variants={shortFadeUp}
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
-                  href="/favo"
+                  href="/favorites"
                 >
                   <Heart size={30} strokeWidth={1.2} className="ml-5" />
                 </motion.a>
@@ -444,7 +444,7 @@ const Header = ({ t, language, setLanguage, languages }) => {
                     <NavbarLink
                       liSelector={"mb-7"}
                       selector={`text-2xl font-bold mb-[34px]`}
-                      link="#"
+                      link="/service"
                       text={t.service}
                     />
                     <NavbarLink

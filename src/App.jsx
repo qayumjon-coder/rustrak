@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Cart from "./pages/MiniPages/Cart";
 import Favorites from "./pages/MiniPages/Favorites";
 import Contact from "./pages/Contact";
+import Repair from "./pages/Repair";
 
 function App() {
   const [language, setLanguage] = useState("ru");
@@ -30,7 +31,7 @@ function App() {
         <Route path="/cart" element={<Cart t={t} />} />
         <Route path="/favorites" element={<Favorites t={t} />} />
         <Route path="/contacts" element={<Contact t={t} />} />
-        
+        <Route path="/repair" element={<Repair t={t}/>}/>
       </Routes>
 
       <ContactSec/>

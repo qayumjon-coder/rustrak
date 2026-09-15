@@ -7,7 +7,7 @@
 ### New 3 pages...
 1. ~~About~~ ✅
 2. ~~Service~~ ✅
-3. Repair
+3. Repair...
 4. ~~Cart~~ ✅
 5. ~~Favorites~~ ✅
 6. News

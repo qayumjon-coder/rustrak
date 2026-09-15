@@ -11,6 +11,7 @@ import Cart from "./pages/MiniPages/Cart";
 import Favorites from "./pages/MiniPages/Favorites";
 import Contact from "./pages/Contact";
 import Repair from "./pages/Repair";
+import News from "./pages/News";
 
 function App() {
   const [language, setLanguage] = useState("ru");
@@ -32,6 +33,7 @@ function App() {
         <Route path="/favorites" element={<Favorites t={t} />} />
         <Route path="/contacts" element={<Contact t={t} />} />
         <Route path="/repair" element={<Repair t={t}/>}/>
+        <Route path="/news" element={<News t={t}/>}/>
       </Routes>
 
       <ContactSec/>

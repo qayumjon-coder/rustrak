@@ -1,9 +1,9 @@
 import "../../index.css";
-import SwiperBanner from "../../components/SwiperBanner";
-import SwiperCards from "../../components/SwiperCards";
+import SwiperBanner from "../../components/swiper/SwiperBanner";
+import SwiperCards from "../../components/swiper/SwiperCards";
 import ArcNavigation from "../../components/AboutCircleSection";
 import RecommendedTrucks from "../../components/RecommendedTrucks";
-import News from "../../components/NewsSwiper";
+import News from "../../components/swiper/NewsSwiper";
 import { motion } from "motion/react";
 import { fadeUp, container } from "../../utils/animation";
 

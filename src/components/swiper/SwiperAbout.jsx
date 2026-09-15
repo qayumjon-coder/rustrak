@@ -3,15 +3,17 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { swiperCardTrck } from "../object";
+import { aboutSliderData } from "../../object";
 import { motion } from "motion/react";
-import { fadeUp, container } from "../utils/animation";
+import { fadeUp, container } from "../../utils/animation";
 
-const SwiperCards = () => {
+const SwiperAbout = () => {
   return (
     <div>
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[40px] font-semibold">Категории</h2>
+      <div className="flex items-center justify-between mb-6">
+        <p className="text-[22px] max-w-162.25">
+          Автомобильный завод «РусТрак» является предприятием полного цикла: от конструкторско-технологических разработок до готового изделия.
+        </p>
 
         <div className="items-center gap-3  hidden md:flex">
           <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
@@ -45,47 +47,47 @@ const SwiperCards = () => {
           breakpoints={{
             540: {
               slidesPerView: 2,
-              spaceBetween: 20
-
+              spaceBetween: 20,
             },
 
             768: {
               slidesPerView: 3,
-              spaceBetween: 20
+              spaceBetween: 20,
             },
 
             1280: {
               slidesPerView: 4,
-              spaceBetween: 40
-            }
+              spaceBetween: 20,
+            },
           }}
-          className="p-5!"
+          className=""
           style={{
             "--swiper-navigation-color": "#f0f0f0",
             "--swiper-navigation-size": "20px",
             "--swiper-navigation-top-offset": "50%",
           }}
         >
-          {swiperCardTrck.map((item) => (
+          {aboutSliderData.map((item) => (
             <SwiperSlide className="swiperSlide" key={item.id}>
-              <motion.a
+              <motion.div
                 variants={fadeUp}
-                href="#"
-                className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
-              >
-                <div className="py-5 px-4.5">
-                  <h3 title={item.title} className="text-xl w-auto truncate">{item.title}</h3>
-                  <p className="text-light-gray">{item.quantity} моделей</p>
-                </div>
-
-                <div className="flex self-end">
+                className="flex! w-full! px-4.5 pt-11.25 pb-5 flex-col h-85! border rounded-md border-light-gray/20 transition ease duration-200"
+              > <div className="flex self-start mb-5">
                   <img
-                    src={item.img}
+                    src={item.icon}
                     alt={"Truck Image " + item.id}
-                    className="self-end"
+                    className="self-start"
                   />
                 </div>
-              </motion.a>
+                <div className="py-5">
+                  <h3 title={item.title} className="text-xl w-auto text-[24px] font-medium mb-3.25">
+                    {item.title}
+                  </h3>
+                  <p className="">{item.text}</p>
+                </div>
+
+               
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -94,4 +96,4 @@ const SwiperCards = () => {
   );
 };
 
-export default SwiperCards;
+export default SwiperAbout;

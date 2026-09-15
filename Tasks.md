@@ -5,10 +5,11 @@
 
 # If all of the stuff above are completed ⬇️
 ### New 3 pages...
+### New pages
 1. ~~About~~ ✅
 2. ~~Service~~ ✅
-3. Repair...
+3. ~~Repair~~ ✅
 4. ~~Cart~~ ✅
 5. ~~Favorites~~ ✅
-6. News
+6. ~~News~~ ✅
 7. ~~Contacts~~ ✅

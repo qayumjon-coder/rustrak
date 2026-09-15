@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { motion } from "motion/react";
-import { fadeUp } from "../utils/animation";
+import { fadeUp } from "../../utils/animation";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

@@ -1,5 +1,5 @@
 import Breadcrumb from "../../components/Breadcrumb";
-import SwiperAbout from "../../components/SwiperAbout";
+import SwiperAbout from "../../components/swiper/SwiperAbout";
 import { aboutRustrakThis } from "../../object";
 
 const About = () => {

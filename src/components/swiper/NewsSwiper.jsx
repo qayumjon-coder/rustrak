@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { news } from "../object";
+import { news } from "../../object";
 import { motion } from "motion/react";
-import { container, fadeUp } from "../utils/animation";
+import { container, fadeUp } from "../../utils/animation";
 import { MoveRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";

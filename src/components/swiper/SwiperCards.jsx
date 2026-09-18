@@ -6,12 +6,16 @@ import "swiper/css/pagination";
 import { swiperCardTrck } from "../../object";
 import { motion } from "motion/react";
 import { fadeUp, container } from "../../utils/animation";
+import { useTranslation } from "react-i18next";
 
 const SwiperCards = () => {
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
+
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[40px] font-semibold">Категории</h2>
+        <h2 className="text-[40px] font-semibold">{t("categories")}</h2>
 
         <div className="items-center gap-3  hidden md:flex">
           <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
@@ -74,8 +78,8 @@ const SwiperCards = () => {
                 className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
               >
                 <div className="py-5 px-4.5">
-                  <h3 title={item.title} className="text-xl w-auto truncate">{item.title}</h3>
-                  <p className="text-light-gray">{item.quantity} моделей</p>
+                  <h3 title={(item.title?.[language] || item.title?.ru || item.title)} className="text-xl w-auto truncate">{(item.title?.[language] || item.title?.ru || item.title)}</h3>
+                  <p className="text-light-gray">{item.quantity} {t("models")}</p>
                 </div>
 
                 <div className="flex self-end">

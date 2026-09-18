@@ -1,53 +1,28 @@
-export const translations = {
-  ru: {
-    catalog: "Каталог",
-    about: "О нас",
-    media: "Медиа",
-    service: "Сервис",
-    repair: "Ремонт",
-    news: "Новости",
-    contacts: "Контакты",
-    company: "производство и продажа автоспецтехники",
-    workingHours: "Время работы",
-    address: "г. Нижний Новгород ул. Торфяная, 35",
-    forRegions: "Для регионов:",
-    city: "Нижний Новгород:",
-    search: "Поиск",
-    heroTitle: "Современные решения для спецтехники",
-    heroText:
-      "Надежные машины, адаптированные под задачи вашего бизнеса и ежедневные нагрузки.",
-    catalogBtn: "Посмотреть каталог",
-    contactBtn: "Связаться",
-    categories: "Категории",
-    more: "Подробнее",
-    language: "Язык",
-  },
-  uz: {
-    catalog: "Katalog",
-    about: "Biz haqimizda",
-    media: "Media",
-    service: "Xizmat",
-    repair: "Ta'mirlash",
-    news: "Yangiliklar",
-    contacts: "Bog'lanish",
-    company: "avtospectexnika ishlab chiqarish va sotish",
-    workingHours: "Ish vaqti",
-    address: "Nijniy Novgorod shahri, Torfyanaya ko'chasi, 35",
-    forRegions: "Hududlar uchun:",
-    city: "Nijniy Novgorod:",
-    search: "Qidirish",
-    heroTitle: "Maxsus texnika uchun zamonaviy yechimlar",
-    heroText:
-      "Biznesingiz va kundalik yuklanishingiz uchun moslangan ishonchli mashinalar.",
-    catalogBtn: "Katalogni ko'rish",
-    contactBtn: "Bog'lanish",
-    categories: "Kategoriyalar",
-    more: "Batafsil",
-    language: "Til",
-  },
-};
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import ruTranslation from './locales/ru.json';
+import uzTranslation from './locales/uz.json';
+import enTranslation from './locales/en.json';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      ru: { translation: ruTranslation },
+      uz: { translation: uzTranslation },
+      en: { translation: enTranslation }
+    },
+    lng: 'ru', // default language
+    fallbackLng: 'ru',
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    }
+  });
 
 export const languages = [
-  { code: "ru", label: "RU" },
-  { code: "uz", label: "UZ" },
+  { code: 'ru', label: 'RU' },
+  { code: 'uz', label: 'UZ' },
+  { code: 'en', label: 'EN' },
 ];
+
+export default i18n;

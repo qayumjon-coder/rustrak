@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Header from "./components/Header";
-import { languages, translations } from "./i18n";
+
 import ServicePage from "./pages/Service/ServicePage";
 import ContactSec from "./components/ContactSec";
 import Footer from "./components/Footer";
@@ -13,31 +13,64 @@ import Contact from "./pages/Contact";
 import Repair from "./pages/Repair";
 import News from "./pages/News";
 
-function App() {
-  const [language, setLanguage] = useState("ru");
-  const t = translations[language];
+// Catalog pages
+import CatalogPage from "./pages/Catalog/CatalogPage";
+import CategoryPage from "./pages/Catalog/CategoryPage";
+import ProductPage from "./pages/Catalog/ProductPage";
 
+// About sub-pages
+import Partners from "./pages/AboutPages/Partners";
+import Production from "./pages/AboutPages/Production";
+import Suppliers from "./pages/AboutPages/Suppliers";
+import Reviews from "./pages/AboutPages/Reviews";
+import Certificates from "./pages/AboutPages/Certificates";
+import Vacancies from "./pages/AboutPages/Vacancies";
+import Leasing from "./pages/AboutPages/Leasing";
+
+// Media pages
+import PhotoGallery from "./pages/MediaPages/PhotoGallery";
+import VideoPage from "./pages/MediaPages/VideoPage";
+import PromoPage from "./pages/MediaPages/PromoPage";
+import InfoPage from "./pages/MediaPages/InfoPage";
+
+function App() {
   return (
     <>
-      <Header
-        t={t}
-        language={language}
-        setLanguage={setLanguage}
-        languages={languages}
-      />
+      <Header />
       <Routes>
-        <Route path="/" element={<Home t={t} />} />
-        <Route path="/about" element={<About t={t} />} />
-        <Route path="/service" element={<ServicePage t={t} />} />
-        <Route path="/cart" element={<Cart t={t} />} />
-        <Route path="/favorites" element={<Favorites t={t} />} />
-        <Route path="/contacts" element={<Contact t={t} />} />
-        <Route path="/repair" element={<Repair t={t}/>}/>
-        <Route path="/news" element={<News t={t}/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/service" element={<ServicePage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/contacts" element={<Contact />} />
+        <Route path="/repair" element={<Repair />} />
+        <Route path="/news" element={<News />} />
+
+        {/* Catalog */}
+        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/catalog/:category" element={<CategoryPage />} />
+        <Route path="/catalog/:category/:productId" element={<ProductPage />} />
+
+        {/* About sub-pages */}
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/production" element={<Production />} />
+        <Route path="/suppliers" element={<Suppliers />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/cert" element={<Certificates />} />
+        <Route path="/vacancies" element={<Vacancies />} />
+        <Route path="/leasing" element={<Leasing />} />
+
+        {/* Media */}
+        <Route path="/photogallery" element={<PhotoGallery />} />
+        <Route path="/video" element={<VideoPage />} />
+        <Route path="/promo" element={<PromoPage />} />
+        <Route path="/info" element={<InfoPage />} />
+
       </Routes>
 
-      <ContactSec/>
-      <Footer/>
+      <ContactSec />
+      <Footer />
     </>
   );
 }

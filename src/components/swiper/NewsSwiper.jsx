@@ -7,12 +7,16 @@ import { MoveRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useTranslation } from "react-i18next";
 
 const News = () => {
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
+
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[40px] font-semibold">Новости</h2>
+        <h2 className="text-[40px] font-semibold">{t("news")}</h2>
 
         <div className="hidden items-center gap-3 md:flex ">
           <button className="rt-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
@@ -85,7 +89,7 @@ const News = () => {
                   <a href="#">
                     <div className="pb-2">
                       <h3 className="text-lg font-semibold">
-                        {newsItem.title}
+                        {(newsItem.title?.[language] || newsItem.title?.ru || newsItem.title)}
                       </h3>
                     </div>
                   </a>
@@ -97,7 +101,7 @@ const News = () => {
                       href="#"
                       className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg"
                     >
-                      Подробнее <MoveRight />
+                      {t("more")} <MoveRight />
                     </a>
                   </div>
                 </div>

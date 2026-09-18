@@ -6,9 +6,10 @@ import RecommendedTrucks from "../../components/RecommendedTrucks";
 import News from "../../components/swiper/NewsSwiper";
 import { motion } from "motion/react";
 import { fadeUp, container } from "../../utils/animation";
+import { useTranslation } from "react-i18next";
 
-const Home = ({ t }) => {
-  t;
+const Home = () => {
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -17,18 +18,18 @@ const Home = ({ t }) => {
           <div className="">
             {/* <div className="mb-8 rounded-2xl bg-linear-to-r from-yellow to-amber-300 p-8 shadow-lg">
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-black/70">
-                {t.language === "uz" ? "Rustrak" : "Rustrak"}
+                {i18n.language === "uz" ? "Rustrak" : "Rustrak"}
               </p>
               <h1 className="max-w-2xl text-4xl font-bold text-black md:text-5xl">
-                {t.heroTitle}
+                {t("heroTitle")}
               </h1>
-              <p className="mt-4 max-w-xl text-lg text-black/80">{t.heroText}</p>
+              <p className="mt-4 max-w-xl text-lg text-black/80">{t("heroText")}</p>
               <div className="mt-6 flex gap-4">
                 <button className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white">
-                  {t.catalogBtn}
+                  {t("catalogBtn")}
                 </button>
                 <button className="rounded-full border border-black/40 bg-white px-6 py-3 text-sm font-semibold text-black">
-                  {t.contactBtn}
+                  {t("contactBtn")}
                 </button>
               </div>
             </div> */}
@@ -58,7 +59,7 @@ const Home = ({ t }) => {
                 transition={{ ease: "easeIn", duration: 0.4 }}
                 className="text-[40px] font-semibold mb-5.5"
               >
-                О компании <b className="font-semibold text-yellow">Рустрак</b>
+                {t("aboutTitle")} <b className="font-semibold text-yellow">{t("aboutCompany")}</b>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 50 }}
@@ -67,17 +68,10 @@ const Home = ({ t }) => {
                 transition={{ ease: "easeIn", duration: 0.4 }}
                 className="mb-16 text-lg"
               >
-                Наша компания занимает лидирующие позиции на рынке спецтехники:
-                каждый день мы вносим свой вклад в развитие отечественного
-                автопрома и укрепление российской экономики.
+                {t("aboutP1")}
                 <br />
                 <br />
-                «РусТрак» является ведущим производителем коммерческого
-                транспорта и специализированной техники. Наша работа признана и
-                высоко оценена крупнейшими отечественными корпорациями и
-                государственными структурами: мы поставляем спецтехнику для
-                таких корпораций, как Газпром, Росатом, Россети, РСК «МИГ» и
-                других.
+                {t("aboutP2")}
               </motion.p>
 
               <motion.a
@@ -90,7 +84,7 @@ const Home = ({ t }) => {
                 href="#"
                 className="p-2.5 bg-yellow hover:bg-yellow-hov w-40 hidden lg:flex items-center justify-center rounded-sm transition ease duration-200 flex-wrap"
               >
-                Подробнее <i className="fa-solid fa-arrow-right-long ml-2"></i>
+                {t("more")} <i className="fa-solid fa-arrow-right-long ml-2"></i>
               </motion.a>
             </div>
 
@@ -123,14 +117,13 @@ const Home = ({ t }) => {
             <motion.div variants={fadeUp} className="stat md:col-span-3">
               <div className="mb-6">
                 <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">
-                  17
+                  {t("stat1Num")}
                 </h2>
-                <p className="text-[32px]">субъектов</p>
+                <p className="text-[32px]">{t("stat1Title")}</p>
               </div>
 
               <p className="text-base md:text-lg">
-                За 17 лет деятельности ООО «РусТрак» превратилось в крупное
-                предприятие по производству и продаже специальной техники
+                {t("stat1Desc")}
               </p>
             </motion.div>
 
@@ -140,14 +133,13 @@ const Home = ({ t }) => {
             >
               <div className="mb-6">
                 <h2 className="text-[80px] xl md:text-[100px] leading-30 font-semibold">
-                  85
+                  {t("stat2Num")}
                 </h2>
-                <p className="text-[32px]">субъектов</p>
+                <p className="text-[32px]">{t("stat2Title")}</p>
               </div>
 
               <p className="text-base md:text-lg">
-                Мы обеспечили 85 субъектов РФ надёжной техникой коммерческого и
-                специализированного предназначения
+                {t("stat2Desc")}
               </p>
             </motion.div>
 
@@ -157,14 +149,13 @@ const Home = ({ t }) => {
             >
               <div className="mb-6">
                 <h2 className="text-[80px] md:text-[100px] leading-30 font-semibold">
-                  11
+                  {t("stat3Num")}
                 </h2>
-                <p className="text-[32px]">концернов</p>
+                <p className="text-[32px]">{t("stat3Title")}</p>
               </div>
 
               <p className="text-base md:text-lg">
-                ООО «РусТрак» дорожит доверием автопрома, которое подтверждено
-                полномочиями от 11 автопроизводителей
+                {t("stat3Desc")}
               </p>
             </motion.div>
           </motion.div>

@@ -1,7 +1,9 @@
-const NavbarLink = ({link, text, selector, liSelector}) => {
+import { Link } from "react-router-dom";
+
+const NavbarLink = ({ link, text, selector, liSelector }) => {
   return (
     <li className={liSelector}>
-      <a className={selector} href={link}>{text}</a>
+      <Link className={selector} to={link}>{text}</Link>
     </li>
   );
 };

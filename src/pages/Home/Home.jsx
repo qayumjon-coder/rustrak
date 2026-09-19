@@ -59,7 +59,8 @@ const Home = () => {
                 transition={{ ease: "easeIn", duration: 0.4 }}
                 className="text-[40px] font-semibold mb-5.5"
               >
-                {t("aboutTitle")} <b className="font-semibold text-yellow">{t("aboutCompany")}</b>
+                {t("aboutTitle")}{" "}
+                <b className="font-semibold text-yellow">{t("aboutCompany")}</b>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 50 }}
@@ -84,7 +85,8 @@ const Home = () => {
                 href="#"
                 className="p-2.5 bg-yellow hover:bg-yellow-hov w-40 hidden lg:flex items-center justify-center rounded-sm transition ease duration-200 flex-wrap"
               >
-                {t("more")} <i className="fa-solid fa-arrow-right-long ml-2"></i>
+                {t("more")}{" "}
+                <i className="fa-solid fa-arrow-right-long ml-2"></i>
               </motion.a>
             </div>
 
@@ -122,9 +124,7 @@ const Home = () => {
                 <p className="text-[32px]">{t("stat1Title")}</p>
               </div>
 
-              <p className="text-base md:text-lg">
-                {t("stat1Desc")}
-              </p>
+              <p className="text-base md:text-lg">{t("stat1Desc")}</p>
             </motion.div>
 
             <motion.div
@@ -138,9 +138,7 @@ const Home = () => {
                 <p className="text-[32px]">{t("stat2Title")}</p>
               </div>
 
-              <p className="text-base md:text-lg">
-                {t("stat2Desc")}
-              </p>
+              <p className="text-base md:text-lg">{t("stat2Desc")}</p>
             </motion.div>
 
             <motion.div
@@ -154,9 +152,7 @@ const Home = () => {
                 <p className="text-[32px]">{t("stat3Title")}</p>
               </div>
 
-              <p className="text-base md:text-lg">
-                {t("stat3Desc")}
-              </p>
+              <p className="text-base md:text-lg">{t("stat3Desc")}</p>
             </motion.div>
           </motion.div>
         </div>

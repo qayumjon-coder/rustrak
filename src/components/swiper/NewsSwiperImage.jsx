@@ -30,27 +30,29 @@ const NewsSwiperImage = () => {
   ];
 
   return (
-    <div className="w-170 mb-5">
+    <div className="lg:w-170 w-120 mb-5">
       <Swiper
-        modules={[ Pagination ]}
-          spaceBetween={0}
-          slidesPerView={1}
-          loop={true}
-          pagination={{ clickable: true }}
-          className="w-full! rounded-[15px]"
-          style={{
-            "--swiper-navigation-color": "#f0f0f0",
-            "--swiper-navigation-size": "20px",
-            "--swiper-navigation-top-offset": "-50%",
-          }}
+        modules={[Pagination]}
+        spaceBetween={0}
+        slidesPerView={1}
+        loop={true}
+        pagination={{ clickable: true }}
+        className="w-full! rounded-[15px]"
+        style={{
+          "--swiper-navigation-color": "#f0f0f0",
+          "--swiper-navigation-size": "20px",
+          "--swiper-navigation-top-offset": "-50%",
+        }}
       >
-          {images.map((item, i) => (
-            <SwiperSlide key={i} className="h-full! rounded-lg!">
-              <img className="h-full! w-full" src={item.img} alt={"Marketing image " + `${i + 1}`} />
-            </SwiperSlide>
-
-            
-          ))}
+        {images.map((item, i) => (
+          <SwiperSlide key={i} className="h-full! rounded-lg!">
+            <img
+              className="h-full! w-full"
+              src={item.img}
+              alt={"Marketing image " + `${i + 1}`}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

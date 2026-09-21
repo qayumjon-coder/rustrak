@@ -13,3 +13,4 @@
 5. ~~Favorites~~ ✅
 6. ~~News~~ ✅
 7. ~~Contacts~~ ✅
+### ~~All pages...~~ ✅

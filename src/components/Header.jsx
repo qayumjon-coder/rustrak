@@ -198,7 +198,11 @@ const Header = () => {
                 className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm"
               >
                 {isNavOpen ? <X /> : <Menu />}
-                <p className={`hidden md:block${isHidden ? "hidden" : "block"}`}>{t("catalog")}</p>
+                <p
+                  className={`hidden md:block${isHidden ? "hidden" : "block"}`}
+                >
+                  {t("catalog")}
+                </p>
               </motion.button>
 
               <img

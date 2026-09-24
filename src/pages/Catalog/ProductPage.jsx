@@ -108,7 +108,6 @@ const ProductPage = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8 mb-8">
-          {/* Left: Image */}
           <div className="w-full lg:w-[55%]">
             <div className="border border-gray-200 rounded bg-gray-50 flex items-center justify-center h-80 lg:h-96 overflow-hidden">
               <img
@@ -126,7 +125,6 @@ const ProductPage = () => {
             </p>
           </div>
 
-          {/* Right: Info */}
           <div className="w-full lg:w-[45%]">
             <p className="text-2xl font-semibold mb-4">
               {product.price === t("cena_po_zaprosu")
@@ -143,7 +141,6 @@ const ProductPage = () => {
               </button>
             </div>
 
-            {/* Quick specs */}
             <table className="w-full text-sm">
               <tbody>
                 {allSpecs.map((s, i) => (
@@ -157,7 +154,6 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Full specs table */}
         <section className="mb-10">
           <h2 className="text-xl font-semibold mb-4">
             {t?.specs || t("harakteristiki")}
@@ -210,7 +206,6 @@ const ProductPage = () => {
           </div>
         </section>
 
-        {/* Similar products */}
         <section className="mb-10">
           <h2 className="text-xl font-semibold mb-6">
             {t?.similar || t("pohozhie_gruzoviki")}

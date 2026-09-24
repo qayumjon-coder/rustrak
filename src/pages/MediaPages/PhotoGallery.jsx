@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/Breadcrumb";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -108,14 +108,22 @@ const PhotoGallery = () => {
   ];
 
   const [activeTab, setActiveTab] = useState(0);
-  const [lightbox, setLightbox] = useState(null); // { images, index }
+  const [lightbox, setLightbox] = useState(null);
 
   const currentImages = galleryData[activeTab].images;
 
   const openLightbox = (index) => setLightbox({ images: currentImages, index });
   const closeLightbox = () => setLightbox(null);
-  const prevImage = () => setLightbox(prev => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length }));
-  const nextImage = () => setLightbox(prev => ({ ...prev, index: (prev.index + 1) % prev.images.length }));
+  const prevImage = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index - 1 + prev.images.length) % prev.images.length,
+    }));
+  const nextImage = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index + 1) % prev.images.length,
+    }));
 
   return (
     <section className="pt-35 mb-20">
@@ -128,13 +136,12 @@ const PhotoGallery = () => {
           </h1>
           <Link
             to="/video"
-            className="flex-shrink-0 px-5 py-2 border border-gray-300 text-sm rounded hover:border-yellow hover:text-yellow transition duration-200"
+            className="shrink-0 px-5 py-2 border border-gray-300 text-sm rounded hover:border-yellow hover:text-yellow transition duration-200"
           >
             {t("smotret_video")}
           </Link>
         </div>
 
-        {/* Category tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
           {galleryData.map((cat, i) => (
             <button
@@ -151,7 +158,6 @@ const PhotoGallery = () => {
           ))}
         </div>
 
-        {/* Masonry grid */}
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
           {currentImages.map((src, i) => (
             <div
@@ -169,7 +175,6 @@ const PhotoGallery = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
       {lightbox && (
         <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
@@ -177,7 +182,10 @@ const PhotoGallery = () => {
         >
           <button
             className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-yellow transition"
-            onClick={e => { e.stopPropagation(); prevImage(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
           >
             ‹
           </button>
@@ -185,11 +193,14 @@ const PhotoGallery = () => {
             src={lightbox.images[lightbox.index]}
             alt={`${lightbox.index + 1}`}
             className="max-h-[90vh] max-w-[90vw] rounded shadow-2xl object-contain"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           />
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl px-4 py-2 hover:text-yellow transition"
-            onClick={e => { e.stopPropagation(); nextImage(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
           >
             ›
           </button>

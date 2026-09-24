@@ -108,7 +108,10 @@ const Repair = () => {
 
               <ul className="flex flex-col">
                 {liArr.map((item, i) => (
-                  <li key={i} className="pb-2.5 text-lg flex items-center gap-2">
+                  <li
+                    key={i}
+                    className="pb-2.5 text-lg flex items-center gap-2"
+                  >
                     <span className="romb inline-block pr-2"></span>
                     <p>{item}</p>
                   </li>

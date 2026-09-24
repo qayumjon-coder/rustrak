@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
 import { useTranslation } from "react-i18next";
 
 const RecommendedTrucks = () => {
@@ -18,7 +17,9 @@ const RecommendedTrucks = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[40px] font-semibold">{t("recommendedProductsTitle", "Рекомендуемая продукция")}</h2>
+        <h2 className="text-[40px] font-semibold">
+          {t("recommendedProductsTitle", "Рекомендуемая продукция")}
+        </h2>
 
         <div className="hidden items-center gap-3 md:flex">
           <button className="swiper-prev-el flex items-center justify-center w-9.75 h-9.75 border rounded-md hover:bg-yellow cursor-pointer">
@@ -96,7 +97,9 @@ const RecommendedTrucks = () => {
                 <div className="p-2.5">
                   <a href="#">
                     <div className="pb-2">
-                      <h3 className="text-lg line-clamp-1">{(item.title?.[language] || item.title?.ru || item.title)}</h3>
+                      <h3 className="text-lg line-clamp-1">
+                        {item.title?.[language] || item.title?.ru || item.title}
+                      </h3>
                     </div>
                   </a>
 

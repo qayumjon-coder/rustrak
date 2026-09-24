@@ -61,7 +61,6 @@ const CategoryPage = () => {
       <div className="container">
         <Breadcrumb />
 
-        {/* Header */}
         <div className="flex items-baseline gap-4 mb-6 flex-wrap">
           <h1 className="text-2xl font-bold">
             {currentCat.title?.[language] ||
@@ -155,9 +154,7 @@ const CategoryPage = () => {
         </div>
 
         <div className="flex gap-6">
-          {/* ====== SIDEBAR ====== */}
           <aside className="sticky top-5 hidden lg:flex flex-col gap-4 w-52 shrink-0">
-            {/* Марка */}
             <div className="rounded">
               <p className="font-semibold text-sm mb-3">
                 {t?.brand || t("marka")}
@@ -171,7 +168,7 @@ const CategoryPage = () => {
                   className="w-full border border-gray-200 rounded px-3 py-1.5 text-sm outline-none focus:border-yellow"
                 />
                 <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                  <GoSearch size={18}/>
+                  <GoSearch size={18} />
                 </span>
               </div>
               <div className="flex flex-col gap-1.5">
@@ -197,7 +194,6 @@ const CategoryPage = () => {
               </div>
             </div>
 
-            {/* Полная масса */}
             <div>
               <p className="font-semibold text-sm mb-3">
                 {t?.fullMass || t("polnaya_massa_tonn")}
@@ -231,10 +227,8 @@ const CategoryPage = () => {
             </button>
           </aside>
 
-          {/* ====== PRODUCTS ====== */}
 
           <div className="flex-1 min-w-0">
-            {/* GRID ko'rinish */}
             {view === "grid" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 {recommended_trucks.map((item) => (
@@ -319,7 +313,6 @@ const CategoryPage = () => {
               </div>
             )}
 
-            {/* LIST ko'rinish — xuddi rtrf.ru uslubi */}
             {view === "list" && (
               <div className="flex flex-col gap-4">
                 {recommended_trucks.map((item) => (
@@ -358,7 +351,6 @@ const CategoryPage = () => {
                       </Link>
                     </div>
 
-                    {/* O'rta: Sarlavha + Nuqtali spesifikatsiyalar */}
                     <div className="flex-1 px-6 py-4 flex flex-col justify-center min-w-0">
                       <Link
                         to={`/catalog/${category}/${item.id}`}
@@ -394,7 +386,6 @@ const CategoryPage = () => {
                       </div>
                     </div>
 
-                    {/* O'ng: Narx + Tugmalar */}
                     <div className="shrink-0 w-44 flex flex-col items-center justify-center gap-3 px-4 py-4">
                       <p className="text-base font-bold text-gray-800 text-center">
                         {item.price === t("cena_po_zaprosu")

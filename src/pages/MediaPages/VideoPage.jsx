@@ -118,17 +118,15 @@ const VideoPage = () => {
           </h1>
           <Link
             to="/photogallery"
-            className="flex-shrink-0 px-5 py-2 border border-gray-300 text-sm rounded hover:border-yellow hover:text-yellow transition duration-200"
+            className="shrink-0 px-5 py-2 border border-gray-300 text-sm rounded hover:border-yellow hover:text-yellow transition duration-200"
           >
             {t("smotret_foto")}
           </Link>
         </div>
 
-        {/* Video grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {videos.map((v) => (
             <div key={v.id} className="group">
-              {/* Thumbnail / embedded player */}
               {activeVideo === v.id ? (
                 <div className="relative w-full rounded overflow-hidden mb-3" style={{ paddingBottom: "56.25%" }}>
                   <iframe
@@ -152,8 +150,7 @@ const VideoPage = () => {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
-                      {/* Play icon */}
-                      <svg className="w-7 h-7 text-white fill-white ml-1" viewBox="0 0 24 24">
+                       <svg className="w-7 h-7 text-white fill-white ml-1" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>

@@ -307,6 +307,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "ГАЗ"
   },
   {
     id: 2,
@@ -319,6 +320,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "ГАЗ"
   },
   {
     id: 3,
@@ -331,6 +333,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "КАМАЗ"
   },
   {
     id: 4,
@@ -343,6 +346,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "КАМАЗ"
   },
   {
     id: 5,
@@ -355,6 +359,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "JAC"
   },
   {
     id: 6,
@@ -367,6 +372,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "JAC"
   },
   {
     id: 7,
@@ -379,6 +385,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "от 8 800 000",
+    type: "DAEWOO"
   },
   {
     id: 8,
@@ -391,6 +398,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "от 7 850 000",
+    type: "FOTON"
   },
   {
     id: 9,
@@ -403,6 +411,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "DONG FENG"
   },
   {
     id: 10,
@@ -415,6 +424,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "DONG FENG"
   },
   {
     id: 11,
@@ -427,6 +437,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "МАЗ"
   },
   {
     id: 12,
@@ -439,6 +450,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "МАЗ"
   },
   {
     id: 13,
@@ -451,6 +463,7 @@ export const recommended_trucks = [
     link: "#",
     isLiked: false,
     price: "Цена по запросу",
+    type: "ГАЗ"
   },
 ];
 

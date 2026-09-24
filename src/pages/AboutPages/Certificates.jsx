@@ -6,47 +6,47 @@ const Certificates = () => {
 
   const certImages = [
     {
-      src: "/images/certs/cert-1.jpg",
+      src: "/certs/sert-1.jpg",
       title: t("svidetelstvo_oficialnogo_diler"),
     },
     {
-      src: "/images/certs/cert-2.jpg",
+      src: "/certs/sert-2.jpg",
       title: t("svidetelstvo"),
     },
     {
-      src: "/images/certs/cert-3.jpg",
+      src: "/certs/sert-3.jpg",
       title: t("blagodarnost"),
     },
     {
-      src: "/images/certs/cert-4.jpg",
+      src: "/certs/sert-4.jpg",
       title: t("diplom_uchastnika_vystavki"),
     },
     {
-      src: "/images/certs/cert-5.jpg",
+      src: "/certs/sert-5.jpg",
       title: t("diplom_ctt"),
     },
     {
-      src: "/images/certs/cert-6.jpg",
+      src: "/certs/sert-6.jpg",
       title: t("sertifikat_oficialnogo_dilera_"),
     },
     {
-      src: "/images/certs/cert-7.jpg",
+      src: "/certs/sert-71.jpg",
       title: t("sertifikat_oficialnogo_dilera__1"),
     },
     {
-      src: "/images/certs/cert-8.jpg",
+      src: "/certs/sert-7.jpg",
       title: t("blagodarstvennoe_pismo"),
     },
     {
-      src: "/images/certs/cert-9.jpg",
+      src: "/certs/sert-8.jpg",
       title: t("sertifikat_hyundai"),
     },
     {
-      src: "/images/certs/cert-10.jpg",
+      src: "/certs/sert-9.jpg",
       title: t("sertifikat_kmu_rus"),
     },
     {
-      src: "/images/certs/cert-11.jpg",
+      src: "/certs/sert-10.jpg",
       title: "COMVEX 2023",
     },
   ];
@@ -63,7 +63,7 @@ const Certificates = () => {
               key={i}
               className="border border-gray-200 rounded overflow-hidden cursor-pointer hover:shadow-md transition duration-300 group"
             >
-              <div className="bg-gray-50 h-56 flex items-center justify-center overflow-hidden">
+              <div className="flex items-center justify-center">
                 <img
                   src={cert.src}
                   alt={cert.title}

@@ -179,7 +179,9 @@ const Header = () => {
                   }}
                   href="#"
                 >
-                  <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
+                  <button>
+                    <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
+                  </button>
                 </motion.a>
               </div>
             </div>
@@ -372,7 +374,7 @@ const Header = () => {
                 </select>
               </motion.label>
 
-              <motion.a
+              <motion.button
                 variants={slideTop}
                 initial={slideTop.hidden}
                 whileInView={slideTop.visible}
@@ -380,7 +382,6 @@ const Header = () => {
                   delay: 0.2,
                 }}
                 className="hidden sm:flex"
-                href="#"
               >
                 <i
                   className={
@@ -389,11 +390,17 @@ const Header = () => {
                       : "fa-solid fa-phone hidden! w-12! h-12 items-center ml-4 text-2xl justify-center rounded-full bg-yellow"
                   }
                 ></i>
-              </motion.a>
+              </motion.button>
             </div>
           </div>
         </div>
       </div>
+
+                  <div>
+                    <div>
+                      
+                    </div>
+                  </div>
 
       <div
         className={

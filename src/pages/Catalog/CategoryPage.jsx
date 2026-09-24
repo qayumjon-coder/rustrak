@@ -56,6 +56,15 @@ const CategoryPage = () => {
   const totalChecked =
     Object.values(checkedBrands).filter(Boolean).length +
     Object.values(checkedMass).filter(Boolean).length;
+
+  const hasBrand = Object.values(checkedBrands).some(Boolean);
+const hasMass = Object.values(checkedMass).some(Boolean);
+
+const filteredTrucks = recommended_trucks.filter((item) => {
+  const brandMatch = !hasBrand || checkedBrands[item.type];
+  const massMatch = !hasMass || checkedMass[item.mass];
+  return brandMatch && massMatch;
+});
   return (
     <section className="pt-35 mb-20">
       <div className="container">
@@ -227,11 +236,10 @@ const CategoryPage = () => {
             </button>
           </aside>
 
-
           <div className="flex-1 min-w-0">
             {view === "grid" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                {recommended_trucks.map((item) => (
+                {filteredTrucks.map((item) => (
                   <div
                     key={item.id}
                     className="rounded flex flex-col hover:shadow-lg transition duration-300 bg-white shadow-sm"
@@ -315,12 +323,11 @@ const CategoryPage = () => {
 
             {view === "list" && (
               <div className="flex flex-col gap-4">
-                {recommended_trucks.map((item) => (
+                {filteredTrucks.map((item) => (
                   <div
                     key={item.id}
                     className="border-b border-gray-100 flex flex-row hover:bg-gray-50 transition duration-200"
                   >
-                    {/* Chap: Katta rasm */}
                     <div className="relative bg-grashrink-0 w-60 overflow-hidden rounded-l">
                       <button
                         onClick={() => toggleLike(item.id)}

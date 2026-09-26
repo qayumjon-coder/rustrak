@@ -24,7 +24,7 @@ const Reviews = () => {
               <img
                 src={src}
                 alt={`Отзыв ${i + 1}`}
-                className="w-full h-56 object-cover hover:scale-105 transition duration-500"
+                className="w-full object-cover hover:scale-105 transition duration-500"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.parentElement.style.background = "#f9f9f9";
@@ -35,9 +35,9 @@ const Reviews = () => {
           ))}
         </div>
 
-        <div className="mt-6 text-gray-500 text-sm">
+        {/* <div className="mt-6 text-gray-500 text-sm">
           {t("otzyvy_nashih_klientov_predsta")}
-        </div>
+        </div> */}
       </div>
     </section>
   );

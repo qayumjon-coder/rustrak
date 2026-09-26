@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { languages } from "../i18n.js";
 import { motion } from "motion/react";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
 import {
   fadeUp,
   slideLeft,
@@ -20,7 +21,10 @@ import {
   ShoppingCart,
   X,
 } from "lucide-react";
+import { CartContext } from "./CartContext.jsx";
 const Header = () => {
+  const { cart } = useContext(CartContext);
+
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const [isOpen, setIsOpen] = useState(false);
@@ -339,8 +343,12 @@ const Header = () => {
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
                   href="/cart"
+                  className="relative"
                 >
                   <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
+                  <div className="absolute bg-yellow bottom-0 right-0 w-5 h-3 text-[10px] font-bold text-center px-1 py-px rounded-sm">
+                    {cart.length}
+                  </div>
                 </motion.a>
                 <motion.a
                   variants={shortFadeUp}
@@ -396,11 +404,10 @@ const Header = () => {
         </div>
       </div>
 
-                  <div>
-                    <div>
-                      
-                    </div>
-                  </div>
+      {/* Modalka mas modal */}
+      <div>
+        <div></div>
+      </div>
 
       <div
         className={

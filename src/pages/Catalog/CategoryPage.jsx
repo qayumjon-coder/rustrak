@@ -3,8 +3,9 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { Link, useParams } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { recommended_trucks, swiperCardTrck } from "../../object";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FiHeart, FiShoppingCart, FiDownload } from "react-icons/fi";
+import { CartContext } from "../../components/CartContext";
 const slugs = [
   "avtotoplivozapravshchiki",
   "avtogidropodyemniki",
@@ -37,9 +38,11 @@ const CategoryPage = () => {
   ];
   const massOptions = [t("do_12"), t("do_20"), t("do_5_5"), t("svyshe_20")];
 
+  const { addToCart } = useContext(CartContext);
+
   const { category } = useParams();
   const [liked, setLiked] = useState({});
-  const [view, setView] = useState("list");
+  const [view, setView] = useState("grid");
   const [searchBrand, setSearchBrand] = useState("");
   const [checkedBrands, setCheckedBrands] = useState({});
   const [checkedMass, setCheckedMass] = useState({});
@@ -58,13 +61,13 @@ const CategoryPage = () => {
     Object.values(checkedMass).filter(Boolean).length;
 
   const hasBrand = Object.values(checkedBrands).some(Boolean);
-const hasMass = Object.values(checkedMass).some(Boolean);
+  const hasMass = Object.values(checkedMass).some(Boolean);
 
-const filteredTrucks = recommended_trucks.filter((item) => {
-  const brandMatch = !hasBrand || checkedBrands[item.type];
-  const massMatch = !hasMass || checkedMass[item.mass];
-  return brandMatch && massMatch;
-});
+  const filteredTrucks = recommended_trucks.filter((item) => {
+    const brandMatch = !hasBrand || checkedBrands[item.type];
+    const massMatch = !hasMass || checkedMass[item.mass];
+    return brandMatch && massMatch;
+  });
   return (
     <section className="pt-35 mb-20">
       <div className="container">
@@ -291,6 +294,7 @@ const filteredTrucks = recommended_trucks.filter((item) => {
                         </Link>
                         <button
                           className="p-1.5 border border-gray-200 rounded hover:border-yellow transition cursor-pointer"
+                          onClick={() => addToCart(item)}
                           title={t("korzina")}
                         >
                           <FiShoppingCart size={15} className="text-gray-500" />

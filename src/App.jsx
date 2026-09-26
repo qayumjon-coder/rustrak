@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import CartProvider from "./components/CartContext"
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Header from "./components/Header";
@@ -35,7 +36,7 @@ import InfoPage from "./pages/MediaPages/InfoPage";
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -71,7 +72,7 @@ function App() {
 
       <ContactSec />
       <Footer />
-    </>
+    </CartProvider>
   );
 }
 

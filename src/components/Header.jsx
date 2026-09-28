@@ -346,9 +346,9 @@ const Header = () => {
                   className="relative"
                 >
                   <ShoppingCart size={30} strokeWidth={1.2} className="ml-5" />
-                  <div className="absolute bg-yellow bottom-0 right-0 w-5 h-3 text-[10px] font-bold text-center px-1 py-px rounded-sm">
+                  {cart.length > 0 && (<div className="absolute bg-yellow bottom-0 right-0 w-5 h-3 text-[10px] font-bold text-center px-1 py-px rounded-sm">
                     {cart.length}
-                  </div>
+                  </div>)}
                 </motion.a>
                 <motion.a
                   variants={shortFadeUp}

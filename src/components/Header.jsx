@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import NavbarLink from "./NavbarLink.jsx";
-import ZvonokMod from "./ZvonokMod.jsx";
 import { links, links2, links3 } from "../object.js";
 import { useTranslation } from "react-i18next";
 import { languages } from "../i18n.js";
@@ -32,6 +31,7 @@ const Header = () => {
   const language = i18n.language;
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isListOpen, setIsListOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -81,8 +81,64 @@ const Header = () => {
   const handleOpenAbout = () => {
     setIsAboutOpen(!isAboutOpen);
   };
+
   return (
-    <><ZvonokMod />
+    <>
+      {isModalOpen && (
+        <div onClick={() => setIsModalOpen(false)} className="fixed z-101 cursor-pointer bg-black/60 w-full h-screen flex items-center justify-center">
+          <div onClick={(e) => e.stopPropagation()} className="bg-white relative cursor-auto py-10 px-10 rounded-lg z-102">
+            <button
+              className="absolute top-3 right-3 cursor-pointer"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <X size={30}/>
+            </button>
+            <div className="mb-10 text-center">
+              <h2 className="text-[32px] font-medium">Заказать звонок</h2>
+              <p>Наш менеджер свяжется с Вами в ближайшее время</p>
+            </div>
+
+            <form action="#">
+              <div className="flex flex-col mb-3">
+                <label className="flex flex-col mb-3" htmlFor="name">
+                  Ваше имя *
+                  <input type="text" className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50" placeholder="Иван"/>
+                </label>
+
+                <label className="flex flex-col mb-3" htmlFor="name">
+                  Телефон *
+                  <input type="tel" className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50" placeholder="+7"/>
+                </label>
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  className="accent-black w-7 h-7"
+                  type="checkbox"
+                  name="personal data analysis checkbox"
+                  id="personal_data_analysis"
+                />
+                <label htmlFor="personal_data_analysis" className="text-sm">
+                  Я согласен{" "}
+                  <a
+                    href="https://rtrf.ru/upload/privacy_policy.pdf"
+                    className="text-blue-700"
+                  >
+                    на обработку персональных <br /> данных
+                  </a>
+                </label>
+              </div>
+
+              <button className="cursor-pointer w-full px-10 py-3.25 bg-yellow mt-10 rounded-sm">
+                Оставить заявку
+              </button>
+            </form>
+            <div className="text-[12px] text-center mt-5">
+              <p>Для регионов: 8 (800) 511-05-25</p>
+              <p>Нижний Новгород: 8 (831) 235-26-16</p>
+            </div>
+          </div>
+        </div>
+      )}
       <header className="fixed w-full top-0 left-0 z-100 bg-white">
         <div
           className={
@@ -187,7 +243,7 @@ const Header = () => {
                     }}
                     href="#"
                   >
-                    <button>
+                    <button onClick={() => setIsModalOpen(true)} className="cursor-pointer">
                       <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
                     </button>
                   </motion.a>
@@ -404,10 +460,11 @@ const Header = () => {
                   variants={slideTop}
                   initial={slideTop.hidden}
                   whileInView={slideTop.visible}
+                  onClick={() => setIsModalOpen(true)}
                   transition={{
                     delay: 0.2,
                   }}
-                  className="hidden sm:flex"
+                  className="hidden sm:flex cursor-pointer"
                 >
                   <i
                     className={
@@ -551,7 +608,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-      
       </header>
     </>
   );

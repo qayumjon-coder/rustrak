@@ -6,6 +6,7 @@ import { recommended_trucks, swiperCardTrck } from "../../object";
 import { useContext, useState } from "react";
 import { FiHeart, FiShoppingCart, FiDownload } from "react-icons/fi";
 import { CartContext } from "../../components/CartContext";
+import { FavorContext } from "../../components/FavorContext";
 const slugs = [
   "avtotoplivozapravshchiki",
   "avtogidropodyemniki",
@@ -39,6 +40,7 @@ const CategoryPage = () => {
   const massOptions = [t("do_12"), t("do_20"), t("do_5_5"), t("svyshe_20")];
 
   const { addToCart } = useContext(CartContext);
+  const { addToFavor } = useContext(FavorContext);
 
   const { category } = useParams();
   const [liked, setLiked] = useState({});
@@ -300,7 +302,10 @@ const CategoryPage = () => {
                           <FiShoppingCart size={15} className="text-gray-500" />
                         </button>
                         <button
-                          onClick={() => toggleLike(item.id)}
+                          onClick={() => {
+                            addToFavor(item);
+                            toggleLike(item.id);
+                          }}
                           className="p-1.5 border border-gray-200 rounded hover:border-red-300 transition cursor-pointer"
                         >
                           <FiHeart

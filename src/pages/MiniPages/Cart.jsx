@@ -3,9 +3,11 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../components/CartContext";
 import { useContext, useState } from "react";
-import { FiDelete, FiDownload, FiHeart, FiShoppingCart, FiTrash, FiTrash2 } from "react-icons/fi";
+import { FiDownload, FiHeart, FiTrash2 } from "react-icons/fi";
+import { FavorContext } from "../../components/FavorContext";
 const Cart = () => {
   const { cart, removeFromCart } = useContext(CartContext);
+  const { addToFavor } = useContext(FavorContext);
 
   const { t, i18n } = useTranslation();
   const [liked, setLiked] = useState({});
@@ -45,7 +47,7 @@ const Cart = () => {
                   {t("na_glavnuyu")}
                 </a>
                 <a
-                  href="/"
+                  href="/catalog"
                   className="px-10 py-2.5 flex items-center justify-center rounded-sm bg-yellow hover:bg-yellow-hov transition ease duration-300"
                 >
                   {t("otkryt_katalog")}
@@ -77,7 +79,10 @@ const Cart = () => {
             >
               <div className="relative bg-gray-50 h-45 flex items-center justify-center overflow-hidden rounded-t">
                 <button
-                  onClick={() => toggleLike(item.id)}
+                  onClick={() => {
+                    addToFavor(item)
+                    toggleLike(item.id)
+                  }}
                   className="absolute top-2 right-2 z-10 cursor-pointer"
                 >
                   <FiHeart

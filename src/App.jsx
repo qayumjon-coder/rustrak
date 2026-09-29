@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import CartProvider from "./components/CartContext"
+import CartProvider from "./components/CartContext";
+import FavorProvider from "./components/FavorContext";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Header from "./components/Header";
@@ -37,41 +38,45 @@ import InfoPage from "./pages/MediaPages/InfoPage";
 function App() {
   return (
     <CartProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/service" element={<ServicePage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/contacts" element={<Contact />} />
-        <Route path="/repair" element={<Repair />} />
-        <Route path="/news" element={<News />} />
+      <FavorProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/service" element={<ServicePage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/contacts" element={<Contact />} />
+          <Route path="/repair" element={<Repair />} />
+          <Route path="/news" element={<News />} />
 
-        {/* Catalog */}
-        <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog/:category" element={<CategoryPage />} />
-        <Route path="/catalog/:category/:productId" element={<ProductPage />} />
+          {/* Catalog */}
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/catalog/:category" element={<CategoryPage />} />
+          <Route
+            path="/catalog/:category/:productId"
+            element={<ProductPage />}
+          />
 
-        {/* About sub-pages */}
-        <Route path="/partners" element={<Partners />} />
-        <Route path="/production" element={<Production />} />
-        <Route path="/suppliers" element={<Suppliers />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/cert" element={<Certificates />} />
-        <Route path="/vacancies" element={<Vacancies />} />
-        <Route path="/leasing" element={<Leasing />} />
+          {/* About sub-pages */}
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/production" element={<Production />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/cert" element={<Certificates />} />
+          <Route path="/vacancies" element={<Vacancies />} />
+          <Route path="/leasing" element={<Leasing />} />
 
-        {/* Media */}
-        <Route path="/photogallery" element={<PhotoGallery />} />
-        <Route path="/video" element={<VideoPage />} />
-        <Route path="/promo" element={<PromoPage />} />
-        <Route path="/info" element={<InfoPage />} />
+          {/* Media */}
+          <Route path="/photogallery" element={<PhotoGallery />} />
+          <Route path="/video" element={<VideoPage />} />
+          <Route path="/promo" element={<PromoPage />} />
+          <Route path="/info" element={<InfoPage />} />
+        </Routes>
 
-      </Routes>
-
-      <ContactSec />
-      <Footer />
+        <ContactSec />
+        <Footer />
+      </FavorProvider>
     </CartProvider>
   );
 }

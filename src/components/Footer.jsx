@@ -239,42 +239,42 @@ const Footer = () => {
             <motion.a variants={shortFadeUp} href="#">
               <img
                 width={30}
-                src="images/social/max-messenger-sign-logo.svg"
+                src="/images/social/max-messenger-sign-logo.svg"
                 alt="Max messenger"
               />
             </motion.a>
             <motion.a variants={shortFadeUp} href="#">
               <img
                 width={30}
-                src="images/social/telegram.svg"
+                src="/images/social/telegram.svg"
                 alt="Telegram logo"
               />
             </motion.a>
             <motion.a variants={shortFadeUp} href="#">
               <img
                 width={30}
-                src="images/social/VK_com-logo.svg"
+                src="/images/social/VK_com-logo.svg"
                 alt="Vkontakte logo"
               />
             </motion.a>
             <motion.a variants={shortFadeUp} href="#">
               <img
                 width={30}
-                src="images/social/Rutube_icon.png"
+                src="/images/social/Rutube_icon.png"
                 alt="Rutube logo"
               />
             </motion.a>
             <motion.a variants={shortFadeUp} href="#">
               <img
                 className="w-10"
-                src="images/social/YouTube_full-color_icon.png"
+                src="/images/social/YouTube_full-color_icon.png"
                 alt="Youtube Logo"
               />
             </motion.a>
             <motion.a variants={shortFadeUp} href="#">
               <img
                 width={30}
-                src="images/social/Yandex_Zen_logo_icon.png"
+                src="/images/social/Yandex_Zen_logo_icon.png"
                 alt="Yandex Zen Logo"
               />
             </motion.a>

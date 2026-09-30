@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import PageTitle from "./components/PageTitle";
 import CartProvider from "./components/CartContext";
 import FavorProvider from "./components/FavorContext";
 import Home from "./pages/Home/Home";
@@ -40,6 +41,7 @@ function App() {
     <CartProvider>
       <FavorProvider>
         <Header />
+        <PageTitle />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

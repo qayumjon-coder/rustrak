@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import NavbarLink from "./NavbarLink.jsx";
-import { links, links2, links3 } from "../object.js";
+import { links, links2, links3, recommended_trucks, swiperCardTrck } from "../object.js";
 import { useTranslation } from "react-i18next";
 import { languages } from "../i18n.js";
 import { motion } from "motion/react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import {
   fadeUp,
@@ -36,6 +36,81 @@ const Header = () => {
   const [isListOpen, setIsListOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const searchRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+
+  const handleSearchChange = (e) => {
+    const q = e.target.value;
+    setSearchQuery(q);
+    if (!q.trim()) {
+      setSearchResults([]);
+      setShowResults(false);
+      return;
+    }
+    const lower = q.toLowerCase();
+    // Search through products
+    const productResults = recommended_trucks
+      .filter(item => {
+        const title = item.title?.[language] || item.title?.ru || "";
+        return title.toLowerCase().includes(lower);
+      })
+      .slice(0, 5)
+      .map(item => ({
+        title: item.title?.[language] || item.title?.ru,
+        img: item.img,
+        price: item.price,
+        link: "/catalog",
+      }));
+    // Search through catalog categories
+    const catResults = swiperCardTrck
+      .filter(item => {
+        const title = item.title?.[language] || item.title?.ru || "";
+        return title.toLowerCase().includes(lower);
+      })
+      .slice(0, 3)
+      .map(item => ({
+        title: item.title?.[language] || item.title?.ru,
+        img: item.img,
+        price: null,
+        link: "/catalog",
+      }));
+    // Search through page links
+    const allLinks = [...links, ...links2, ...links3];
+    const pageResults = allLinks
+      .filter(item => {
+        const title = item.content?.[language] || item.content?.ru || "";
+        return title.toLowerCase().includes(lower);
+      })
+      .slice(0, 3)
+      .map(item => ({
+        title: item.content?.[language] || item.content?.ru,
+        img: null,
+        price: null,
+        link: item.linkVal,
+      }));
+    const combined = [...productResults, ...catResults, ...pageResults].slice(0, 8);
+    setSearchResults(combined);
+    setShowResults(true);
+  };
+
+  const handleResultClick = (link) => {
+    navigate(link);
+    setSearchQuery("");
+    setShowResults(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowResults(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   useEffect(() => {
     setIsNavOpen(false);
     setIsOpen(false);
@@ -378,16 +453,42 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center gap-4">
-                <form className="items-center hidden lg:flex">
+                <div className="items-center hidden lg:flex relative" ref={searchRef}>
                   <input
                     type="text"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => searchQuery && setShowResults(true)}
                     placeholder={t("search")}
                     className="py-1.5 w-full pl-4 pr-10 border border-yellow rounded-full outline-0 focus:shadow-[0_0_10px_#fec80b66]"
                   />
-                  <button type="submit" className="cursor-pointer">
-                    <Search size={20} strokeWidth={1.5} className="-ml-8" />
-                  </button>
-                </form>
+                  <Search size={20} strokeWidth={1.5} className="-ml-8 pointer-events-none" />
+                  {showResults && searchResults.length > 0 && (
+                    <div className="absolute top-full left-0 mt-2 w-96 bg-white shadow-xl rounded-lg border border-gray-100 z-200 max-h-80 overflow-y-auto">
+                      {searchResults.map((res, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleResultClick(res.link)}
+                          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 text-left border-b border-gray-50 last:border-0 transition"
+                        >
+                          {res.img && (
+                            <img src={res.img} alt={res.title} className="w-12 h-10 object-cover rounded shrink-0" />
+                          )}
+                          <div>
+                            <p className="text-sm font-medium text-gray-800 line-clamp-2">{res.title}</p>
+                            {res.price && <p className="text-xs text-gray-400 mt-0.5">{res.price}</p>}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {showResults && searchQuery && searchResults.length === 0 && (
+                    <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-xl rounded-lg border border-gray-100 z-200 px-4 py-3 text-sm text-gray-500">
+                      {t("nichego_ne_nayti") || "Ничего не найдено"}
+                    </div>
+                  )}
+                </div>
+
 
                 <div className="flex items-center">
                   <motion.a

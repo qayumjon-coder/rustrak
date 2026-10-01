@@ -3,13 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import PageTitle from "./components/PageTitle";
 import CartProvider from "./components/CartContext";
 import FavorProvider from "./components/FavorContext";
-import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
 import Header from "./components/Header";
-
-import ServicePage from "./pages/Service/ServicePage";
 import ContactSec from "./components/ContactSec";
 import Footer from "./components/Footer";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import ServicePage from "./pages/Service/ServicePage";
 import Cart from "./pages/MiniPages/Cart";
 import Favorites from "./pages/MiniPages/Favorites";
 import Contact from "./pages/Contact";

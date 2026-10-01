@@ -1,0 +1,82 @@
+import { X } from "lucide-react";
+
+const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
+  return (
+    <>
+      {isModalOpen && (
+        <div
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-101 cursor-pointer bg-black/60 w-full h-screen flex items-center justify-center"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white relative cursor-auto py-10 px-10 rounded-lg z-102"
+          >
+            <button
+              className="absolute top-3 right-3 cursor-pointer"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <X size={30} />
+            </button>
+            <div className="mb-10 text-center">
+              <h2 className="text-[32px] font-medium">Заказать звонок</h2>
+              <p>Наш менеджер свяжется с Вами в ближайшее время</p>
+            </div>
+
+            <form action="#">
+              <div className="flex flex-col mb-3">
+                <label className="flex flex-col mb-3" htmlFor="name">
+                  Ваше имя *
+                  <input
+                    type="text"
+                    id="name"
+                    className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50"
+                    placeholder="Иван"
+                    required
+                  />
+                </label>
+
+                <label className="flex flex-col mb-3" htmlFor="name">
+                  Телефон *
+                  <input
+                    type="tel"
+                    className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50"
+                    placeholder="+7"
+                    required
+                  />
+                </label>
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  className="accent-black w-7 h-7"
+                  type="checkbox"
+                  name="personal data analysis checkbox"
+                  id="personal_data_analysis"
+                />
+                <label htmlFor="personal_data_analysis" className="text-sm">
+                  Я согласен{" "}
+                  <a
+                    href="https://rtrf.ru/upload/privacy_policy.pdf"
+                    className="text-blue-700"
+                  >
+                    на обработку персональных <br /> данных
+                  </a>
+                </label>
+              </div>
+
+              <button className="cursor-pointer w-full px-10 py-3.25 bg-yellow mt-10 rounded-sm">
+                Оставить заявку
+              </button>
+            </form>
+            <div className="text-[12px] text-center mt-5">
+              <p>Для регионов: 8 (800) 511-05-25</p>
+              <p>Нижний Новгород: 8 (831) 235-26-16</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ModalZvonok;

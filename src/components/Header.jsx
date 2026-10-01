@@ -1,6 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import NavbarLink from "./NavbarLink.jsx";
-import { links, links2, links3, recommended_trucks, swiperCardTrck } from "../object.js";
+import {
+  links,
+  links2,
+  links3,
+  recommended_trucks,
+  swiperCardTrck,
+} from "../object.js";
 import { useTranslation } from "react-i18next";
 import { languages } from "../i18n.js";
 import { motion } from "motion/react";
@@ -23,6 +29,7 @@ import {
 } from "lucide-react";
 import { CartContext } from "./CartContext.jsx";
 import { FavorContext } from "./FavorContext.jsx";
+import ModalZvonok from "./ModalZvonok.jsx";
 const Header = () => {
   const { cart } = useContext(CartContext);
   const { favor } = useContext(FavorContext);
@@ -51,47 +58,50 @@ const Header = () => {
       return;
     }
     const lower = q.toLowerCase();
-    // Search through products
+
     const productResults = recommended_trucks
-      .filter(item => {
+      .filter((item) => {
         const title = item.title?.[language] || item.title?.ru || "";
         return title.toLowerCase().includes(lower);
       })
       .slice(0, 5)
-      .map(item => ({
+      .map((item) => ({
         title: item.title?.[language] || item.title?.ru,
         img: item.img,
         price: item.price,
         link: "/catalog",
       }));
-    // Search through catalog categories
+
     const catResults = swiperCardTrck
-      .filter(item => {
+      .filter((item) => {
         const title = item.title?.[language] || item.title?.ru || "";
         return title.toLowerCase().includes(lower);
       })
       .slice(0, 3)
-      .map(item => ({
+      .map((item) => ({
         title: item.title?.[language] || item.title?.ru,
         img: item.img,
         price: null,
         link: "/catalog",
       }));
-    // Search through page links
+
     const allLinks = [...links, ...links2, ...links3];
     const pageResults = allLinks
-      .filter(item => {
+      .filter((item) => {
         const title = item.content?.[language] || item.content?.ru || "";
         return title.toLowerCase().includes(lower);
       })
       .slice(0, 3)
-      .map(item => ({
+      .map((item) => ({
         title: item.content?.[language] || item.content?.ru,
         img: null,
         price: null,
         link: item.linkVal,
       }));
-    const combined = [...productResults, ...catResults, ...pageResults].slice(0, 8);
+    const combined = [...productResults, ...catResults, ...pageResults].slice(
+      0,
+      8,
+    );
     setSearchResults(combined);
     setShowResults(true);
   };
@@ -159,61 +169,7 @@ const Header = () => {
 
   return (
     <>
-      {isModalOpen && (
-        <div onClick={() => setIsModalOpen(false)} className="fixed z-101 cursor-pointer bg-black/60 w-full h-screen flex items-center justify-center">
-          <div onClick={(e) => e.stopPropagation()} className="bg-white relative cursor-auto py-10 px-10 rounded-lg z-102">
-            <button
-              className="absolute top-3 right-3 cursor-pointer"
-              onClick={() => setIsModalOpen(false)}
-            >
-              <X size={30}/>
-            </button>
-            <div className="mb-10 text-center">
-              <h2 className="text-[32px] font-medium">Заказать звонок</h2>
-              <p>Наш менеджер свяжется с Вами в ближайшее время</p>
-            </div>
-
-            <form action="#">
-              <div className="flex flex-col mb-3">
-                <label className="flex flex-col mb-3" htmlFor="name">
-                  Ваше имя *
-                  <input type="text" className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50" placeholder="Иван"/>
-                </label>
-
-                <label className="flex flex-col mb-3" htmlFor="name">
-                  Телефон *
-                  <input type="tel" className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50" placeholder="+7"/>
-                </label>
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  className="accent-black w-7 h-7"
-                  type="checkbox"
-                  name="personal data analysis checkbox"
-                  id="personal_data_analysis"
-                />
-                <label htmlFor="personal_data_analysis" className="text-sm">
-                  Я согласен{" "}
-                  <a
-                    href="https://rtrf.ru/upload/privacy_policy.pdf"
-                    className="text-blue-700"
-                  >
-                    на обработку персональных <br /> данных
-                  </a>
-                </label>
-              </div>
-
-              <button className="cursor-pointer w-full px-10 py-3.25 bg-yellow mt-10 rounded-sm">
-                Оставить заявку
-              </button>
-            </form>
-            <div className="text-[12px] text-center mt-5">
-              <p>Для регионов: 8 (800) 511-05-25</p>
-              <p>Нижний Новгород: 8 (831) 235-26-16</p>
-            </div>
-          </div>
-        </div>
-      )}
+      <ModalZvonok isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <header className="fixed w-full top-0 left-0 z-100 bg-white">
         <div
           className={
@@ -309,19 +265,18 @@ const Header = () => {
                       {t("city")} <a href="#">8 (831) 225-00-55</a>
                     </motion.p>
                   </div>
-                  <motion.a
+                  <motion.button
                     variants={slideTop}
                     initial={slideTop.hidden}
                     whileInView={slideTop.visible}
                     transition={{
                       delay: 0.2,
                     }}
-                    href="#"
+                    onClick={() => setIsModalOpen(true)}
+                    className="cursor-pointer"
                   >
-                    <button onClick={() => setIsModalOpen(true)} className="cursor-pointer">
-                      <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
-                    </button>
-                  </motion.a>
+                    <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
+                  </motion.button>
                 </div>
               </div>
             </div>
@@ -453,7 +408,10 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center gap-4">
-                <div className="items-center hidden lg:flex relative" ref={searchRef}>
+                <div
+                  className="items-center hidden lg:flex relative"
+                  ref={searchRef}
+                >
                   <input
                     type="text"
                     value={searchQuery}
@@ -462,7 +420,11 @@ const Header = () => {
                     placeholder={t("search")}
                     className="py-1.5 w-full pl-4 pr-10 border border-yellow rounded-full outline-0 focus:shadow-[0_0_10px_#fec80b66]"
                   />
-                  <Search size={20} strokeWidth={1.5} className="-ml-8 pointer-events-none" />
+                  <Search
+                    size={20}
+                    strokeWidth={1.5}
+                    className="-ml-8 pointer-events-none"
+                  />
                   {showResults && searchResults.length > 0 && (
                     <div className="absolute top-full left-0 mt-2 w-96 bg-white shadow-xl rounded-lg border border-gray-100 z-200 max-h-80 overflow-y-auto">
                       {searchResults.map((res, i) => (
@@ -472,11 +434,21 @@ const Header = () => {
                           className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 text-left border-b border-gray-50 last:border-0 transition"
                         >
                           {res.img && (
-                            <img src={res.img} alt={res.title} className="w-12 h-10 object-cover rounded shrink-0" />
+                            <img
+                              src={res.img}
+                              alt={res.title}
+                              className="w-12 h-10 object-cover rounded shrink-0"
+                            />
                           )}
                           <div>
-                            <p className="text-sm font-medium text-gray-800 line-clamp-2">{res.title}</p>
-                            {res.price && <p className="text-xs text-gray-400 mt-0.5">{res.price}</p>}
+                            <p className="text-sm font-medium text-gray-800 line-clamp-2">
+                              {res.title}
+                            </p>
+                            {res.price && (
+                              <p className="text-xs text-gray-400 mt-0.5">
+                                {res.price}
+                              </p>
+                            )}
                           </div>
                         </button>
                       ))}
@@ -488,7 +460,6 @@ const Header = () => {
                     </div>
                   )}
                 </div>
-
 
                 <div className="flex items-center">
                   <motion.a

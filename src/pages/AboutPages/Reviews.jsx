@@ -16,8 +16,12 @@ const Reviews = () => {
 
   const openLightbox = (i) => setLightbox({ index: i });
   const closeLightbox = () => setLightbox(null);
-  const prev = () => setLightbox(lb => ({ index: (lb.index - 1 + reviewImages.length) % reviewImages.length }));
-  const next = () => setLightbox(lb => ({ index: (lb.index + 1) % reviewImages.length }));
+  const prev = () =>
+    setLightbox((lb) => ({
+      index: (lb.index - 1 + reviewImages.length) % reviewImages.length,
+    }));
+  const next = () =>
+    setLightbox((lb) => ({ index: (lb.index + 1) % reviewImages.length }));
 
   return (
     <section className="pt-35 mb-20">
@@ -42,10 +46,20 @@ const Reviews = () => {
                   e.target.parentElement.style.minHeight = "220px";
                 }}
               />
-              {/* Zoom icon on hover */}
+
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
-                <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                <svg
+                  className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                  />
                 </svg>
               </div>
             </div>
@@ -53,22 +67,28 @@ const Reviews = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
+
       {lightbox !== null && (
         <div
-          className="fixed inset-0 z-[200] bg-black/92 flex items-center justify-center"
+          className="fixed inset-0 z-200 bg-black/92 flex items-center justify-center"
           onClick={closeLightbox}
         >
-          {/* Prev */}
+          
           <button
             className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl w-12 h-12 flex items-center justify-center hover:text-yellow transition rounded-full hover:bg-white/10"
-            onClick={e => { e.stopPropagation(); prev(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
           >
             ‹
           </button>
 
-          {/* Image */}
-          <div className="flex flex-col items-center max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
+
+          <div
+            className="flex flex-col items-center max-w-[90vw] max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={reviewImages[lightbox.index]}
               alt={`${t("otzyvy")} ${lightbox.index + 1}`}
@@ -79,15 +99,18 @@ const Reviews = () => {
             </p>
           </div>
 
-          {/* Next */}
+
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl w-12 h-12 flex items-center justify-center hover:text-yellow transition rounded-full hover:bg-white/10"
-            onClick={e => { e.stopPropagation(); next(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
           >
             ›
           </button>
 
-          {/* Close */}
+
           <button
             className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition"
             onClick={closeLightbox}

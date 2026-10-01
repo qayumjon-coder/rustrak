@@ -22,5 +22,5 @@
 
 ## Saytni yakunlash
 ### ~~Cart~~
-### Modal
-### Favorites
+### ~~Modal~~
+### ~~Favorites~~

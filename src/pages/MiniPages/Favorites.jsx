@@ -50,8 +50,6 @@ const Favorites = () => {
             </div>
 
             <div>
-              
-
               <div>
                 <h2 className="text-[32px] mb-8 font-medium">{t("korzina")}</h2>
 
@@ -91,13 +89,13 @@ const Favorites = () => {
         </div>
 
         <h1 className="text-2xl font-bold">
-                {currentCat.title?.[language] ||
-                  currentCat.title?.ru ||
-                  currentCat.title}
-              </h1>
-              <span className="text-gray-400 text-sm">
-                {currentCat.quantity} {t?.goods || t("tovarov")}
-              </span>
+          {currentCat.title?.[language] ||
+            currentCat.title?.ru ||
+            currentCat.title}
+        </h1>
+        <span className="text-gray-400 text-sm">
+          {currentCat.quantity} {t?.goods || t("tovarov")}
+        </span>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {favor.map((item) => (

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { UserCog, FileCog, Clock, ShieldCheck, Wrench } from "lucide-react";
 import { motion } from "motion/react";
-import { fadeUp, container, slideRight, shortFadeUp } from "../utils/animation";
+import { fadeUp, container, slideRight } from "../utils/animation";
 
 import { useTranslation } from "react-i18next";
 export default function ArcNavigation() {

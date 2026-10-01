@@ -63,7 +63,6 @@ const Cart = () => {
   return (
     <section className="pt-35 pb-20 bg-light-gray/10">
       <div className="container">
-
         <div>
           <Breadcrumb />
         </div>
@@ -73,22 +72,18 @@ const Cart = () => {
         </div>
         <div className="flex gap-4">
           {cart.map((item) => (
-            <div
-              key={item.id}
-              className="rounded flex w-full bg-white"
-            >
+            <div key={item.id} className="rounded flex w-full bg-white">
               <div className="relative bg-gray-50 h-45 flex items-center justify-center overflow-hidden rounded-t">
                 <button
                   onClick={() => {
-                    addToFavor(item)
-                    toggleLike(item.id)
+                    addToFavor(item);
+                    toggleLike(item.id);
                   }}
                   className="absolute top-2 right-2 z-10 cursor-pointer"
                 >
                   <FiHeart
                     size={30}
                     strokeWidth={1}
-
                     className={
                       liked[item.id]
                         ? "fill-yellow"
@@ -145,8 +140,6 @@ const Cart = () => {
                   >
                     Удалить <FiTrash2 size={20} className="" />
                   </button>
-
-
                 </div>
               </div>
             </div>

@@ -9,7 +9,7 @@ import { fadeUp, container } from "../../utils/animation";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>

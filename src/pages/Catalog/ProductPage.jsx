@@ -3,7 +3,7 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { useParams } from "react-router-dom";
 import { recommended_trucks } from "../../object";
 import { Link } from "react-router-dom";
-import { FiHeart, FiMail } from "react-icons/fi";
+import { FiHeart } from "react-icons/fi";
 const ProductPage = () => {
   const { t, i18n } = useTranslation();
 

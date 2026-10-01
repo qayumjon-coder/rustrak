@@ -61,6 +61,7 @@ const ContactSec = () => {
                   className="py-2.75 px-3 rounded-sm border outline-0"
                   type="text"
                   placeholder="Ivan"
+                  required
                 />
               </div>
               <div className="flex flex-col w-full">
@@ -78,6 +79,7 @@ const ContactSec = () => {
                   onMouseLeave={() => setIsHovered(false)}
                   onMouseEnter={() => setIsHovered(true)}
                   placeholder={isHovered ? "+7 (___) ___-__-__" : "+7"}
+                  required
                 />
               </div>
 

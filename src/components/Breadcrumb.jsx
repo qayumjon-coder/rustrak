@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-// components/Breadcrumb.jsx
 import { Link, useLocation } from "react-router-dom";
 
 export default function Breadcrumb() {

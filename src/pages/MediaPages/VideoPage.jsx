@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/Breadcrumb";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -128,7 +128,10 @@ const VideoPage = () => {
           {videos.map((v) => (
             <div key={v.id} className="group">
               {activeVideo === v.id ? (
-                <div className="relative w-full rounded overflow-hidden mb-3" style={{ paddingBottom: "56.25%" }}>
+                <div
+                  className="relative w-full rounded overflow-hidden mb-3"
+                  style={{ paddingBottom: "56.25%" }}
+                >
                   <iframe
                     className="absolute inset-0 w-full h-full"
                     src={`https://www.youtube.com/embed/${v.id}?autoplay=1`}
@@ -150,7 +153,10 @@ const VideoPage = () => {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
-                       <svg className="w-7 h-7 text-white fill-white ml-1" viewBox="0 0 24 24">
+                      <svg
+                        className="w-7 h-7 text-white fill-white ml-1"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>

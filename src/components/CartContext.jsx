@@ -5,7 +5,6 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cartData");
-    // Agar localStorage'da ma'lumot bo'lsa, uni JSON formatidan o'girib olamiz, yo'qsa bo'sh massiv []
     return savedCart ? JSON.parse(savedCart) : [];
   });
 

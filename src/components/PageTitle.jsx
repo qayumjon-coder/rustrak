@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const pageTitles = {
@@ -32,7 +32,7 @@ const PageTitle = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    // Check exact match first, then check prefix for catalog routes
+
     let titleObj = pageTitles[path];
     if (!titleObj && path.startsWith("/catalog")) {
       titleObj = { ru: "Каталог", uz: "Katalog", en: "Catalog" };

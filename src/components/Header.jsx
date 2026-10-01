@@ -437,7 +437,7 @@ const Header = () => {
                         <button
                           key={i}
                           onClick={() => handleResultClick(res.link)}
-                          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 text-left border-b border-gray-50 last:border-0 transition"
+                          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 cursor-pointer text-left border-b border-gray-50 last:border-0 transition"
                         >
                           {res.img && (
                             <img

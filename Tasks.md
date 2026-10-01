@@ -20,7 +20,7 @@
 
 ### ~~All pages...~~ ✅
 
-## Saytni yakunlash
+## Complete the site
 ### ~~Cart~~
 ### ~~Modal~~
 ### ~~Favorites~~

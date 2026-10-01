@@ -48,6 +48,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [dropInput, setDropInput] = useState(false);
 
   const handleSearchChange = (e) => {
     const q = e.target.value;
@@ -110,6 +111,10 @@ const Header = () => {
     navigate(link);
     setSearchQuery("");
     setShowResults(false);
+  };
+
+  const toggleDropSearch = () => {
+    setDropInput(!dropInput);
   };
 
   useEffect(() => {
@@ -285,13 +290,13 @@ const Header = () => {
 
         <div className="flex justify-between">
           <div className="container">
-            <div className="flex py-3 items-center justify-between">
+            <div className="flex py-3 items-center justify-between relative">
               <div className="flex items-center">
                 <motion.button
                   initial={fadeUp.hidden}
                   whileInView={fadeUp.visible}
                   onClick={toggleNavList}
-                  className="cursor-pointer flex items-center px-4 text-lg py-1.5 gap-5 bg-yellow rounded-sm"
+                  className="cursor-pointer flex items-center px-4 text-lg py-2 gap-5 bg-yellow rounded-sm"
                 >
                   {isNavOpen ? <X /> : <Menu />}
                   <p
@@ -407,6 +412,7 @@ const Header = () => {
                   </div>
                 </nav>
               </div>
+
               <div className="flex items-center gap-4">
                 <div
                   className="items-center hidden lg:flex relative"
@@ -462,14 +468,73 @@ const Header = () => {
                 </div>
 
                 <div className="flex items-center">
-                  <motion.a
+                  <div
+                    className={`flex items-center absolute left-0 bg-white w-full rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
+                    ref={searchRef}
+                  >
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      onFocus={() => searchQuery && setShowResults(true)}
+                      placeholder={t("search")}
+                      className="py-1.5 w-full pl-4 pr-10 border border-yellow rounded-full outline-0 focus:shadow-[0_0_10px_#fec80b66]"
+                    />
+                    <Search
+                      size={20}
+                      strokeWidth={1.5}
+                      className="-ml-8 pointer-events-none"
+                    />
+                    {showResults && searchResults.length > 0 && (
+                      <div className="absolute top-full w-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 z-200 max-h-110 overflow-y-auto">
+                        {searchResults.map((res, i) => (
+                          <button
+                            key={i}
+                            onClick={() => handleResultClick(res.link)}
+                            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 cursor-pointer text-left border-b border-gray-50 last:border-0 transition"
+                          >
+                            {res.img && (
+                              <img
+                                src={res.img}
+                                alt={res.title}
+                                className="w-12 h-10 object-cover rounded shrink-0"
+                              />
+                            )}
+                            <div>
+                              <p className="text-sm font-medium text-gray-800 line-clamp-2">
+                                {res.title}
+                              </p>
+                              {res.price && (
+                                <p className="text-xs text-gray-400 mt-0.5">
+                                  {res.price}
+                                </p>
+                              )}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {showResults &&
+                      searchQuery &&
+                      searchResults.length === 0 && (
+                        <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-xl rounded-lg border border-gray-100 z-200 px-4 py-3 text-sm text-gray-500">
+                          {t("nichego_ne_nayti") || "Ничего не найдено"}
+                        </div>
+                      )}
+                  </div>
+                  <motion.button
                     variants={shortFadeUp}
                     initial={shortFadeUp.hidden}
                     whileInView={shortFadeUp.visible}
-                    className="lg:hidden"
+                    onClick={() => {
+                      console.log("clicked");
+                      toggleDropSearch();
+                    }}
+                    className={`lg:hidden cursor-pointer p-1 rounded-full ${dropInput ? "text-yellow" : "text-black"}`}
                   >
-                    <Search size={30} strokeWidth={1.2} className="ml-5" />
-                  </motion.a>
+                    <Search size={dropInput ? 35 : 30} strokeWidth={dropInput ? 2.5 : 1.2} className=" w-full transition-all ease-out duration-200" />
+                  </motion.button>
+
                   <motion.a
                     variants={shortFadeUp}
                     initial={shortFadeUp.hidden}
@@ -518,7 +583,7 @@ const Header = () => {
                     onChange={(event) =>
                       i18n.changeLanguage(event.target.value)
                     }
-                    className="rounded-md border border-yellow bg-white px-2 py-1 outline-none"
+                    className="rounded-md border border-yellow cursor-pointer bg-white px-2 py-1 outline-none"
                   >
                     {languages.map((item) => (
                       <option key={item.code} value={item.code}>

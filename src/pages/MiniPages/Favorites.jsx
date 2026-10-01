@@ -62,10 +62,10 @@ const Favorites = () => {
                 </p>
               </div>
 
-              <div className="flex gap-5 mt-14">
+              <div className="flex gap-5 mt-14 flex-col sm:flex-row">
                 <a
                   href="/"
-                  className="px-15 py-2.5 border-2 border-yellow rounded-sm hover:bg-yellow transition ease duration-300"
+                  className="px-15 py-2.5 border-2 border-yellow rounded-sm hover:bg-yellow transition ease duration-300 text-center"
                 >
                   {t("na_glavnuyu")}
                 </a>

@@ -526,7 +526,7 @@ const Header = () => {
                     variants={shortFadeUp}
                     initial={shortFadeUp.hidden}
                     whileInView={shortFadeUp.visible}
-                    onClick={() => toggleDropSearch}
+                    onClick={toggleDropSearch}
                     className={`lg:hidden cursor-pointer p-1 rounded-full ${dropInput ? "text-yellow" : "text-black"}`}
                   >
                     <Search size={dropInput ? 35 : 30} strokeWidth={dropInput ? 2.5 : 1.2} className=" w-full transition-all ease-out duration-200" />

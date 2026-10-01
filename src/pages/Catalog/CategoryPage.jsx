@@ -251,7 +251,9 @@ const CategoryPage = () => {
                   >
                     <div className="relative bg-gray-50 h-52 flex items-center justify-center overflow-hidden rounded-t">
                       <button
-                        onClick={() => toggleLike(item.id)}
+                        onClick={() => {
+                          addToFavor(item)
+                          toggleLike(item.id)}}
                         className="absolute top-2 right-2 z-10 cursor-pointer"
                       >
                         <FiHeart

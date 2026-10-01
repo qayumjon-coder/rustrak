@@ -3,8 +3,13 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { useParams } from "react-router-dom";
 import { recommended_trucks } from "../../object";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../components/CartContext";
+import { FavorContext } from "../../components/FavorContext";
 import { FiHeart } from "react-icons/fi";
+import { useContext } from "react";
 const ProductPage = () => {
+  const {addToCart} = useContext(CartContext);
+  const {addToFavor} = useContext(FavorContext)
   const { t, i18n } = useTranslation();
 
   const allSpecs = [
@@ -96,8 +101,12 @@ const ProductPage = () => {
   const { category, productId } = useParams();
   const product =
     recommended_trucks.find((t) => String(t.id) === String(productId)) ||
-    recommended_trucks[0];
+    recommended_trucks[0] ||
+    null;
   const catTitle = categoryNames[category] || category;
+
+  if (!product) return null;
+
   return (
     <section className="pt-35 mb-0">
       <div className="container">
@@ -133,10 +142,17 @@ const ProductPage = () => {
             </p>
 
             <div className="flex gap-3 mb-6">
-              <button className="flex-1 py-2.5 bg-yellow hover:bg-yellow-hov font-semibold text-sm rounded transition duration-200 cursor-pointer">
+              <button
+                type="button"
+                className="flex-1 py-2.5 bg-yellow hover:bg-yellow-hov font-semibold text-sm rounded transition duration-200 cursor-pointer"
+                onClick={() => addToCart(product)}
+              >
                 {t?.addToCart || t("dobavit_v_korzinu")}
               </button>
-              <button className="flex-1 py-2.5 border border-yellow text-sm font-semibold rounded hover:bg-yellow hover:text-black transition duration-200 cursor-pointer">
+              <button
+                type="button"
+                className="flex-1 py-2.5 border border-yellow text-sm font-semibold rounded hover:bg-yellow hover:text-black transition duration-200 cursor-pointer"
+              >
                 {t?.getKP || t("poluchit_kp")}
               </button>
             </div>
@@ -234,7 +250,7 @@ const ProductPage = () => {
                     >
                       {t?.more || t("podrobnee")}
                     </Link>
-                    <button className="text-gray-400 hover:text-red-400 transition">
+                    <button onClick={() => addToFavor(item)} className="text-gray-400 hover:text-red-400 transition">
                       <FiHeart size={14} />
                     </button>
                   </div>

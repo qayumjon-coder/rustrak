@@ -74,7 +74,7 @@ const SwiperCards = () => {
             <SwiperSlide className="swiperSlide" key={item.id}>
               <motion.a
                 variants={fadeUp}
-                href="#"
+                href="/catalog"
                 className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
               >
                 <div className="py-5 px-4.5">

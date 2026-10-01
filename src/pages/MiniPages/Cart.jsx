@@ -70,9 +70,9 @@ const Cart = () => {
         <div>
           <h2 className="text-[32px] mb-8 font-medium">{t("korzina")}</h2>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-col">
           {cart.map((item) => (
-            <div key={item.id} className="rounded flex w-full bg-white">
+            <div key={item.id} className="rounded flex flex-col lg:flex-row w-full bg-white">
               <div className="relative bg-gray-50 h-45 flex items-center justify-center overflow-hidden rounded-t">
                 <button
                   onClick={() => {
@@ -98,9 +98,9 @@ const Cart = () => {
                   className="w-full h-full  object-cover"
                 />
               </div>
-              <div className="p-3 pl-5 flex justify-between flex-1">
+              <div className="p-3 pl-5 flex flex-col lg:flex-row justify-between flex-1">
                 <div>
-                  <Link className="text-lg mb-4 leading-snug hover:text-yellow transition duration-200 line-clamp-2">
+                  <Link className="text-lg mb-4 leading-snug hover:text-yellow transition duration-200 line-clamp-2 ">
                     {item.title?.[language] || item.title?.ru || item.title}
                   </Link>
                   <p className="text-base font-bold text-gray-800 mb-3">
@@ -112,23 +112,23 @@ const Cart = () => {
                   <div className="text-light-gray flex flex-col gap-2 text-sm">
                     <div className="flex gap-2">
                       Габариты ТС
-                      <div className="w-100 h-5 border-dashed border-light-gray border-b"></div>
+                      <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       10650 x 2550 x 3705 мм
                     </div>
                     <div className="flex gap-2">
                       Грузоподъёмность
-                      <div className="w-100 h-5 border-dashed border-light-gray border-b"></div>
+                      <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       17360 кг
                     </div>
                     <div className="flex gap-2">
                       Внутренний объём
-                      <div className="w-100 h-5 border-dashed border-light-gray border-b"></div>
+                      <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       6645 куб. см.
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-2 flex-wrap">
-                  <button className="flex items-center gap-2 px-15 py-4 text-sm bg-yellow hover:bg-yellow-hov font-medium rounded transition duration-200">
+                <div className="flex flex-col justify-center items-center gap-2 mt-10 lg:mt-0 flex-wrap">
+                  <button className="flex items-center gap-2 cursor-pointer px-15 py-4 text-sm bg-yellow hover:bg-yellow-hov font-medium rounded transition duration-200">
                     {t?.getKPShort || t("poluchit_kp")}
 
                     <FiDownload size={20} />

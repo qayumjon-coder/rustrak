@@ -3,11 +3,13 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { useContext, useState } from "react";
 import { FiDownload, FiHeart, FiShoppingCart } from "react-icons/fi";
 import { FavorContext } from "../../components/FavorContext";
+import { CartContext } from "../../components/CartContext";
 import { swiperCardTrck } from "../../object";
 import { Link, useParams } from "react-router-dom";
 
 const Favorites = () => {
   const { favor, removeFromFavor } = useContext(FavorContext);
+  const { addToCart } = useContext(CartContext);
 
   const slugs = [
     "avtotoplivozapravshchiki",

@@ -54,9 +54,23 @@ body {
 .swiper-button-prev {
   display: none !important;
 }
+
+.loader-item {
+  animation: rotate .7s linear infinite;
+}
+
 @media (min-width: 768px) {
   .swiper-button-next,
   .swiper-button-prev {
     display: flex !important;
+  }
+}
+
+@keyframes rotate {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
   }
 }

@@ -246,42 +246,42 @@ const Footer = () => {
               }}
               className="flex gap-5 md:order-2"
             >
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Max messenger">
                 <img
                   width={30}
                   src="/images/social/max-messenger-sign-logo.svg"
                   alt="Max messenger"
                 />
               </motion.a>
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Telegram">
                 <img
                   width={30}
                   src="/images/social/telegram.svg"
                   alt="Telegram logo"
                 />
               </motion.a>
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Vkontakte">
                 <img
                   width={30}
                   src="/images/social/VK_com-logo.svg"
                   alt="Vkontakte logo"
                 />
               </motion.a>
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Rutube">
                 <img
                   width={30}
                   src="/images/social/Rutube_icon.png"
                   alt="Rutube logo"
                 />
               </motion.a>
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Youtube">
                 <img
                   className="w-10"
                   src="/images/social/YouTube_full-color_icon.png"
                   alt="Youtube Logo"
                 />
               </motion.a>
-              <motion.a variants={shortFadeUp} href="#">
+              <motion.a variants={shortFadeUp} href="#" aria-label="Yandex Zen">
                 <img
                   width={30}
                   src="/images/social/Yandex_Zen_logo_icon.png"

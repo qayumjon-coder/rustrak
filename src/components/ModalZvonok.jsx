@@ -1,6 +1,9 @@
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
+    const { t } = useTranslation();
+
   return (
     <>
       {isModalOpen && (
@@ -54,12 +57,12 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
                   id="personal_data_analysis"
                 />
                 <label htmlFor="personal_data_analysis" className="text-sm">
-                  Я согласен{" "}
+                  {t("ya_soglasen")}
                   <a
                     href="https://rtrf.ru/upload/privacy_policy.pdf"
                     className="text-blue-700"
                   >
-                    на обработку персональных <br /> данных
+                    {t("na_rabotku_personalnix")}
                   </a>
                 </label>
               </div>

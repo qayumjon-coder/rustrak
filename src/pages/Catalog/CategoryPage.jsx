@@ -252,8 +252,9 @@ const CategoryPage = () => {
                     <div className="relative bg-gray-50 h-52 flex items-center justify-center overflow-hidden rounded-t">
                       <button
                         onClick={() => {
-                          addToFavor(item)
-                          toggleLike(item.id)}}
+                          addToFavor(item);
+                          toggleLike(item.id);
+                        }}
                         className="absolute top-2 right-2 z-10 cursor-pointer"
                       >
                         <FiHeart
@@ -319,9 +320,14 @@ const CategoryPage = () => {
                             }
                           />
                         </button>
-                        <button className="text-xs text-gray-400 hover:text-yellow transition cursor-pointer ml-1">
+                        <a
+                          href="/wtf-what-The-Fool.txt"
+                          download="wtf-what-The-Fool.txt"
+                          aria-label="Download the file"
+                          className="text-xs text-gray-400 hover:text-yellow transition cursor-pointer ml-1"
+                        >
                           {t?.getKPShort || t("poluchit_kp")}
-                        </button>
+                        </a>
                         <button className="p-1 text-gray-400 hover:text-yellow transition cursor-pointer ml-auto">
                           <FiDownload size={14} />
                         </button>
@@ -416,10 +422,15 @@ const CategoryPage = () => {
                       >
                         {t?.more || t("podrobnee")}
                       </Link>
-                      <button className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-yellow transition cursor-pointer">
+                      <a
+                        href="/wtf-what-The-Fool.txt"
+                        download="wtf-what-The-Fool.txt"
+                        aria-label="Download the file"
+                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-yellow transition cursor-pointer"
+                      >
                         {t?.getKPShort || t("poluchit_kp")}{" "}
                         <FiDownload size={13} />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 ))}

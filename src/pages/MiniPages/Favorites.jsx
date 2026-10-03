@@ -169,9 +169,14 @@ const Favorites = () => {
                       }
                     />
                   </button>
-                  <button className="text-xs text-gray-400 hover:text-yellow transition cursor-pointer ml-1">
+                  <a
+                    href="/wtf-what-The-Fool.txt"
+                    download="wtf-what-The-Fool.txt"
+                    aria-label="Download the file"
+                    className="text-xs text-gray-400 hover:text-yellow transition cursor-pointer ml-1"
+                  >
                     {t?.getKPShort || t("poluchit_kp")}
-                  </button>
+                  </a>
                   <button className="p-1 text-gray-400 hover:text-yellow transition cursor-pointer ml-auto">
                     <FiDownload size={14} />
                   </button>

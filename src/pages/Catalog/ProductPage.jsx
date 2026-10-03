@@ -8,8 +8,8 @@ import { FavorContext } from "../../components/FavorContext";
 import { FiHeart } from "react-icons/fi";
 import { useContext } from "react";
 const ProductPage = () => {
-  const {addToCart} = useContext(CartContext);
-  const {addToFavor} = useContext(FavorContext)
+  const { addToCart } = useContext(CartContext);
+  const { addToFavor } = useContext(FavorContext);
   const { t, i18n } = useTranslation();
 
   const allSpecs = [
@@ -149,12 +149,14 @@ const ProductPage = () => {
               >
                 {t?.addToCart || t("dobavit_v_korzinu")}
               </button>
-              <button
-                type="button"
-                className="flex-1 py-2.5 border border-yellow text-sm font-semibold rounded hover:bg-yellow hover:text-black transition duration-200 cursor-pointer"
+              <a
+                href="/wtf-what-The-Fool.txt"
+                download="wtf-what-The-Fool.txt"
+                aria-label="Download the file"
+                className="flex-1 flex justify-center py-2.5 border border-yellow text-sm font-semibold rounded hover:bg-yellow hover:text-black transition duration-200 cursor-pointer"
               >
                 {t?.getKP || t("poluchit_kp")}
-              </button>
+              </a>
             </div>
 
             <table className="w-full text-sm">
@@ -250,7 +252,10 @@ const ProductPage = () => {
                     >
                       {t?.more || t("podrobnee")}
                     </Link>
-                    <button onClick={() => addToFavor(item)} className="text-gray-400 hover:text-red-400 transition">
+                    <button
+                      onClick={() => addToFavor(item)}
+                      className="text-gray-400 hover:text-red-400 transition"
+                    >
                       <FiHeart size={14} />
                     </button>
                   </div>

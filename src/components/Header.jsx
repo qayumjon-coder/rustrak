@@ -473,7 +473,7 @@ const Header = () => {
 
                 <div className="flex items-center">
                   <div
-                    className={`flex items-center absolute left-0 bg-white w-full rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
+                    className={`flex items-center absolute left-0 bg-white w-full lg:hidden rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
                     ref={searchRef}
                   >
                     <input

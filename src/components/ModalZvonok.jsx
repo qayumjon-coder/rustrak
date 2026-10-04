@@ -1,6 +1,9 @@
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {isModalOpen && (
@@ -19,27 +22,28 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
               <X size={30} />
             </button>
             <div className="mb-10 text-center">
-              <h2 className="text-[32px] font-medium">Заказать звонок</h2>
-              <p>Наш менеджер свяжется с Вами в ближайшее время</p>
+              <h2 className="text-[32px] font-medium">{t("zakazat_zvonok_title")}</h2>
+              <p>{t("modal_manager_text")}</p>
             </div>
 
             <form action="#">
               <div className="flex flex-col mb-3">
                 <label className="flex flex-col mb-3" htmlFor="name">
-                  Ваше имя *
+                  {t("vashe_imya_star")}
                   <input
                     type="text"
                     id="name"
                     className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50"
-                    placeholder="Иван"
+                    placeholder="Ivan"
                     required
                   />
                 </label>
 
-                <label className="flex flex-col mb-3" htmlFor="name">
-                  Телефон *
+                <label className="flex flex-col mb-3" htmlFor="phone">
+                  {t("telefon_star")}
                   <input
                     type="tel"
+                    id="phone"
                     className="py-2.5 pl-3 pr-5 border-2 rounded-sm border-light-gray/50"
                     placeholder="+7"
                     required
@@ -54,23 +58,23 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
                   id="personal_data_analysis"
                 />
                 <label htmlFor="personal_data_analysis" className="text-sm">
-                  Я согласен{" "}
+                  {t("ya_soglasen")}{" "}
                   <a
                     href="https://rtrf.ru/upload/privacy_policy.pdf"
                     className="text-blue-700"
                   >
-                    на обработку персональных <br /> данных
+                    {t("na_obrabotku_pers_dannyh")}
                   </a>
                 </label>
               </div>
 
               <button className="cursor-pointer w-full px-10 py-3.25 bg-yellow mt-10 rounded-sm">
-                Оставить заявку
+                {t("ostavit_zayavku")}
               </button>
             </form>
             <div className="text-[12px] text-center mt-5">
-              <p>Для регионов: 8 (800) 511-05-25</p>
-              <p>Нижний Новгород: 8 (831) 235-26-16</p>
+              <p>{t("dlya_regionov_phone")}</p>
+              <p>{t("nizhniy_novgorod_phone")}</p>
             </div>
           </div>
         </div>

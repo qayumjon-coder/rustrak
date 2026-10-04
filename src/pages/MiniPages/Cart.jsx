@@ -111,17 +111,17 @@ const Cart = () => {
 
                   <div className="text-light-gray flex flex-col gap-2 text-sm">
                     <div className="flex gap-2">
-                      Габариты ТС
+                      {t("gabarity_ts_label")}
                       <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       10650 x 2550 x 3705 мм
                     </div>
                     <div className="flex gap-2">
-                      Грузоподъёмность
+                      {t("gruzopodyomnost_label")}
                       <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       17360 кг
                     </div>
                     <div className="flex gap-2">
-                      Внутренний объём
+                      {t("vnutrenniy_obem")}
                       <div className="w-50 sm:w-90 lg:w-100 h-5 border-dashed border-light-gray border-b"></div>
                       6645 куб. см.
                     </div>
@@ -138,7 +138,7 @@ const Cart = () => {
                     onClick={() => removeFromCart(item.id)}
                     title={t("korzina")}
                   >
-                    Удалить <FiTrash2 size={20} className="" />
+                    {t("udalit")} <FiTrash2 size={20} className="" />
                   </button>
                 </div>
               </div>

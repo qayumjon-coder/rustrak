@@ -2,7 +2,11 @@ import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
+<<<<<<< HEAD
   const { t } = useTranslation();
+=======
+    const { t } = useTranslation();
+>>>>>>> 0c2eab550a5641e4825d41c7236059fb5acf8ba1
 
   return (
     <>

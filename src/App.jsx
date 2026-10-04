@@ -1,84 +1,87 @@
-import { useState } from "react";
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import PageTitle from "./components/PageTitle";
-import CartProvider from "./components/CartContext";
-import FavorProvider from "./components/FavorContext";
+const PageTitle = lazy(() => import("./components/PageTitle"));
+const CartProvider = lazy(() => import("./components/CartContext"));
+const FavorProvider = lazy(() => import("./components/FavorContext"));
 import Header from "./components/Header";
 import ContactSec from "./components/ContactSec";
 import Footer from "./components/Footer";
-import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
-import ServicePage from "./pages/Service/ServicePage";
-import Cart from "./pages/MiniPages/Cart";
-import Favorites from "./pages/MiniPages/Favorites";
-import Contact from "./pages/Contact";
-import Repair from "./pages/Repair";
-import News from "./pages/News";
+import Loader from "./components/Loader";
+const Home = lazy(() => import("./pages/Home/Home"));
+const About = lazy(() => import("./pages/About/About"));
+const ServicePage = lazy(() => import("./pages/Service/ServicePage"));
+const Cart = lazy(() => import("./pages/MiniPages/Cart"));
+const Favorites = lazy(() => import("./pages/MiniPages/Favorites"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Repair = lazy(() => import("./pages/Repair"));
+const News = lazy(() => import("./pages/News"));
 
 // Catalog pages
-import CatalogPage from "./pages/Catalog/CatalogPage";
-import CategoryPage from "./pages/Catalog/CategoryPage";
-import ProductPage from "./pages/Catalog/ProductPage";
+const CatalogPage = lazy(() => import("./pages/Catalog/CatalogPage"));
+const CategoryPage = lazy(() => import("./pages/Catalog/CategoryPage"));
+const ProductPage = lazy(() => import("./pages/Catalog/ProductPage"));
 
 // About sub-pages
-import Partners from "./pages/AboutPages/Partners";
-import Production from "./pages/AboutPages/Production";
-import Suppliers from "./pages/AboutPages/Suppliers";
-import Reviews from "./pages/AboutPages/Reviews";
-import Certificates from "./pages/AboutPages/Certificates";
-import Vacancies from "./pages/AboutPages/Vacancies";
-import Leasing from "./pages/AboutPages/Leasing";
+const Partners = lazy(() => import("./pages/AboutPages/Partners"));
+const Production = lazy(() => import("./pages/AboutPages/Production"));
+const Suppliers = lazy(() => import("./pages/AboutPages/Suppliers"));
+const Reviews = lazy(() => import("./pages/AboutPages/Reviews"));
+const Certificates = lazy(() => import("./pages/AboutPages/Certificates"));
+const Vacancies = lazy(() => import("./pages/AboutPages/Vacancies"));
+const Leasing = lazy(() => import("./pages/AboutPages/Leasing"));
 
 // Media pages
-import PhotoGallery from "./pages/MediaPages/PhotoGallery";
-import VideoPage from "./pages/MediaPages/VideoPage";
-import PromoPage from "./pages/MediaPages/PromoPage";
-import InfoPage from "./pages/MediaPages/InfoPage";
+const PhotoGallery = lazy(() => import("./pages/MediaPages/PhotoGallery"));
+const VideoPage = lazy(() => import("./pages/MediaPages/VideoPage"));
+const PromoPage = lazy(() => import("./pages/MediaPages/PromoPage"));
+const InfoPage = lazy(() => import("./pages/MediaPages/InfoPage"));
 
 function App() {
   return (
-    <CartProvider>
-      <FavorProvider>
-        <Header />
-        <PageTitle />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/service" element={<ServicePage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/contacts" element={<Contact />} />
-          <Route path="/repair" element={<Repair />} />
-          <Route path="/news" element={<News />} />
+    <Suspense fallback={<Loader />}>
+      <CartProvider>
+        <FavorProvider>
+          <Header />
+          <PageTitle />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/service" element={<ServicePage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/contacts" element={<Contact />} />
+            <Route path="/repair" element={<Repair />} />
+            <Route path="/news" element={<News />} />
 
-          {/* Catalog */}
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/catalog/:category" element={<CategoryPage />} />
-          <Route
-            path="/catalog/:category/:productId"
-            element={<ProductPage />}
-          />
+            {/* Catalog */}
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/catalog/:category" element={<CategoryPage />} />
+            <Route
+              path="/catalog/:category/:productId"
+              element={<ProductPage />}
+            />
 
-          {/* About sub-pages */}
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/production" element={<Production />} />
-          <Route path="/suppliers" element={<Suppliers />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path="/cert" element={<Certificates />} />
-          <Route path="/vacancies" element={<Vacancies />} />
-          <Route path="/leasing" element={<Leasing />} />
+            {/* About sub-pages */}
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/production" element={<Production />} />
+            <Route path="/suppliers" element={<Suppliers />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/cert" element={<Certificates />} />
+            <Route path="/vacancies" element={<Vacancies />} />
+            <Route path="/leasing" element={<Leasing />} />
 
-          {/* Media */}
-          <Route path="/photogallery" element={<PhotoGallery />} />
-          <Route path="/video" element={<VideoPage />} />
-          <Route path="/promo" element={<PromoPage />} />
-          <Route path="/info" element={<InfoPage />} />
-        </Routes>
+            {/* Media */}
+            <Route path="/photogallery" element={<PhotoGallery />} />
+            <Route path="/video" element={<VideoPage />} />
+            <Route path="/promo" element={<PromoPage />} />
+            <Route path="/info" element={<InfoPage />} />
+          </Routes>
 
-        <ContactSec />
-        <Footer />
-      </FavorProvider>
-    </CartProvider>
+          <ContactSec />
+          <Footer />
+        </FavorProvider>
+      </CartProvider>
+    </Suspense>
   );
 }
 

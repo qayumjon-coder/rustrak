@@ -72,7 +72,10 @@ const Cart = () => {
         </div>
         <div className="flex gap-4 flex-col">
           {cart.map((item) => (
-            <div key={item.id} className="rounded flex flex-col lg:flex-row w-full bg-white">
+            <div
+              key={item.id}
+              className="rounded flex flex-col lg:flex-row w-full bg-white"
+            >
               <div className="relative bg-gray-50 h-45 flex items-center justify-center overflow-hidden rounded-t">
                 <button
                   onClick={() => {
@@ -128,11 +131,16 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2 mt-10 lg:mt-0 flex-wrap">
-                  <button className="flex items-center gap-2 cursor-pointer px-15 py-4 text-sm bg-yellow hover:bg-yellow-hov font-medium rounded transition duration-200">
+                  <a
+                    href="/wtf-what-The-Fool.txt"
+                    download="wtf-what-The-Fool.txt"
+                    aria-label="Download the file"
+                    className="flex items-center gap-2 cursor-pointer px-15 py-4 text-sm bg-yellow hover:bg-yellow-hov font-medium rounded transition duration-200"
+                  >
                     {t?.getKPShort || t("poluchit_kp")}
 
                     <FiDownload size={20} />
-                  </button>
+                  </a>
                   <button
                     className="flex gap-2 items-center text-light-gray py-1.5 px-5 cursor-pointer"
                     onClick={() => removeFromCart(item.id)}

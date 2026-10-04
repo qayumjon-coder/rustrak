@@ -218,6 +218,7 @@ const Header = () => {
                       whileInView={shortFadeUp.visible}
                       onClick={toggleMenu}
                       className="flex flex-end text-[16px] items-center cursor-pointer"
+                      aria-label="Working hours"
                     >
                       {t("workingHours")}
                       <ChevronDown
@@ -279,6 +280,7 @@ const Header = () => {
                     }}
                     onClick={() => setIsModalOpen(true)}
                     className="cursor-pointer"
+                    aria-label="Qo'ng'iroq"
                   >
                     <i className="fa-solid fa-phone w-12! h-12 flex! items-center text-2xl justify-center rounded-full bg-yellow"></i>
                   </motion.button>
@@ -297,6 +299,7 @@ const Header = () => {
                   whileInView={fadeUp.visible}
                   onClick={toggleNavList}
                   className="cursor-pointer flex items-center px-4 text-lg py-2 gap-5 bg-yellow rounded-sm"
+                  aria-label="Open menu"
                 >
                   {isNavOpen ? <X /> : <Menu />}
                   <p
@@ -329,6 +332,7 @@ const Header = () => {
                           <button
                             onClick={toggleNavList}
                             className="flex items-center cursor-pointer"
+                            aria-label="Menyuni ochish"
                           >
                             {t("about")}
                             <ChevronDown
@@ -469,7 +473,7 @@ const Header = () => {
 
                 <div className="flex items-center">
                   <div
-                    className={`flex items-center absolute left-0 bg-white w-full rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
+                    className={`flex items-center absolute left-0 bg-white w-full lg:hidden rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
                     ref={searchRef}
                   >
                     <input
@@ -528,6 +532,7 @@ const Header = () => {
                     whileInView={shortFadeUp.visible}
                     onClick={toggleDropSearch}
                     className={`lg:hidden cursor-pointer p-1 rounded-full ${dropInput ? "text-yellow" : "text-black"}`}
+                    aria-label="Search button"
                   >
                     <Search size={dropInput ? 35 : 30} strokeWidth={dropInput ? 2.5 : 1.2} className=" w-full transition-all ease-out duration-200" />
                   </motion.button>
@@ -537,6 +542,7 @@ const Header = () => {
                     initial={shortFadeUp.hidden}
                     whileInView={shortFadeUp.visible}
                     href="/cart"
+                    aria-label="Shopping cart"
                     className="relative"
                   >
                     <ShoppingCart

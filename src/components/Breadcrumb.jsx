@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Breadcrumb() {
+export default function Breadcrumb({ customLabels = {} }) {
   const { t } = useTranslation();
 
   const routeNames = {
@@ -37,7 +37,7 @@ export default function Breadcrumb() {
       {pathnames.map((segment, index) => {
         const to = "/" + pathnames.slice(0, index + 1).join("/");
         const isLast = index === pathnames.length - 1;
-        const label = routeNames[segment] || segment;
+        const label = customLabels[segment] || routeNames[segment] || segment;
         return (
           <span key={to}>
             {" "}

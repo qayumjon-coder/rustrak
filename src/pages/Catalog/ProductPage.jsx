@@ -107,10 +107,12 @@ const ProductPage = () => {
 
   if (!product) return null;
 
+  const productTitle = product.title?.[language] || product.title?.ru || product.title;
+
   return (
     <section className="pt-35 mb-0">
       <div className="container">
-        <Breadcrumb />
+        <Breadcrumb customLabels={{ [category]: catTitle, [productId]: productTitle }} />
 
         <h1 className="text-xl font-bold uppercase mb-6">
           {product.title?.[language] || product.title?.ru || product.title}

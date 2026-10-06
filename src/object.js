@@ -297,7 +297,8 @@ export const swiperCardTrck = [
 
 export const recommended_trucks = [
   {
-    id: 1,
+    category: "krany-manipulyatory",
+      id: 1,
     img: "/images/recommended/000.webp",
     title: {
       ru: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N (модель 438918)",
@@ -310,7 +311,8 @@ export const recommended_trucks = [
     type: "ГАЗ",
   },
   {
-    id: 2,
+    category: "krany-manipulyatory",
+      id: 2,
     img: "/images/recommended/001.webp",
     title: {
       ru: "Кран-манипулятор КАМАЗ 43118 c КМУ ИНМАН ИМ150N (модель 4388С2-10)",
@@ -323,7 +325,8 @@ export const recommended_trucks = [
     type: "ГАЗ",
   },
   {
-    id: 3,
+    category: "krany-manipulyatory",
+      id: 3,
     img: "/images/recommended/002.webp",
     title: {
       ru: "Кран-манипулятор JAC N200L c КМУ ИНМАН ИМ150N, ДОПОГ категория EX II (модель 4389К8-10)",
@@ -336,7 +339,8 @@ export const recommended_trucks = [
     type: "КАМАЗ",
   },
   {
-    id: 4,
+    category: "avtomobili-dopog-exii",
+      id: 4,
     img: "/images/recommended/003.webp",
     title: {
       ru: "Шторный грузовик КАМАЗ 4308 ДОПОГ ЕХII (модель 4388Н2-10)",
@@ -349,7 +353,8 @@ export const recommended_trucks = [
     type: "КАМАЗ",
   },
   {
-    id: 5,
+    category: "krany-manipulyatory",
+      id: 5,
     img: "/images/recommended/004.webp",
     title: {
       ru: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N (модель 438918)",
@@ -362,7 +367,8 @@ export const recommended_trucks = [
     type: "JAC",
   },
   {
-    id: 6,
+    category: "avtotoplivozapravshchiki",
+      id: 6,
     img: "/images/recommended/005.webp",
     title: {
       ru: "Автотопливозаправщик JAC N200 АТЗ-10 м. куб",
@@ -375,7 +381,8 @@ export const recommended_trucks = [
     type: "JAC",
   },
   {
-    id: 7,
+    category: "avtotoplivozapravshchiki",
+      id: 7,
     img: "/images/recommended/006.webp",
     title: {
       ru: "Топливозаправщик Садко 9 (С41А13) с АТЗ 4,5 м3 двухсекционная",
@@ -388,7 +395,8 @@ export const recommended_trucks = [
     type: "DAEWOO",
   },
   {
-    id: 8,
+    category: "avtotoplivozapravshchiki",
+      id: 8,
     img: "/images/recommended/007.webp",
     title: {
       ru: "Топливозаправщик Валдай 12 АТЗ 8",
@@ -401,7 +409,8 @@ export const recommended_trucks = [
     type: "FOTON",
   },
   {
-    id: 9,
+    category: "shtornye-avtomobili",
+      id: 9,
     img: "/images/recommended/008.webp",
     title: {
       ru: "Шторный грузовик ВАЛДАЙ 12",
@@ -414,7 +423,8 @@ export const recommended_trucks = [
     type: "DONG FENG",
   },
   {
-    id: 10,
+    category: "shtornye-avtomobili",
+      id: 10,
     img: "/images/recommended/009.webp",
     title: {
       ru: "Шторный грузовик КАМАЗ 65657",
@@ -427,7 +437,8 @@ export const recommended_trucks = [
     type: "DONG FENG",
   },
   {
-    id: 11,
+    category: "shtornye-avtomobili",
+      id: 11,
     img: "/images/recommended/010.webp",
     title: {
       ru: "Шторный грузовик DONG FENG C120L (модель 5389H2-03)",
@@ -440,7 +451,8 @@ export const recommended_trucks = [
     type: "МАЗ",
   },
   {
-    id: 12,
+    category: "samosvaly",
+      id: 12,
     img: "/images/recommended/011.webp",
     title: {
       ru: "Самосвал на шасси КОМПАС 9",
@@ -453,7 +465,8 @@ export const recommended_trucks = [
     type: "МАЗ",
   },
   {
-    id: 13,
+    category: "avtogidropodyemniki",
+      id: 13,
     img: "/images/recommended/012.webp",
     title: {
       ru: "Автогидроподъемник PALFINGER P 180Т на шасси ГАЗ C41R33",

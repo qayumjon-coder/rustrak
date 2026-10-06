@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { news } from "../../object";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { container, fadeUp } from "../../utils/animation";
 import { MoveRight } from "lucide-react";
 import "swiper/css";
@@ -75,34 +76,34 @@ const News = () => {
             >
               <motion.div variants={fadeUp}>
                 <div className="flex h-65 relative">
-                  <a href="#">
+                  <Link to={`/news/${newsItem.id}`}>
                     <img
                       src={newsItem.img}
                       alt={"Truck Image " + newsItem.id}
                       className="object-cover h-full rounded-t-md"
                     />
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="p-2.5">
                   <p className="font-semibold">{newsItem.date}</p>
-                  <a href="#">
+                  <Link to={`/news/${newsItem.id}`}>
                     <div className="pb-2">
                       <h3 className="text-lg font-semibold">
                         {(newsItem.title?.[language] || newsItem.title?.ru || newsItem.title)}
                       </h3>
                     </div>
-                  </a>
+                  </Link>
 
                   <p className="text-xl font-semibold mb-5">{newsItem.price}</p>
 
                   <div className="flex justify-between items-center">
-                    <a
-                      href="#"
+                    <Link
+                      to={`/news/${newsItem.id}`}
                       className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg"
                     >
                       {t("more")} <MoveRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

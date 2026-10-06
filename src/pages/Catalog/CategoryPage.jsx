@@ -29,15 +29,20 @@ const CategoryPage = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const brands = [
-    t("gaz"),
-    t("kamaz"),
-    "JAC",
-    "DAEWOO",
-    "FOTON",
-    "DONG FENG",
-    t("maz"),
+    { label: t("gaz"), value: "ГАЗ" },
+    { label: t("kamaz"), value: "КАМАЗ" },
+    { label: "JAC", value: "JAC" },
+    { label: "DAEWOO", value: "DAEWOO" },
+    { label: "FOTON", value: "FOTON" },
+    { label: "DONG FENG", value: "DONG FENG" },
+    { label: t("maz"), value: "МАЗ" },
   ];
-  const massOptions = [t("do_12"), t("do_20"), t("do_5_5"), t("svyshe_20")];
+  const massOptions = [
+    { label: t("do_12"), value: "do_12" },
+    { label: t("do_20"), value: "do_20" },
+    { label: t("do_5_5"), value: "do_5_5" },
+    { label: t("svyshe_20"), value: "svyshe_20" },
+  ];
 
   const { addToCart } = useContext(CartContext);
   const { addToFavor } = useContext(FavorContext);
@@ -56,7 +61,7 @@ const CategoryPage = () => {
       [id]: !prev[id],
     }));
   const filteredBrands = brands.filter((b) =>
-    b.toLowerCase().includes(searchBrand.toLowerCase()),
+    b.label.toLowerCase().includes(searchBrand.toLowerCase()),
   );
   const totalChecked =
     Object.values(checkedBrands).filter(Boolean).length +
@@ -66,14 +71,17 @@ const CategoryPage = () => {
   const hasMass = Object.values(checkedMass).some(Boolean);
 
   const filteredTrucks = recommended_trucks.filter((item) => {
+    const categoryMatch = !currentCat || item.category === currentCat.slug;
     const brandMatch = !hasBrand || checkedBrands[item.type];
     const massMatch = !hasMass || checkedMass[item.mass];
-    return brandMatch && massMatch;
+    return categoryMatch && brandMatch && massMatch;
   });
+  const categoryTitle = currentCat.title?.[language] || currentCat.title?.ru || currentCat.title;
+
   return (
     <section className="pt-35 mb-20">
       <div className="container">
-        <Breadcrumb />
+        <Breadcrumb customLabels={{ [category]: categoryTitle }} />
 
         <div className="flex items-baseline gap-4 mb-6 flex-wrap">
           <h1 className="text-2xl font-bold">
@@ -188,21 +196,21 @@ const CategoryPage = () => {
               <div className="flex flex-col gap-1.5">
                 {filteredBrands.map((b) => (
                   <label
-                    key={b}
+                    key={b.value}
                     className="flex items-center gap-2 text-sm cursor-pointer select-none"
                   >
                     <input
                       type="checkbox"
                       className="accent-yellow w-3.5 h-3.5"
-                      checked={!!checkedBrands[b]}
+                      checked={!!checkedBrands[b.value]}
                       onChange={() =>
                         setCheckedBrands((p) => ({
                           ...p,
-                          [b]: !p[b],
+                          [b.value]: !p[b.value],
                         }))
                       }
                     />
-                    {b}
+                    {b.label}
                   </label>
                 ))}
               </div>
@@ -215,21 +223,21 @@ const CategoryPage = () => {
               <div className="flex flex-col gap-1.5">
                 {massOptions.map((m) => (
                   <label
-                    key={m}
+                    key={m.value}
                     className="flex items-center gap-2 text-sm cursor-pointer select-none"
                   >
                     <input
                       type="checkbox"
                       className="accent-yellow w-3.5 h-3.5"
-                      checked={!!checkedMass[m]}
+                      checked={!!checkedMass[m.value]}
                       onChange={() =>
                         setCheckedMass((p) => ({
                           ...p,
-                          [m]: !p[m],
+                          [m.value]: !p[m.value],
                         }))
                       }
                     />
-                    {m}
+                    {m.label}
                   </label>
                 ))}
               </div>

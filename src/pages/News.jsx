@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import NewsSwiperImage from "../components/swiper/NewsSwiperImage";
 import { news } from "../object";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { fadeUp, container } from "../utils/animation";
 import { MoveRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -28,15 +29,15 @@ const News = () => {
                 <div>
                   <p className="text-lg mb-2.75">07.07.2026</p>
 
-                  <a className="text-[24px] font-semibold mb-7.5!" href="#">
+                  <Link className="text-[24px] font-semibold mb-7.5!" to="/news/1">
                     {t("pervyy_v_rossii_konteynerovoz_")}
-                  </a>
+                  </Link>
                 </div>
 
-                <a className="text-lg text-light-gray" href="#">
+                <Link className="text-lg text-light-gray" to="/news/1">
                   {t("podrobnee")}
-                  <i className="fa-solid fa-arrow-right-long"></i>
-                </a>
+                  <i className="fa-solid fa-arrow-right-long ml-2"></i>
+                </Link>
               </div>
             </div>
           </div>
@@ -54,18 +55,18 @@ const News = () => {
               >
                 <motion.div variants={fadeUp}>
                   <div className="flex h-65 w-full relative">
-                    <a href="#" className="w-full">
+                    <Link to={`/news/${item.id}`} className="w-full">
                       <img
                         src={item.img}
                         alt={"Truck Image " + item.id}
                         className="object-cover h-full rounded-t-md w-full"
                       />
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="p-2.5 border border-light-gray/30 rounded-b-lg">
                     <p>{item.date}</p>
-                    <a href="#">
+                    <Link to={`/news/${item.id}`}>
                       <div className="pb-2">
                         <h3 className="text-lg font-semibold line-clamp-2">
                           {item.title?.[language] ||
@@ -73,18 +74,18 @@ const News = () => {
                             item.title}
                         </h3>
                       </div>
-                    </a>
+                    </Link>
 
                     <p className="text-xl font-semibold mb-5">{item.price}</p>
 
                     <div className="flex justify-between items-center">
-                      <a
-                        href="#"
+                      <Link
+                        to={`/news/${item.id}`}
                         className="flex gap-2.5 text-light-gray hover:text-yellow transition ease duration-200 text-lg"
                       >
                         {t("podrobnee")}
                         <MoveRight />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

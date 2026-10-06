@@ -45,10 +45,13 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
+  const langRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [dropInput, setDropInput] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     const q = e.target.value;
@@ -70,7 +73,7 @@ const Header = () => {
         title: item.title?.[language] || item.title?.ru,
         img: item.img,
         price: item.price,
-        link: "/catalog",
+        link: `/catalog/truck/${item.id}`,
       }));
 
     const catResults = swiperCardTrck
@@ -79,12 +82,15 @@ const Header = () => {
         return title.toLowerCase().includes(lower);
       })
       .slice(0, 3)
-      .map((item) => ({
-        title: item.title?.[language] || item.title?.ru,
-        img: item.img,
-        price: null,
-        link: "/catalog",
-      }));
+      .map((item) => {
+        const matchingLink = links.find((l) => l.content?.ru === item.title?.ru);
+        return {
+          title: item.title?.[language] || item.title?.ru,
+          img: item.img,
+          price: null,
+          link: matchingLink ? matchingLink.linkVal : "/catalog",
+        };
+      });
 
     const allLinks = [...links, ...links2, ...links3];
     const pageResults = allLinks
@@ -119,8 +125,14 @@ const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
+      if (
+        !(searchRef.current && searchRef.current.contains(e.target)) &&
+        !(mobileSearchRef.current && mobileSearchRef.current.contains(e.target))
+      ) {
         setShowResults(false);
+      }
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setIsLangOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -440,7 +452,10 @@ const Header = () => {
                       {searchResults.map((res, i) => (
                         <button
                           key={i}
-                          onClick={() => handleResultClick(res.link)}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            handleResultClick(res.link);
+                          }}
                           className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 cursor-pointer text-left border-b border-gray-50 last:border-0 transition"
                         >
                           {res.img && (
@@ -474,7 +489,7 @@ const Header = () => {
                 <div className="flex items-center">
                   <div
                     className={`flex items-center absolute left-0 bg-white w-full lg:hidden rounded-full p-3 transition-all ease-in-out duration-300 shadow-md shadow-black/10 ${dropInput ? "top-25" : "-top-100"} `}
-                    ref={searchRef}
+                    ref={mobileSearchRef}
                   >
                     <input
                       type="text"
@@ -494,7 +509,10 @@ const Header = () => {
                         {searchResults.map((res, i) => (
                           <button
                             key={i}
-                            onClick={() => handleResultClick(res.link)}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              handleResultClick(res.link);
+                            }}
                             className="w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow/10 cursor-pointer text-left border-b border-gray-50 last:border-0 transition"
                           >
                             {res.img && (
@@ -572,29 +590,40 @@ const Header = () => {
                   </motion.a>
                 </div>
 
-                <motion.label
+                <motion.div
                   variants={shortFadeUp}
                   initial={shortFadeUp.hidden}
                   whileInView={shortFadeUp.visible}
                   transition={{
                     delay: 0.2,
                   }}
-                  className="flex items-center gap-2 text-sm font-medium text-gray-700"
+                  className="relative flex items-center text-sm font-medium text-gray-700"
+                  ref={langRef}
                 >
-                  <select
-                    value={language}
-                    onChange={(event) =>
-                      i18n.changeLanguage(event.target.value)
-                    }
-                    className="rounded-md border border-yellow cursor-pointer bg-white px-2 py-1 outline-none"
+                  <button
+                    onClick={() => setIsLangOpen(!isLangOpen)}
+                    className="flex items-center gap-1 rounded-md border border-yellow cursor-pointer bg-white px-3 py-1.5 outline-none hover:bg-gray-50 transition-colors"
                   >
-                    {languages.map((item) => (
-                      <option key={item.code} value={item.code}>
-                        {item.label}
-                      </option>
-                    ))}
-                  </select>
-                </motion.label>
+                    {languages.find((l) => l.code === language)?.label || "RU"}
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {isLangOpen && (
+                    <div className="absolute top-full right-0 mt-1 w-24 bg-white border border-gray-100 rounded-md shadow-lg overflow-hidden z-50">
+                      {languages.map((item) => (
+                        <button
+                          key={item.code}
+                          onClick={() => {
+                            i18n.changeLanguage(item.code);
+                            setIsLangOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-sm cursor-pointer hover:bg-yellow/20 transition-colors ${language === item.code ? "bg-yellow/10 font-bold" : ""}`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
 
                 <motion.button
                   variants={slideTop}

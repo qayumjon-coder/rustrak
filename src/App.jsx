@@ -15,6 +15,8 @@ const Favorites = lazy(() => import("./pages/MiniPages/Favorites"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Repair = lazy(() => import("./pages/Repair"));
 const News = lazy(() => import("./pages/News"));
+const NewsDetailPage = lazy(() => import("./pages/NewsDetailPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Catalog pages
 const CatalogPage = lazy(() => import("./pages/Catalog/CatalogPage"));
@@ -52,6 +54,7 @@ function App() {
             <Route path="/contacts" element={<Contact />} />
             <Route path="/repair" element={<Repair />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsDetailPage />} />
 
             {/* Catalog */}
             <Route path="/catalog" element={<CatalogPage />} />
@@ -75,6 +78,9 @@ function App() {
             <Route path="/video" element={<VideoPage />} />
             <Route path="/promo" element={<PromoPage />} />
             <Route path="/info" element={<InfoPage />} />
+
+            {/* 404 Route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
           <ContactSec />

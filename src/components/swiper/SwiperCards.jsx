@@ -12,6 +12,20 @@ const SwiperCards = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
 
+  const slugs = [
+    "avtotoplivozapravshchiki",
+    "avtogidropodyemniki",
+    "avtotsisterny",
+    "avtoevakuatory",
+    "avtofurgony",
+    "konteynerovozy",
+    "kryukovye-pogruzchiki",
+    "samosvaly",
+    "avtomobili-dopog-exii",
+    "shtornye-avtomobili",
+    "krany-manipulyatory",
+  ];
+
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
@@ -50,14 +64,11 @@ const SwiperCards = () => {
             540: {
               slidesPerView: 2,
               spaceBetween: 20
-
             },
-
             768: {
               slidesPerView: 3,
               spaceBetween: 20
             },
-
             1280: {
               slidesPerView: 4,
               spaceBetween: 40
@@ -70,11 +81,11 @@ const SwiperCards = () => {
             "--swiper-navigation-top-offset": "50%",
           }}
         >
-          {swiperCardTrck.map((item) => (
+          {swiperCardTrck.map((item, index) => (
             <SwiperSlide className="swiperSlide" key={item.id}>
               <motion.a
                 variants={fadeUp}
-                href="/catalog"
+                href={`/catalog/${slugs[index] || 'category-' + item.id}`}
                 className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
               >
                 <div className="py-5 px-4.5">

@@ -256,7 +256,7 @@ const Header = () => {
                   </div>
 
                   {isOpen && (
-                    <div className="absolute top-5 right-10 bg-white p-3.5! shadow-lg rounded-md shadow-black/10 text-sm">
+                    <div className="absolute top-5 right-10 bg-white p-3.5! z-999 shadow-lg rounded-md shadow-black/10 text-sm">
                       <p className="mb-3!">{t("pn_pt_s_8_00_do_18_00")}</p>
                       <p>{t("sb_vs_vyhodnoy")}</p>
                     </div>
@@ -269,7 +269,7 @@ const Header = () => {
                       initial={shortFadeUp.hidden}
                       whileInView={shortFadeUp.visible}
                     >
-                      {t("forRegions")} <a href="#">8 (800)-511-05-25</a>
+                      {t("forRegions")} <a href="tel:88005110525">8 (800)-511-05-25</a>
                     </motion.p>
                     <motion.p
                       initial={shortFadeUp.hidden}
@@ -280,7 +280,7 @@ const Header = () => {
                         delay: 0.1,
                       }}
                     >
-                      {t("city")} <a href="#">8 (831) 225-00-55</a>
+                      {t("city")} <a href="tel:88312250055">8 (831) 225-00-55</a>
                     </motion.p>
                   </div>
                   <motion.button

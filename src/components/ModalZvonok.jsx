@@ -73,8 +73,8 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
               </button>
             </form>
             <div className="text-[12px] text-center mt-5">
-              <p>{t("dlya_regionov_phone")}</p>
-              <p>{t("nizhniy_novgorod_phone")}</p>
+              <p>{t("dlya_regionov_phone")} <a href="tel:88005110525">8 (800) 511-05-25</a></p>
+              <p>{t("nizhniy_novgorod_phone")} <a href="tel:88312352616">8 (831) 235-26-16</a></p>
             </div>
           </div>
         </div>

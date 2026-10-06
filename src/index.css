@@ -14,6 +14,16 @@
   --color-yellow-shadow: #fec80b66;
 }
 
+@utility no-spinner {
+  appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
+
 .container {
   width: 100%;
   margin: 0 auto;

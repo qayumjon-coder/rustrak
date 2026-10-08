@@ -98,8 +98,6 @@ const NewsDetailPage = () => {
           </div>
         )}
       </section>
-
-      <ContactSec />
     </>
   );
 };

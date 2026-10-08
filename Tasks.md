@@ -21,6 +21,13 @@
 ### ~~All pages...~~ ✅
 
 ## Complete the site
-### ~~Cart~~
-### ~~Modal~~
-### ~~Favorites~~
+##### ~~Cart~~
+##### ~~Modal~~
+##### ~~Favorites~~
+
+
+## Bugs (3)
+1. Cart & Favorites
+2. Truck filters
+3. News
+4. NewsDetailPage language changing

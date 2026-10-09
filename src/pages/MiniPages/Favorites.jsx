@@ -11,23 +11,7 @@ const Favorites = () => {
   const { favor, removeFromFavor } = useContext(FavorContext);
   const { addToCart } = useContext(CartContext);
 
-  const slugs = [
-    "avtotoplivozapravshchiki",
-    "avtogidropodyemniki",
-    "avtotsisterny",
-    "avtoevakuatory",
-    "avtofurgony",
-    "konteynerovozy",
-    "kryukovye-pogruzchiki",
-    "samosvaly",
-    "avtomobili-dopog-exii",
-    "shtornye-avtomobili",
-    "krany-manipulyatory",
-  ];
-  const categories = swiperCardTrck.map((item, i) => ({
-    ...item,
-    slug: slugs[i] || `category-${item.id}`,
-  }));
+  const categories = swiperCardTrck;
 
   const { category } = useParams();
   const { t, i18n } = useTranslation();

@@ -3,7 +3,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { swiperCardTrck } from "../../object";
+import { swiperCardTrck, recommended_trucks } from "../../object";
 import { motion } from "motion/react";
 import { fadeUp, container } from "../../utils/animation";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,16 @@ import { useTranslation } from "react-i18next";
 const SwiperCards = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
+
+  const getCategoryCount = (slug) => {
+    return recommended_trucks.filter(
+      (item) =>
+        item.category === slug ||
+        (slug === "avtomobili-dopog-exii" &&
+          (item.category === "avtomobili-dopog-exii" ||
+            item.category === "avtomobili-dopog-kategoriya-exii"))
+    ).length;
+  };
 
   const slugs = [
     "avtotoplivozapravshchiki",
@@ -85,12 +95,12 @@ const SwiperCards = () => {
             <SwiperSlide className="swiperSlide" key={item.id}>
               <motion.a
                 variants={fadeUp}
-                href={`/catalog/${slugs[index] || 'category-' + item.id}`}
+                href={`/catalog/${item.slug || slugs[index] || 'category-' + item.id}`}
                 className="flex! justify-between! w-full! flex-col h-85! border rounded-md border-light-gray/20 hover:border-yellow shadow-smooth-yellow transition ease duration-200"
               >
                 <div className="py-5 px-4.5">
                   <h3 title={(item.title?.[language] || item.title?.ru || item.title)} className="text-xl w-auto truncate">{(item.title?.[language] || item.title?.ru || item.title)}</h3>
-                  <p className="text-light-gray">{item.quantity} {t("models")}</p>
+                  <p className="text-light-gray">{getCategoryCount(item.slug)} {t("models")}</p>
                 </div>
 
                 <div className="flex self-end">

@@ -7,24 +7,6 @@ import { useContext, useState } from "react";
 import { FiHeart, FiShoppingCart, FiDownload } from "react-icons/fi";
 import { CartContext } from "../../components/CartContext";
 import { FavorContext } from "../../components/FavorContext";
-const slugs = [
-  "avtotoplivozapravshchiki",
-  "avtogidropodyemniki",
-  "avtotsisterny",
-  "avtoevakuatory",
-  "avtofurgony",
-  "konteynerovozy",
-  "kryukovye-pogruzchiki",
-  "samosvaly",
-  "avtomobili-dopog-exii",
-  "shtornye-avtomobili",
-  "krany-manipulyatory",
-];
-const categories = swiperCardTrck.map((item, i) => ({
-  ...item,
-  slug: slugs[i] || `category-${item.id}`,
-}));
-
 const CategoryPage = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
@@ -44,6 +26,17 @@ const CategoryPage = () => {
     { label: t("svyshe_20"), value: "svyshe_20" },
   ];
 
+  const getGoodsWord = (count) => {
+    if (language === "uz") return "ta mahsulot";
+    if (language === "en") return count === 1 ? "product" : "products";
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+    if (mod100 >= 11 && mod100 <= 19) return "товаров";
+    if (mod10 === 1) return "товар";
+    if (mod10 >= 2 && mod10 <= 4) return "товара";
+    return "товаров";
+  };
+
   const { addToCart } = useContext(CartContext);
   const { addToFavor } = useContext(FavorContext);
 
@@ -53,8 +46,19 @@ const CategoryPage = () => {
   const [searchBrand, setSearchBrand] = useState("");
   const [checkedBrands, setCheckedBrands] = useState({});
   const [checkedMass, setCheckedMass] = useState({});
+
   const currentCat =
-    categories.find((c) => c.slug === category) || categories[0];
+    swiperCardTrck.find(
+      (c) =>
+        c.slug === category ||
+        (category === "avtomobili-dopog-kategoriya-exii" && c.slug === "avtomobili-dopog-exii")
+    ) || {
+      id: 0,
+      slug: category,
+      title: { ru: category, uz: category, en: category },
+      quantity: 0,
+    };
+
   const toggleLike = (id) =>
     setLiked((prev) => ({
       ...prev,
@@ -63,20 +67,36 @@ const CategoryPage = () => {
   const filteredBrands = brands.filter((b) =>
     b.label.toLowerCase().includes(searchBrand.toLowerCase()),
   );
-  const totalChecked =
-    Object.values(checkedBrands).filter(Boolean).length +
-    Object.values(checkedMass).filter(Boolean).length;
 
   const hasBrand = Object.values(checkedBrands).some(Boolean);
   const hasMass = Object.values(checkedMass).some(Boolean);
+  const isFiltered = hasBrand || hasMass;
 
-  const filteredTrucks = recommended_trucks.filter((item) => {
-    const categoryMatch = !currentCat || item.category === currentCat.slug;
-    const brandMatch = !hasBrand || checkedBrands[item.type];
-    const massMatch = !hasMass || checkedMass[item.mass];
-    return categoryMatch && brandMatch && massMatch;
+  // Faqat shu kategoriyaga tegishli haqiqiy tovarlar
+  const categoryTrucks = recommended_trucks.filter((item) => {
+    return (
+      item.category === currentCat.slug ||
+      (currentCat.slug === "avtomobili-dopog-exii" &&
+        (item.category === "avtomobili-dopog-exii" ||
+          item.category === "avtomobili-dopog-kategoriya-exii"))
+    );
   });
-  const categoryTitle = currentCat.title?.[language] || currentCat.title?.ru || currentCat.title;
+
+  // Filtr natijalari
+  const filteredTrucks = categoryTrucks.filter((item) => {
+    const brandMatch = !hasBrand || checkedBrands[item.brand];
+    const massMatch = !hasMass || checkedMass[item.mass];
+    return brandMatch && massMatch;
+  });
+
+  const categoryTitle =
+    currentCat.title?.[language] ||
+    currentCat.title?.ru ||
+    currentCat.title;
+
+  // Haqiqiy tovarlar soni: filtr bo'lsa filtr natijasi, bo'lmasa shu kategoriyadagi barcha haqiqiy tovarlar soni
+  const countToShow = filteredTrucks.length;
+  const countLabel = `${countToShow} ${getGoodsWord(countToShow)}`;
 
   return (
     <section className="pt-35 mb-20">
@@ -84,14 +104,8 @@ const CategoryPage = () => {
         <Breadcrumb customLabels={{ [category]: categoryTitle }} />
 
         <div className="flex items-baseline gap-4 mb-6 flex-wrap">
-          <h1 className="text-2xl font-bold">
-            {currentCat.title?.[language] ||
-              currentCat.title?.ru ||
-              currentCat.title}
-          </h1>
-          <span className="text-gray-400 text-sm">
-            {currentCat.quantity} {t?.goods || t("tovarov")}
-          </span>
+          <h1 className="text-2xl font-bold">{categoryTitle}</h1>
+          <span className="text-gray-400 text-sm">{countLabel}</span>
           <div className="ml-auto flex items-center gap-3 text-sm text-gray-500">
             <span>{t?.sorting || t("sortirovka")}</span>
             <span className="font-semibold text-gray-800">
@@ -177,6 +191,22 @@ const CategoryPage = () => {
 
         <div className="flex gap-6">
           <aside className="sticky top-5 hidden lg:flex flex-col gap-4 w-52 shrink-0">
+            <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+              <span className="font-semibold text-base">{t?.filters || "Фильтры"}</span>
+              {isFiltered && (
+                <button
+                  onClick={() => {
+                    setCheckedBrands({});
+                    setCheckedMass({});
+                    setSearchBrand("");
+                  }}
+                  className="text-xs text-gray-400 hover:text-black uppercase cursor-pointer transition"
+                >
+                  {t?.reset || "сбросить"}
+                </button>
+              )}
+            </div>
+
             <div className="rounded">
               <p className="font-semibold text-sm mb-3">
                 {t?.brand || t("marka")}
@@ -243,13 +273,18 @@ const CategoryPage = () => {
               </div>
             </div>
 
-            <button className="w-full py-2.5 bg-yellow hover:bg-yellow-hov font-semibold text-sm rounded transition duration-200 cursor-pointer">
+            <button
+              onClick={() => {
+                const el = document.getElementById("catalog-content");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="w-full py-2.5 bg-yellow hover:bg-yellow-hov font-semibold text-sm rounded transition duration-200 cursor-pointer"
+            >
               {t?.showGoods || t("pokazat_tovary")}
-              {totalChecked > 0 ? ` (${totalChecked})` : ""}
             </button>
           </aside>
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0" id="catalog-content">
             {view === "grid" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 {filteredTrucks.map((item) => (
@@ -394,17 +429,17 @@ const CategoryPage = () => {
                         {[
                           {
                             label: t?.brand || t("marka"),
-                            value: t("maz"),
+                            value: item.brand || "—",
                           },
-                          {
+                          item.dimensions && {
                             label: t?.dimensions || t("gabarity_ts"),
-                            value: t("9510_x_2550_x_2550_mm"),
+                            value: item.dimensions,
                           },
-                          {
+                          item.payload && {
                             label: t?.payload || t("gruzopodyomnost_kg"),
-                            value: "6340",
+                            value: `${Number(item.payload).toLocaleString()} кг`,
                           },
-                        ].map((spec, si) => (
+                        ].filter(Boolean).map((spec, si) => (
                           <div key={si} className="flex items-baseline">
                             <span className="text-gray-500 shrink-0">
                               {spec.label}

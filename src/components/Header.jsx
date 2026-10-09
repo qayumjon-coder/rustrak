@@ -88,7 +88,7 @@ const Header = () => {
           title: item.title?.[language] || item.title?.ru,
           img: item.img,
           price: null,
-          link: matchingLink ? matchingLink.linkVal : "/catalog",
+          link: item.slug ? `/catalog/${item.slug}` : matchingLink ? matchingLink.linkVal : "/catalog",
         };
       });
 

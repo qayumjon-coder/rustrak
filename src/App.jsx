@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import ContactSec from "./components/ContactSec";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import BackToTop from "./components/BackToTop";
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
 const ServicePage = lazy(() => import("./pages/Service/ServicePage"));
@@ -82,7 +83,7 @@ function App() {
             {/* 404 Route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-
+          <BackToTop />
           <ContactSec />
           <Footer />
         </FavorProvider>

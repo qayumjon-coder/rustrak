@@ -313,6 +313,8 @@
   "remont_shtornyh_polupricepov_o": "Repair of curtain side semi-trailers from the Rustrak company in Nizhny Novgorod",
   "logisticheskaya_sfera_opiraets": "The logistics sector relies on the sustainable operation of trailers.Repair of curtain side semi-trailers ensures the restoration of the structure's functionality after intensive use.Our craftsmen take into account the design features of the units and use proven maintenance methods.The Rustrak company in Nizhny Novgorod offers a service focused on the quality and durability of equipment.Timely technical measures maintain the stable condition of trailers under intense loads.A reliable approach to maintenance builds confidence in the smooth operation of equipment.",
   "rasschitat_stoimost_remonta": "Calculate the cost of repairs",
+  "rasschitat_stoimost": "Calculate cost",
+  "modal_cost_calculation_text": "Leave your details, and our manager will contact you to calculate the cost.",
   "nashi_uslugi": "Our services",
   "kompaniya_rustrak_vypolnyaet_p": "The Rustrak company carries out complete repairs of semi-trailers in Nizhny Novgorod after damage or failure.We restore the trailer structure, repair the frame and side covers, repair doors, locks and opening mechanisms, and restore the trailer floor and sides.All work is carried out with high precision and compliance with quality standards, which guarantees the durability of the restored elements.",
   "vazhno": "Important:",
@@ -405,5 +407,10 @@
   "avtoelektrik_content": "Responsibilities:\n— Diagnostics and repair of vehicle electrical equipment;\n— Technical maintenance of special vehicles;\n— Working with electrical diagrams and control units.\n\nRequirements:\n— Work experience from 2 years;\n— Knowledge of truck electrical diagrams;\n— Responsibility and attentiveness.\n\nConditions:\n— Official employment;\n— Stable salary;\n— Friendly team;\n— Full-time, 5/2.\n\nPhone: 8 (831) 225-00-55",
   "page_not_found": "Page not found",
   "page_not_found_desc": "Please use navigation or search form to find the information you are interested in.",
-  "go_to_catalog": "Go to catalog"
+  "go_to_catalog": "Go to catalog",
+  "nazad": "Back",
+  "newsNotFound": "News not found",
+  "backToNews": "Back to news",
+  "eshche_novosti": "More news",
+  "izbrannoe_pusto": "Favorites is empty"
 }

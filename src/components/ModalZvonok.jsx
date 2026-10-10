@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
+const ModalZvonok = ({ isModalOpen, setIsModalOpen, title, buttonLabel, description }) => {
   const { t } = useTranslation();
 
   return (
@@ -22,8 +22,8 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
               <X size={30} />
             </button>
             <div className="mb-10 text-center">
-              <h2 className="text-[32px] font-medium">{t("zakazat_zvonok_title")}</h2>
-              <p>{t("modal_manager_text")}</p>
+              <h2 className="text-[32px] font-medium">{title || t("zakazat_zvonok_title")}</h2>
+              <p>{ description||t("modal_manager_text")}</p>
             </div>
 
             <form action="#">
@@ -69,7 +69,7 @@ const ModalZvonok = ({ isModalOpen, setIsModalOpen }) => {
               </div>
 
               <button className="cursor-pointer w-full px-10 py-3.25 bg-yellow mt-10 rounded-sm">
-                {t("ostavit_zayavku")}
+                {buttonLabel || t("ostavit_zayavku")}
               </button>
             </form>
             <div className="text-[12px] text-center mt-5">

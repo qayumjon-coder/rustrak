@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
-import React from "react";
+import { useState } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
+import ModalZvonok from "../components/ModalZvonok";
 const Repair = () => {
   const { t } = useTranslation();
   const liArr = [
@@ -15,8 +16,10 @@ const Repair = () => {
     t("opyt_17_let_dolgiy_srok_raboty"),
     t("garantiya_na_remont_obespechiv"),
   ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
+      <ModalZvonok isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} title={t("rasschitat_stoimost_remonta")} buttonLabel={t("rasschitat_stoimost")} description={t("modal_cost_calculation_text")} />
       <section className="pt-35">
         <div className="container">
           <Breadcrumb />
@@ -47,7 +50,7 @@ const Repair = () => {
               </div>
 
               <div className="flex items-center justify-center">
-                <button className="py-2 px-6.25 bg-yellow uppercase font-medium rounded-sm hover:bg-yellow-hov transition ease duration-300 cursor-pointer mt-6.25">
+                <button onClick={() => setIsModalOpen(true)} className="py-2 px-6.25 bg-yellow uppercase font-medium rounded-sm hover:bg-yellow-hov transition ease duration-300 cursor-pointer mt-6.25">
                   {t("rasschitat_stoimost_remonta")}
                 </button>
               </div>
@@ -143,7 +146,7 @@ const Repair = () => {
                 />
               </div>
               <div className="flex items-center justify-center">
-                <button className="mt-6.25 py-2 px-6.25 bg-yellow uppercase font-medium rounded-sm hover:bg-yellow-hov transition ease duration-300 cursor-pointer">
+                <button onClick={() => setIsModalOpen(true)} className="mt-6.25 py-2 px-6.25 bg-yellow uppercase font-medium rounded-sm hover:bg-yellow-hov transition ease duration-300 cursor-pointer">
                   {t("rasschitat_stoimost_remonta")}
                 </button>
               </div>

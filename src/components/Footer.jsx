@@ -58,11 +58,7 @@ const Footer = () => {
 
               <motion.button
                 variants={fadeUp}
-                onClick={() => {
-                  console.log("Bosildi");
-
-                  setIsModalOpen(true)
-                }}
+                onClick={() => setIsModalOpen(true)}
                 className="py-3.25 px-7.5 bg-yellow text-black rounded-sm cursor-pointer hover:bg-yellow-hov transition ease duration-200"
               >
                 {t("zakazat_zvonok")}

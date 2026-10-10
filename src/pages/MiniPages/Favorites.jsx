@@ -16,8 +16,6 @@ const Favorites = () => {
   const { category } = useParams();
   const { t, i18n } = useTranslation();
   const [liked, setLiked] = useState({});
-  const currentCat =
-    categories.find((c) => c.slug === category) || categories[0];
   const toggleLike = (id) =>
     setLiked((prev) => ({
       ...prev,
@@ -37,10 +35,10 @@ const Favorites = () => {
 
             <div>
               <div>
-                <h2 className="text-[32px] mb-8 font-medium">{t("korzina")}</h2>
+                <h2 className="text-[32px] mb-8 font-medium">{t("izbrannoe")}</h2>
 
                 <p className="text-[24px]">
-                  {t("vasha_korzina_pusta")}
+                  {t("izbrannoe_pusto") || "Избранное пусто"}
                   <br />
                   {t("vospolzuytes_katalogom_ili_poi")}
                 </p>
@@ -73,15 +71,14 @@ const Favorites = () => {
         <div>
           <Breadcrumb />
         </div>
-
-        <h1 className="text-2xl font-bold">
-          {currentCat.title?.[language] ||
-            currentCat.title?.ru ||
-            currentCat.title}
-        </h1>
-        <span className="text-gray-400 text-sm">
-          {currentCat.quantity} {t?.goods || t("tovarov")}
-        </span>
+        <div className="flex items-center gap-5 mb-6">
+          <h1 className="text-3xl font-medium">
+            {t("izbrannoe") || "Избранное"}
+          </h1>
+          <span className="text-gray-400">
+            {favor.length} {t("tovarov") || "товаров"}
+          </span>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {favor.map((item) => (
@@ -91,15 +88,16 @@ const Favorites = () => {
             >
               <div className="relative bg-gray-50 h-52 flex items-center justify-center overflow-hidden rounded-t">
                 <button
-                  onClick={() => toggleLike(item.id)}
+                  onClick={() => { toggleLike(item.id), removeFromFavor(item.id) }}
                   className="absolute top-2 right-2 z-10 cursor-pointer"
                 >
                   <FiHeart
-                    size={18}
+                    size={30}
+                    strokeWidth={1}
                     className={
                       liked[item.id]
-                        ? "text-red-500 fill-red-500"
-                        : "text-gray-300 hover:text-red-400 transition"
+                        ? "fill-yellow"
+                        : "text-black hover:text-yellow transition"
                     }
                   />
                 </button>
@@ -145,11 +143,12 @@ const Favorites = () => {
                     className="p-1.5 border border-gray-200 rounded hover:border-red-300 transition cursor-pointer"
                   >
                     <FiHeart
-                      size={15}
+                      size={16}
+                      strokeWidth={1}
                       className={
                         liked[item.id]
-                          ? "text-red-500 fill-red-500"
-                          : "text-gray-500"
+                          ? "fill-yellow"
+                          : "text-black hover:text-yellow transition"
                       }
                     />
                   </button>

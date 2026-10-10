@@ -194,7 +194,7 @@
   "do_20": "20 gacha",
   "do_5_5": "5,5 gacha",
   "svyshe_20": "20 dan ortiq",
-  "tovarov": "tovarlar",
+  "tovarov": "tovar",
   "sortirovka": "Saralash:",
   "po_brendu": "Brend bo'yicha",
   "spisok": "Roʻyxat",
@@ -205,7 +205,7 @@
   "pokazat_tovary": "Mahsulotlarni ko'rsatish",
   "cena_po_zaprosu": "Narx so'rov bo'yicha",
   "podrobnee": "Batafsil ma'lumot",
-  "korzina": "Arava",
+  "korzina": "Savat",
   "poluchit_kp": "CP oling",
   "gabarity_ts": "Avtomobil o'lchamlari",
   "9510_x_2550_x_2550_mm": "9510 × 2550 × 2550 mm",
@@ -313,6 +313,8 @@
   "remont_shtornyh_polupricepov_o": "Nijniy Novgoroddagi Rustrak kompaniyasining pardali yarim tirkamalarini ta'mirlash",
   "logisticheskaya_sfera_opiraets": "Logistika sektori treylerlarning barqaror ishlashiga tayanadi.Pardali yarim romorklarni ta'mirlash intensiv foydalanishdan keyin strukturaning funksionalligini tiklashni ta'minlaydi.Bizning hunarmandlarimiz birliklarning dizayn xususiyatlarini hisobga oladi va tasdiqlangan texnik usullardan foydalanadi.Nijniy Novgoroddagi Rustrak kompaniyasi uskunaning sifati va mustahkamligiga qaratilgan xizmatni taklif etadi.O'z vaqtida amalga oshirilgan texnik chora-tadbirlar kuchli yuk ostida treylerlarning barqaror holatini saqlab turadi.Texnik xizmat ko'rsatishga ishonchli yondashuv uskunaning uzluksiz ishlashiga ishonchni kuchaytiradi.",
   "rasschitat_stoimost_remonta": "Ta'mirlash xarajatlarini hisoblang",
+  "rasschitat_stoimost": "Xarajatni hisoblash",
+  "modal_cost_calculation_text": "Ta'mirlash xarajatlarini hisoblash uchun quyidagi ma'lumotlarni kiriting. Bizning mutaxassislarimiz siz bilan bog'lanadi va ta'mirlash narxini aniqlaydi.",
   "nashi_uslugi": "Bizning xizmatlarimiz",
   "kompaniya_rustrak_vypolnyaet_p": "\"Rustrak\" kompaniyasi Nijniy Novgoroddagi yarim romorklarni shikastlangan yoki ishdan chiqqanidan keyin to'liq ta'mirlashni amalga oshiradi.Biz treyler strukturasini tiklaymiz, ramka va yon panellarni ta'mirlaymiz, eshiklarni, qulflarni va ochish mexanizmlarini ta'mirlaymiz, treyler pol va yon tomonlarini tiklaymiz.Barcha ishlar yuqori aniqlik va sifat standartlariga muvofiqlik bilan amalga oshiriladi, bu esa tiklangan elementlarning mustahkamligini kafolatlaydi.",
   "vazhno": "Muhim:",
@@ -405,5 +407,10 @@
   "avtoelektrik_content": "Majburiyatlar:\n— Avtomobillar elektr jihozlarini diagnostika va ta'mirlash;\n— Maxsus texnikaga texnik xizmat ko'rsatish;\n— Elektr sxemalari va boshqaruv bloklari bilan ishlash.\n\nTalablar:\n— 2 yildan ortiq ish tajribasi;\n— Yuk avtomobillarining elektr sxemalarini bilish;\n— Mas'uliyat va diqqatlilik.\n\nShartlar:\n— Rasmiy ish joylashishi;\n— Barqaror ish haqi;\n— Do'stona jamoa;\n— To'liq ish vaqti, 5/2.\n\nTelefon: 8 (831) 225-00-55",
   "page_not_found": "Sahifa topilmadi",
   "page_not_found_desc": "Iltimos, sizni qiziqtirgan ma'lumotni topish uchun navigatsiya yoki qidiruv shaklidan foydalaning.",
-  "go_to_catalog": "Katalogga o'tish"
+  "go_to_catalog": "Katalogga o'tish",
+  "nazad": "Orqaga",
+  "newsNotFound": "Xabar topilmadi",
+  "backToNews": "Xabarlarga qaytish",
+  "eshche_novosti": "Boshqa yangiliklar",
+  "izbrannoe_pusto": "Sevimlilar bo'sh"
 }

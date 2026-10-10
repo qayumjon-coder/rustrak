@@ -322,10 +322,10 @@ const Header = () => {
                 </motion.button>
 
                 <img
-                  src="/logo/logo.svg"
+                  src="/favicon.ico"
                   alt="rustrack brand logo"
                   className={`hidden sm:flex
-                  ${isHidden ? "flex w-40 ml-4 transition-all ease duration-300 opacity-100" : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"}`}
+                  ${isHidden ? "flex w-10 ml-4 transition-all ease duration-300 opacity-100" : "flex w-0 ml-4 transition-all ease duration-300 opacity-0"}`}
                 />
 
                 <nav className="ml-5 hidden lg:block">
@@ -364,7 +364,7 @@ const Header = () => {
                             duration: 0.3,
                             delay: 0.2,
                           }}
-                          className="ml-8"
+                          className="ml-4 mr-4"
                         >
                           <button
                             onClick={toggleNavList}
@@ -384,7 +384,7 @@ const Header = () => {
                           duration: 0.3,
                           delay: 0.3,
                         }}
-                        className="ml-8"
+                        className="mr-8"
                       >
                         <a href="/service">{t("service")}</a>
                       </motion.li>
@@ -396,7 +396,7 @@ const Header = () => {
                           duration: 0.3,
                           delay: 0.4,
                         }}
-                        className="ml-8"
+                        className="mr-8"
                       >
                         <a href="/repair">{t("repair")}</a>
                       </motion.li>
@@ -408,7 +408,7 @@ const Header = () => {
                           duration: 0.3,
                           delay: 0.5,
                         }}
-                        className="ml-8"
+                        className="mr-8"
                       >
                         <a href="/news">{t("news")}</a>
                       </motion.li>
@@ -420,7 +420,7 @@ const Header = () => {
                           duration: 0.3,
                           delay: 0.6,
                         }}
-                        className="ml-8"
+                        className="mr-8"
                       >
                         <a href="/contacts">{t("contacts")}</a>
                       </motion.li>

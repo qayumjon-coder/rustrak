@@ -9,7 +9,7 @@ export default function ArcNavigation() {
     t,
     i18n
   } = useTranslation();
-  
+
   const MENU_DATA = [{
     id: "kb",
     title: t("konstruktorskoe_byuro"),
@@ -56,7 +56,7 @@ export default function ArcNavigation() {
       left: "70.6%"
     }
   }];
-  
+
   const language = i18n.language;
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0); // Desktop pinned scroll uchun
@@ -132,80 +132,80 @@ export default function ArcNavigation() {
   }; */
 
   return <>
-      <div ref={containerRef} className="relative hidden md:block font-sans" style={{
+    <div ref={containerRef} className="relative hidden lg:block font-sans" style={{
       height: `${MENU_DATA.length * 100 + 20}vh`
     }}>
-        <div className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center overflow-hidden w-full">
-          <div className="mx-auto max-w-6xl w-full px-4 flex items-center justify-between gap-70">
-            <div className="relative aspect-square w-7/12 flex items-center justify-center min-h-125">
-              <div className="absolute inset-[5%] z-10 pointer-events-none rounded-full" />
+      <div className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center overflow-hidden w-full">
+        <div className="mx-auto max-w-6xl w-full px-4 flex items-center justify-between gap-70">
+          <div className="relative aspect-square w-7/12 flex items-center justify-center min-h-125">
+            <div className="absolute inset-[5%] z-10 pointer-events-none rounded-full" />
 
-              <motion.img variants={fadeUp} initial="hidden" whileInView="visible" viewport={{
+            <motion.img variants={fadeUp} initial="hidden" whileInView="visible" viewport={{
               once: true,
               margin: "-200px"
             }} src="/logo/benefits.png" alt="Truck Illustration" className="z-20 object-fit w-130" />
 
-              <motion.nav variants={container} initial="hidden" whileInView="visible" viewport={{
+            <motion.nav variants={container} initial="hidden" whileInView="visible" viewport={{
               once: true,
               margin: "-200px"
             }} className="absolute inset-0 z-30">
-                {MENU_DATA.map((item, index) => {
+              {MENU_DATA.map((item, index) => {
                 const isActive = activeIndex === index;
                 return <motion.button variants={slideRight} key={item.id} className={`absolute flex items-center -translate-y-1/4 translate-x-3.5 bg-none border-none p-0 whitespace-nowrap group text-left transition-all duration-300 ${isActive ? "text-neutral-900 font-semibold" : "text-neutral-400 font-normal"}`} style={{
                   top: item.coords.top,
                   left: item.coords.left
                 }} onClick={() => handleDotClick(index)}>
-                      <span className={`w-5 h-5 border-2 border-[#ffd000] rounded-full mr-3 shrink-0 transition-colors duration-300 ${isActive ? "bg-[#ffd000]" : "bg-white"}`} />
-                      <span className="text-[15px]">{item.title}</span>
-                    </motion.button>;
+                  <span className={`w-5 h-5 border-2 border-[#ffd000] rounded-full mr-3 shrink-0 transition-colors duration-300 ${isActive ? "bg-[#ffd000]" : "bg-white"}`} />
+                  <span className="text-[15px]">{item.title}</span>
+                </motion.button>;
               })}
-              </motion.nav>
-            </div>
+            </motion.nav>
+          </div>
 
-            <div className="relative w-5/12 h-120 flex items-center pl-10">
-              <div className="absolute left-0 top-0 w-0.75 bg-[#ffd000]" style={{
+          <div className="relative w-5/12 h-120 flex items-center pl-10">
+            <div className="absolute left-0 top-0 w-0.75 bg-[#ffd000]" style={{
               height: `${Math.max(15, scrollProgress * 100)}%`
             }} />
 
-              <div className="relative w-full h-full ">
-                {MENU_DATA.map((item, index) => {
+            <div className="relative w-full h-full ">
+              {MENU_DATA.map((item, index) => {
                 const isActive = activeIndex === index;
                 return <div key={item.id} className={`absolute left-0 top-1/2 -translate-y-1/2 w-full transition-all duration-500 ${isActive ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}>
-                      <div className="mb-8 text-neutral-900">{item.icon}</div>
-                      <p className="text-[17px] leading-relaxed text-neutral-900 font-medium max-w-100">
-                        {item.text}
-                      </p>
-                    </div>;
+                  <div className="mb-8 text-neutral-900">{item.icon}</div>
+                  <p className="text-[17px] leading-relaxed text-neutral-900 font-medium max-w-100">
+                    {item.text}
+                  </p>
+                </div>;
               })}
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      {/*  Mobil versiyasi */}
-      <div className="flex flex-col gap-6 md:hidden my-10 font-sans">
-        <div className="top-0 bg-white/90 backdrop-blur-sm z-40 py-4 border-b border-neutral-100 flex justify-center">
-          <img src="/logo/benefits.png" alt="Truck" className="w-full max-w-60 h-auto object-contain" />
-        </div>
+    {/*  Mobil versiyasi */}
+    <div className="flex flex-col gap-6 lg:hidden my-10 font-sans">
+      <div className="top-0 bg-white/90 backdrop-blur-sm z-40 py-4 border-b border-neutral-100 flex justify-center">
+        <img src="/logo/benefits.png" alt="Truck" className="w-full max-w-60 h-auto object-contain" />
+      </div>
 
-        <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{
+      <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{
         once: true,
         margin: "-200px"
       }} className="flex flex-col gap-10 py-10 px-4">
-          {MENU_DATA.map(item => {
+        {MENU_DATA.map(item => {
           const isActive = activeMobileId === item.id;
           return <motion.div variants={fadeUp} key={item.id} id={`mobile-content-${item.id}`} className={`p-6 border-l-4 transition-all duration-300 rounded-r-xl scroll-mt-24 border-neutral-200 bg-neutral-50/50`}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-neutral-800">{item.icon}</span>
-                  <h4 className="font-bold text-neutral-800">{item.title}</h4>
-                </div>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  {item.text}
-                </p>
-              </motion.div>;
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-neutral-800">{item.icon}</span>
+              <h4 className="font-bold text-neutral-800">{item.title}</h4>
+            </div>
+            <p className="text-sm text-neutral-600 leading-relaxed">
+              {item.text}
+            </p>
+          </motion.div>;
         })}
-        </motion.div>
-      </div>
-    </>;
+      </motion.div>
+    </div>
+  </>;
 }
